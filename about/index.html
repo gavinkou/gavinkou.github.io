@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>关于 &mdash; 西行漫记 </title>
+  <title>About &mdash; 西行漫记 </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="Sculpin (http://sculpin.io)" />
@@ -34,17 +34,70 @@
   </aside>
   <main role="main">
     <section class="content-main">
-              <h2>关于</h2>
-
-<p><img src="/img/camilla.jpg" alt="雲文" /></p>
+              <h2>About</h2>
 
 <p>久仰!</p>
 
-<p>我是敬承文. 道门法用云文,</p>
+<p>道门法用云文。</p>
 
-<p>Denmark and enjoy that very much. I am a Drupal developer and I work for <a href="https://www.information.dk/">Dagbladet Information</a> &mdash; a Danish newspaper for people who are good at reading.</p>
+<p>本系统基于 Sculpin构建.</p>
 
-<p>本游记基于 <a href="https://sculpin.io/">Sculpin</a>构建 and the repository for the blog lives <a href="https://github.com/naxoc/sculpin-blog">on github</a></p>
+<h3 id="%E6%9E%84%E5%BB%BA%E6%96%B9%E6%B3%95">构建方法</h3>
+
+<p>https://sculpin.io/community/</p>
+
+<ol>
+<li>安装</li>
+<li>依赖：</li>
+<li>nodejs， nps使用中国淘宝镜像：npm config set registry=http://registry.npm.taobao.org</li>
+<li>composer， composer按照之后使用中国镜像，https://pkg.phpcomposer.com， 使用方法</li>
+<li>composer config -g repo.packagist composer https://packagist.phpcomposer.com</li>
+<li>clonoe sculpin： git clone https://github.com/sculpin/sculpin.git</li>
+<li>挑选好看的Thems：
+
+<ol>
+<li>https://github.com/gavinkou/dannyweeks.com</li>
+<li>https://github.com/gavinkou/blog.wyrihaximus.net</li>
+<li>https://github.com/WyriHaximus/blog.wyrihaximus.net</li>
+<li>https://github.com/gavinkou/website</li>
+</ol></li>
+</ol>
+
+<pre><code>[gavin_kou@vm:~/sculpin-blog]$ vendor/bin/sculpin generate --watch --server
+Detected new or updated files
+Generating: 100% (112 sources / 0.00 seconds)
+Converting: 100% (126 sources / 0.28 seconds)
+Formatting: 100% (126 sources / 0.01 seconds)
+Processing completed in 0.41 seconds
+Starting Sculpin server for the dev environment with debug true
+Development server is running at http://localhost:8000
+Quit the server with CONTROL-C.
+
+</code></pre>
+
+<pre><code>[gavin_kou@vm:~/sculpin-blog]$ cd pure/
+[gavin_kou@vm:~/sculpin-blog/pure]$ npm run develop
+
+&gt; naxoc.github.io@1.0.0 develop /home/gavin_kou/sculpin-blog/pure
+&gt; gulp
+
+[19:47:20] Using gulpfile ~/sculpin-blog/pure/gulpfile.js
+[19:47:20] Starting 'sass'...
+[19:47:21] Finished 'sass' after 83 ms
+[19:47:21] Starting 'default'...
+[19:47:21] Finished 'default' after 8.81 ms
+
+</code></pre>
+
+<p>为了配合sculpin，使用Typora来编辑Markdown。</p>
+
+<p>../img/</p>
+
+<p><img src="http://xxmj.live/img/image-20200609162539587.png" alt="image-20200609162539587" /></p>
+
+<pre><code>@echo "Upload Success:"
+@echo http://xxmj.live/img/%~nx1
+</code></pre>
           </section>
   </main>
 
