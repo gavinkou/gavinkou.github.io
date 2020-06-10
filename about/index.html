@@ -39,65 +39,6 @@
 <p>久仰!</p>
 
 <p>道门法用云文。</p>
-
-<p>本系统基于 Sculpin构建.</p>
-
-<h3 id="%E6%9E%84%E5%BB%BA%E6%96%B9%E6%B3%95">构建方法</h3>
-
-<p>https://sculpin.io/community/</p>
-
-<ol>
-<li>安装</li>
-<li>依赖：</li>
-<li>nodejs， nps使用中国淘宝镜像：npm config set registry=http://registry.npm.taobao.org</li>
-<li>composer， composer按照之后使用中国镜像，https://pkg.phpcomposer.com， 使用方法</li>
-<li>composer config -g repo.packagist composer https://packagist.phpcomposer.com</li>
-<li>clonoe sculpin： git clone https://github.com/sculpin/sculpin.git</li>
-<li>挑选好看的Thems：
-
-<ol>
-<li>https://github.com/gavinkou/dannyweeks.com</li>
-<li>https://github.com/gavinkou/blog.wyrihaximus.net</li>
-<li>https://github.com/WyriHaximus/blog.wyrihaximus.net</li>
-<li>https://github.com/gavinkou/website</li>
-</ol></li>
-</ol>
-
-<pre><code>[gavin_kou@vm:~/sculpin-blog]$ vendor/bin/sculpin generate --watch --server
-Detected new or updated files
-Generating: 100% (112 sources / 0.00 seconds)
-Converting: 100% (126 sources / 0.28 seconds)
-Formatting: 100% (126 sources / 0.01 seconds)
-Processing completed in 0.41 seconds
-Starting Sculpin server for the dev environment with debug true
-Development server is running at http://localhost:8000
-Quit the server with CONTROL-C.
-
-</code></pre>
-
-<pre><code>[gavin_kou@vm:~/sculpin-blog]$ cd pure/
-[gavin_kou@vm:~/sculpin-blog/pure]$ npm run develop
-
-&gt; naxoc.github.io@1.0.0 develop /home/gavin_kou/sculpin-blog/pure
-&gt; gulp
-
-[19:47:20] Using gulpfile ~/sculpin-blog/pure/gulpfile.js
-[19:47:20] Starting 'sass'...
-[19:47:21] Finished 'sass' after 83 ms
-[19:47:21] Starting 'default'...
-[19:47:21] Finished 'default' after 8.81 ms
-
-</code></pre>
-
-<p>为了配合sculpin，使用Typora来编辑Markdown。</p>
-
-<p>../img/</p>
-
-<p><img src="http://xxmj.live/img/image-20200609162539587.png" alt="image-20200609162539587" /></p>
-
-<pre><code>@echo "Upload Success:"
-@echo http://xxmj.live/img/%~nx1
-</code></pre>
           </section>
   </main>
 
@@ -105,11 +46,11 @@ Quit the server with CONTROL-C.
   <div class="footer-links">
       <ul class="inline-list">
         <li><a class="button-link" href="http://xxmj.life/atom.xml">Feed</a></li>
-        <li><a class="button-link" href="https://twitter.com/naxoc" rel="me">Twitter</a></li>
-        <li><a class="button-link" href="https://github.com/naxoc" rel="me">GitHub</a></li>
+        <li><a class="button-link" href="" rel="me">WeiBo</a></li>
+        <li><a class="button-link" href="https://github.com/" rel="me">GitHub</a></li>
       </ul>
     <div class="powered-by">
-      <p>Powered by <a href="https://sculpin.io">Sculpin</a></p>
+      <p>Powered by <a href="/">西行漫记</a></p>
     </div>
     <div class="google-plus">
       
@@ -118,7 +59,20 @@ Quit the server with CONTROL-C.
   </footer>
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c08f835ef0878cd5d8c15b26f8007d6f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
