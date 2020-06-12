@@ -2,19 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>http://xxmj.life</loc>
-        <lastmod>2020-06-10</lastmod>
+        <lastmod>2020-06-12</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
         <url>
-        <loc>http://xxmj.life/2019/10/17/实际线路/</loc>
-        <lastmod>2019-10-17T20:20:00+00:00</lastmod>
+        <loc>http://xxmj.life/西行漫记（四）之西安_2019_07_15.html</loc>
+        <lastmod>2019-07-15T22:20:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
         <url>
-        <loc>http://xxmj.life/2019/07/15/前言/</loc>
-        <lastmod>2019-07-15T20:20:00+00:00</lastmod>
+        <loc>http://xxmj.life/西行漫记（三）之南阳_2019_07_15.html</loc>
+        <lastmod>2019-07-15T21:20:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>http://xxmj.life/西行漫记（二）之实际线路_2019_07_15.html</loc>
+        <lastmod>2019-07-15T06:20:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>http://xxmj.life/西行漫记（一）之前言_2019_07_14.html</loc>
+        <lastmod>2019-07-14T22:20:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
