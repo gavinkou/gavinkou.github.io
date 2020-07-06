@@ -2,12 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>http://xxmj.life</loc>
-        <lastmod>2020-06-12</lastmod>
+        <lastmod>2020-07-06</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
         <url>
-        <loc>http://xxmj.life/西行漫记（四）之西安_2019_07_15.html</loc>
+        <loc>http://xxmj.life/2020年67月份工作进度表_2020_06_18.html</loc>
+        <lastmod>2020-06-18T20:20:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>http://xxmj.life/西行漫记（五）之西安甲之梦回长安_2019_07_16.html</loc>
+        <lastmod>2019-07-16T04:20:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>http://xxmj.life/西行漫记（四）之西安乙之法师西出东归_2019_07_15.html</loc>
         <lastmod>2019-07-15T22:20:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
