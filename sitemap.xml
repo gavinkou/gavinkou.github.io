@@ -2,9 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>http://xxmj.life</loc>
-        <lastmod>2020-07-07</lastmod>
+        <lastmod>2020-08-12</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
+    </url>
+        <url>
+        <loc>http://xxmj.life/炼丹褒禅山_2020_08_12.html</loc>
+        <lastmod>2020-08-12T06:20:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
         <url>
         <loc>http://xxmj.life/西行漫记（五）之西安甲之梦回长安_2019_07_16.html</loc>
