@@ -41,17 +41,19 @@
 
 <p>和极佳的markdown撰写系统Typora</p>
 
-<p><img src="Z:\sculpin-blog\img\image-20210510095914050.png" alt="image-20210510095914050" /></p>
-
-<p>网络发布基于githut的page系统完成。</p>
-
-<p>图片文件托管使用linode提供的空间</p>
-
-<p><img src="http://statics.xxmj.life/img/image-20210510092102128.png" alt="image-20210510092102128" /></p>
+<p><img src="http://statics.xxmj.life/img/image-20210510095914050.png" alt="image-20210510095914050" /></p>
 
 <p>系统搭配linxu和windows一起工作，所以sculpin后台运行于linux中，并使用sambar与windows共享HOME，windows上运行的typora便可以直接使用sculpin中的文件，然后利用sculpin生成静态文章。</p>
 
+<p><img src="http://statics.xxmj.life/img/image-20210510092102128.png" alt="image-20210510092102128" /></p>
+
 <p>typora支持的自定义上传图片程序，简单的一个cmd或者shell就可以支持好从本地的</p>
+
+<p>Z:\sculpin-blog\img\image-20210510095914050.png  到   http://statics.xxmj.life/img/image-20210510095914050.png</p>
+
+<p>的一键转换</p>
+
+<p>网络发布基于githut的page系统完成。文章中的图片托管使用linode提供的空间。</p>
 
 <p>发布时，用rsync与ssh同步到linode的VPS中，同时提交git push到github，之所以除了github之外，还是要vps，是因为众所周知的原因github的访问未必如愿，而且git管理二进制文件导致git仓库极其臃肿，故使用vps一来解决访问不稳的问题，二来跳过图片文件导致的臃肿不堪的git仓库，git仓库就只负责管理文字文件，轻装上阵，一个commit也不用那么耗时。</p>
           </section>
