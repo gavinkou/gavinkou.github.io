@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>http://xxmj.life</loc>
-        <lastmod>2020-09-25</lastmod>
+        <lastmod>2021-05-10</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
@@ -39,6 +39,12 @@
         <url>
         <loc>http://xxmj.life/西行漫记（一）之前言_2019_07_14.html</loc>
         <lastmod>2019-07-14T22:20:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>http://xxmj.life/我之人生_2002_08_12.html</loc>
+        <lastmod>2002-08-12T06:20:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
