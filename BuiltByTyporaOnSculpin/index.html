@@ -56,13 +56,17 @@
 <p>网络发布基于githut的page系统完成。文章中的图片托管使用linode提供的空间。</p>
 
 <p>发布时，用rsync与ssh同步到linode的VPS中，同时提交git push到github，之所以除了github之外，还是要vps，是因为众所周知的原因github的访问未必如愿，而且git管理二进制文件导致git仓库极其臃肿，故使用vps一来解决访问不稳的问题，二来跳过图片文件导致的臃肿不堪的git仓库，git仓库就只负责管理文字文件，轻装上阵，一个commit也不用那么耗时。</p>
+
+<p>最后的加速：</p>
+
+<p><img src="http://s.zysr.me/img/logo_fullcolor_1168x168.png" alt="img" /></p>
           </section>
   </main>
 
   <footer>
   <div class="footer-links">
       <ul class="inline-list">
-        <li><a class="button-link" href="zysr.me/atom.xml">Feed</a></li>
+        <li><a class="button-link" href="//atom.xml">Feed</a></li>
         <li><a class="button-link" href="" rel="me">WeiBo</a></li>
         <li><a class="button-link" href="/about" rel="me">关于</a></li>
       </ul>
