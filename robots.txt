@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /blog/categories/
 
-Sitemap: //sitemap.xml
+Sitemap: //zysr.me//sitemap.xml
