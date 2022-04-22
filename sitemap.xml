@@ -2,13 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>//zysr.me/</loc>
-        <lastmod>2021-09-19</lastmod>
+        <lastmod>2022-04-22</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
         <url>
+        <loc>//zysr.me//中医推荐书目_2022_04_22.html</loc>
+        <lastmod>2022-04-22T00:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
         <loc>//zysr.me//炼丹褒禅山_2020_08_12.html</loc>
         <lastmod>2020-08-12T06:20:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//外丹丹药_2020_08_07.html</loc>
+        <lastmod>2020-08-07T06:20:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
