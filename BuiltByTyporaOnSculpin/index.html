@@ -33,7 +33,9 @@
   </aside>
   <main role="main">
     <section class="content-main">
-              <p>本日志后台基于两个开源系统：Sculpin和Typora</p>
+              <p>本日志后台基于两个开源系统：Sculpin和Typora， 服务基于github、vps和cloudflare</p>
+
+<hr />
 
 <h2 id="%E8%BE%93%E5%87%BA%3A-sculpin">输出: Sculpin</h2>
 
@@ -42,6 +44,8 @@
 <p><img src="//sculpin.io/css/sculpin-mascot-jackson-large.png" alt="img" /></p>
 
 <p>在Sculpin、<a href="https://spress.yosymfony.com/docs/getting-started/">spress</a>和<a href="https://jigsaw.tighten.co/docs/starter-templates/">jigsaw</a>之间，之所以选择Sculpin，是因为Sculpin面向的内容创作着，而后者、尤其是jigswa更多的是面向开发者。而且Themes也不如Sculpin的招我喜欢，所以就Sculpin了。</p>
+
+<hr />
 
 <h1 id="%E6%92%B0%E5%86%99%3A-typora">撰写: Typora</h1>
 
@@ -59,17 +63,35 @@
 
 <p>的一键转换</p>
 
-<p>网络发布基于github的page系统完成。</p>
+<hr />
+
+<p>~~网络发布基于github的page系统完成。~~</p>
+
+<p>由于cloudflare在中国的边缘节点访问github page依然有困难，git只做版本管理，</p>
+
+<h1 id="%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%92%8Cpage%E6%89%98%E7%AE%A1">版本管理和Page托管</h1>
 
 <p><img src="http://s.zysr.me/img/image-20220425141411364.png" alt="image-20220425141411364" /></p>
 
-<p>文章中的图片托管使用linode提供的空间。</p>
+<p>文章中的图片托管使用linode提供的空间。cloudflare后面全都在VPS。</p>
 
-<p>发布时，用rsync与ssh同步到linode的VPS中，同时提交git push到github，之所以除了github之外，还是要vps，是因为众所周知的原因github的访问未必如愿，而且git管理二进制文件导致git仓库极其臃肿，故使用vps一来解决访问不稳的问题，二来跳过图片文件导致的臃肿不堪的git仓库，git仓库就只负责管理文字文件，轻装上阵，一个commit也不用那么耗时。</p>
+<hr />
 
-<p>最后的加速：</p>
+<h1 id="cdn%E5%8A%A0%E9%80%9F">CDN加速</h1>
 
-<p><img src="//s.zysr.me/img/logo_fullcolor_1168x168.png" alt="img" /></p>
+<p>CDN加速使用cloudflare，后端全都在VPS。</p>
+
+<p><img src="Z:\img\logo_fullcolor_1168x168-16508738222893.png" alt="img" /></p>
+
+<p>发布时，</p>
+
+<ol>
+<li>用rsync与ssh同步到linode的VPS中，</li>
+<li>同时提交git push到github，之所以除了github之外，</li>
+<li>清理CloudFlare cache</li>
+</ol>
+
+<p>还是要vps，是因为众所周知的原因github的访问未必如愿，而且git管理二进制文件导致git仓库极其臃肿，故使用vps一来解决访问不稳的问题，二来跳过图片文件导致的臃肿不堪的git仓库，git仓库就只负责管理文字文件，轻装上阵，一个commit也不用那么耗时。</p>
           </section>
   </main>
 
