@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+  <title>BuiltByTyporaOnsculpin &mdash; 竹叶山人 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Sculpin (http://sculpin.io)" />
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700|Montserrat:400,700" rel="stylesheet"> 
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" href="//cdn.staticfile.org/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+  
+  
+</head>
+<body>
+
+  <aside class="sidebar">
+    <header>
+      <h1>
+        <a href="/">竹叶山人</a>
+      </h1>
+      <p>西行却过流沙日，枕上寥寥心独知</p>
+    </header>
+
+    <nav>
+      <ul class="menu inline-list">
+        <li><a class="button-link" href="/blog">存档</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        <li><a class="button-link" href="/about">关于</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main role="main">
+    <section class="content-main">
+              <p>本日志后台基于两个开源系统：Sculpin和Typora， 服务基于github、vps和cloudflare</p>
+
+<hr />
+
+<h2 id="%E8%BE%93%E5%87%BA%3A-sculpin">输出: Sculpin</h2>
+
+<p>静态日志系统Sculpin</p>
+
+<p><img src="//sculpin.io/css/sculpin-mascot-jackson-large.png" alt="img" /></p>
+
+<p>在<a href="https://sculpin.io/">Sculpin</a>、<a href="https://spress.yosymfony.com/docs/getting-started/">spress</a>和<a href="https://jigsaw.tighten.co/docs/starter-templates/">jigsaw</a>之间，之所以选择Sculpin，是因为Sculpin面向的内容创作着，而后者、尤其是jigswa更多的是面向开发者。而且Themes也不如Sculpin的招我喜欢，所以就Sculpin了。</p>
+
+<hr />
+
+<h1 id="%E6%92%B0%E5%86%99%3A-typora">撰写: Typora</h1>
+
+<p>和极佳的markdown撰写系统Typora</p>
+
+<p><img src="//s.zysr.me/img/image-20210510095914050.png" alt="image-20210510095914050" /></p>
+
+<p>系统搭配linxu和windows一起工作，所以sculpin后台运行于linux中，并使用sambar与windows共享HOME，windows上运行的typora便可以直接使用sculpin中的文件，然后利用sculpin生成静态文章。</p>
+
+<p><img src="//s.zysr.me/img/image-20210510092102128.png" alt="image-20210510092102128" /></p>
+
+<p>typora支持的自定义上传图片程序，简单的一个cmd或者shell就可以支持好从本地的</p>
+
+<p>Z:\sculpin-blog\img\image-20210510095914050.png  到  //s.zysr.me/img/image-20210510095914050.png</p>
+
+<p>的一键转换</p>
+
+<hr />
+
+<p>~~网络发布基于github的page系统完成。因为众所周知的原因，page系统已经不适合了~~</p>
+
+<p>由于cloudflare在中国的边缘节点访问github page依然有困难，一半的边缘节点不可用，git只做版本管理，</p>
+
+<h1 id="%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%92%8Cpage%E6%89%98%E7%AE%A1">版本管理和Page托管</h1>
+
+<p><img src="//s.zysr.me/img/image-20220425141411364.png" alt="image-20220425141411364" /></p>
+
+<p>文章中的图片托管使用linode提供的空间。cloudflare后面全都在VPS。</p>
+
+<hr />
+
+<h1 id="cdn%E5%8A%A0%E9%80%9F">CDN加速</h1>
+
+<p>CDN加速使用cloudflare，后端全都在VPS。</p>
+
+<p><img src="//s.zysr.me/img/2022-04-25/logo_fullcolor_1168x168-16508738222893.png" alt="img" /></p>
+
+<p>发布时，</p>
+
+<ol>
+<li>用rsync与ssh同步到linode的VPS中，</li>
+<li>同时提交git push到github，之所以除了github之外，</li>
+<li>清理CloudFlare cache</li>
+</ol>
+
+<p>还是要vps，是因为众所周知的原因github的访问未必如愿，而且git管理二进制文件导致git仓库极其臃肿，故使用vps一来解决访问不稳的问题，二来跳过图片文件导致的臃肿不堪的git仓库，git仓库就只负责管理文字文件，轻装上阵，一个commit也不用那么耗时。</p>
+          </section>
+  </main>
+
+  <footer>
+  <div class="footer-links">
+      <ul class="inline-list">
+        <li><a class="button-link" href="//zysr.me//atom.xml">Feed</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        <li><a class="button-link" href="/about" rel="me">关于</a></li>
+      </ul>
+    <div class="powered-by">
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin">Typora Plus Sculpin</a></p>
+    </div>
+    <div class="google-plus">
+      
+    </div>
+  </div>
+  </footer>
+
+
+    
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c08f835ef0878cd5d8c15b26f8007d6f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+  
+  
+  
+  <script src="//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
