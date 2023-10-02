@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+  <title>nginx的多证书应用 &mdash; 竹叶山人 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+ 
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
+  
+  <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
+  
+
+
+  <link rel="canonical" href="//zysr.me//Nginx的多证书应用_2023_07_23.html" />
+
+
+
+
+</head>
+<body>
+
+  <aside class="sidebar">
+    <header>
+      <h1>
+        <a href="/">竹叶山人</a>
+      </h1>
+      <p>西行却过流沙日 枕上寥寥心独知</p>
+    </header>
+
+    <nav>
+      <ul class="menu inline-list">
+        <li><a class="button-link" href="/blog">目录</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        
+      </ul>
+    </nav>
+  </aside>
+  <main role="main">
+    <section class="content-main">
+        <article class="hentry post">
+    <header>
+      <h1 class="entry-title">nginx的多证书应用</h1>
+
+      <p class="meta">
+        <time class="published" datetime="2023-07-23T08:00:00+08:00">
+          <a href="//zysr.me//Nginx的多证书应用_2023_07_23.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>07</span>-<span class='day'>23</span>
+          </a>
+        </time>
+        <time class="updated" datetime="2023-07-23T08:00:00+08:00"></time>
+        <span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          <span class="nickname">雲文</span>
+        </span>
+      </p>
+
+              <p class="tags">
+                      <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/nginx" rel="tag">nginx</a>                       <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3" rel="tag">技术文档</a>                  </p>
+          </header>
+
+    <div class="entry-content content">
+      <p>运行多证书反向代理，充当NOSTR中继转发器快四个月了，今天准备下线这个服务。随便把配制思路分享一下。</p>
+
+<p>NOSTR因为众所周知的原因，国内是无法访问的，而NOSTR需要中继才能存活，本来NOSTR的设计思路就是天然的</p>
+
+<p>去中心社交模式。但是现在因为没有使用分布式方式发布和订阅中继，反而让NOSTR的分布式社交变得有名无实 了。</p>
+
+<p>国内访问那些著名的中继器比如说wss://relay.damus.io, wss://offchain.pub等等。</p>
+
+<p>那么如果有VPS且有域名和证书的情况下，使用Nginx是很容易架设一个反向代理服务器，充当中继转发（Forwarder of Relay）。</p>
+
+<p>这样子，中继还是那些中继。但是因为转发器的存在，让中继器拥有了无数个“分身”。</p>
+
+<ol>
+<li>域名的申请，跳过，这个非常容易几美金就能完成的事情。</li>
+<li>证书的申请，本文跳过，最简单的是使用<a href="https://certbot.eff.org/">certbot</a>来完成，但是官方的certbot手册真的很一般，很容易出错。而且它的基于域名认证的扩展也不够及时，还需要用户自己经验足够丰富。还不如使用稍为麻烦但是可靠的http文件认证模式。但是范域名证书不支持http文件认证，必须用DNS认证。好在DNS认证可以通过手</li>
+</ol>
+
+<p>这里，需要证书，是因为wss协议的要求。其实建立连接之后，Nginx还需要offload原wss请求中的Host，然后重新封装新的wss请求，然后将新的wss请求转发到中继器去。</p>
+
+<p>同时，因为Nginx默认情况下，一般还会提供正常的https访问，所以这就要求在ssl的443端口，提供https以及中继转发的wss多个服务。为了区别这些服务，必须Nginx开启ngx_stream_ssl_preread_module模块，这个模块提供<a href="https://datatracker.ietf.org/doc/html/rfc6066#section-3">SNI</a>和<a href="https://datatracker.ietf.org/doc/html/rfc7301">ALPN</a>功能，在本文的应用场景中，只需要SNI支持，它允许客户端连接的时候，通知Ningx连接的是那个服务，是https的服务？还是wss的中继转发服务。这样Nginx就会根据客户端连接的通知，选择不同的处理逻辑：</p>
+
+<ol>
+<li>如果是wss中继转发服务，则进行wss的offload，重新组装wss请求转发到对应的中继器。这个offload主要是替换wss请求中的Host头。</li>
+<li>如果是普通的https服务，则按照正常的https流程，交给本地的https应用来处理。</li>
+<li>如果还有其它的服务，比如说Trojan服务那就一样的专交给Trojan服务。</li>
+</ol>
+
+<p>在这里，可以看到，其实Nginx的的处理层<strong>不是在http层来进行的，而是在strea层进行</strong>的。</p>
+
+<p>换句话说nginx需要<strong>先配制stream块</strong>，<strong>然后配制http块</strong>。</p>
+
+<pre><code class="hl"><br />    stream {
+        log_format stream_log '$remote_addr $ssl_preread_server_name [$time_local] '
+                            '$protocol $status $bytes_sent $bytes_received '
+                            '$session_time "$upstream" "$upstream_addr" '
+                            '"$upstream_bytes_sent" "$upstream_bytes_received" "$upstream_connect_time"';
+        access_log logs/stream.log stream_log;
+        #access_log off;
+        map $ssl_preread_server_name $upstream{
+            ~t\.            trojan; #begin with t.xxx.yyy.. means trojan traffic
+            ~\.relay\.center    relay;  #nostr relay
+            default         web;
+        }
+    upstream trojan{
+        server 127.0.0.1:8443;
+    }
+
+    upstream web{
+        server 127.0.0.1:1443;
+    }
+
+    upstream relay{
+        server 127.0.0.1:1443;
+    }
+    server {
+        listen 443 reuseport;
+        ssl_preread on;
+        proxy_pass  $upstream;
+        #proxy_ssl on;
+    }
+    }
+
+</code></pre>
+
+<p>在这里Nginx所使用到的变量<strong>$ssl_preread_server_name</strong>，就是<strong>ngx_stream_ssl_preread_module</strong>模块提供的。它通过在建立ssl连接的时候，提前读取Client Hello中的server_name来给<strong>$ssl_preread_server_name</strong>赋值，这个时候ssl的握手建立还没有完成，只是收到了客户端的hello数据包，服务器没有返回任何ssl数据包，需要根据配制逻辑，选择不同的服务器证书来完成ssl握手，然后才能进入到https层面的工作。</p>
+
+<p>在这里根据<strong>$ssl_preread_server_name</strong>定义了不同的正则表达式，然后使用proxy_pass选择不同的后端。</p>
+
+<pre><code class="hl">    map $ssl_preread_server_name $upstream{
+        ~t\.            trojan; #begin with t.xxx.yyy.. means trojan traffic
+        ~\.relay\.center    relay;  #nostr relay
+        default         web;
+    }
+</code></pre>
+
+<p>然后后端的配制，就使用普通的https既可，</p>
+
+<p>中继转发的时候，需要动态的把请求代理出去既可。</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/image-20230723100309287.png" alt="image-20230723100309287" /></p>
+
+<p>需要注意的三个地方：</p>
+
+<ol>
+<li>客户端证书需要自己生成，很多地方都可以，openssl也应该可以</li>
+<li>proxy_ssl_protocals的协议版本，最好把最新的1.3版本加上支持，否则有的服务器可能会拒绝连接，比如说damus.io</li>
+<li>最后需要把普通的https升级为wss，这个用proxy_set_header指令既可完成。</li>
+</ol>
+
+<p>至于如何混用trojan流量，等有机会再说。这样子Nginx就一肩挑三担：</p>
+
+<ol>
+<li>本地的https服务</li>
+<li>远程基于WSS的NOSTR中继服务器</li>
+<li>Trojan流量</li>
+</ol>
+
+    </div>
+
+
+
+
+
+          <nav class="article">
+        <div class="previous-next">
+
+                      <div class="previous">
+              <a href="/关于中医AI_2023_07_21.html" title="前一页: 关于中医AI"><span class="arrow arrow-west"></span><span class="title">关于中医AI</span></a>
+            </div>
+          		  
+		                        <div class="next">
+              <a href="/引汉济渭_2023_07_23.html" title="下一页: 引汉济渭"><span class="title">引汉济渭</span><span class="arrow arrow-east"></span></a>
+            </div>
+          		  
+		  
+          </div>
+      </nav>
+    
+  </article>
+    </section>
+  </main>
+
+  <footer>
+  <div class="footer-links">
+      <ul class="inline-list">
+        <li><a class="button-link" href="//zysr.me//atom.xml">Feed</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        <li><a class="button-link" href="/about" rel="me">关于</a></li>
+        <li><a class="button-link" href="/contactMe/">联系</a></li>
+      </ul>
+    <div class="powered-by">
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin/">Typora Plus Sculpin</a></p>
+    </div>
+    <div class="google-plus">
+      
+    </div>
+  </div>
+  </footer>
+
+
+    
+
+  <script> 
+  //利用JQ的magnific插件，展示图片库
+  $(document).ready(function() {
+
+    var items = [] ;
+    $('p img').each( function(){
+      items.push( {src: $(this).attr('src') } ) ; 
+    }
+     ) ; 
+    var index=0 ;
+    $('p img').each( function() { 
+        $(this).magnificPopup( {
+        items: items,
+        type: 'image',
+        closeOnContentClick: true,
+
+        key: '46de12bb-623f-4b9a-88a0-8a05e1ea9dc4',  //rand unique ID
+        index: index++ ,
+        gallery: {
+          enabled: true,
+          tPrev: '上一张 (左箭头)', // title for left button
+          tNext: '下一张 (右箭头)', // title for right button
+        },
+      } ) ;
+    });
+
+
+});
+  </script>
+  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+
+    
+  <script>
+    //根据 http://highlight.cndoc.wiki/doc/123 的说明
+    //利用MD的扩展语法， 设置 .hl class。 可以高亮 https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks
+    //
+  document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.hl').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+});
+  
+  </script>
+</body>
+</html>

@@ -4,14 +4,21 @@
   <title>About &mdash; 竹叶山人 </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="Sculpin (http://sculpin.io)" />
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700|Montserrat:400,700" rel="stylesheet"> 
+
   <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" href="//cdn.staticfile.org/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+ 
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
+  
+  <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
+  
+
 
   
-  
+
+
 </head>
 <body>
 
@@ -20,7 +27,7 @@
       <h1>
         <a href="/">竹叶山人</a>
       </h1>
-      <p>西行却过流沙日，枕上寥寥心独知</p>
+      <p>西行却过流沙日 枕上寥寥心独知</p>
     </header>
 
     <nav>
@@ -28,8 +35,7 @@
         <li><a class="button-link" href="/blog">目录</a></li>
         <li><a class="button-link" href="/blog/tags">标签</a></li>
         <li><a class="button-link" href="/blog/categories">分类</a></li>
-        <li><a class="button-link" href="/about">关于</a></li>
-        <li><a class="button-link" href="/contactMe">联系我</a></li>
+        
       </ul>
     </nav>
   </aside>
@@ -61,7 +67,7 @@
 且环顾时下，“医”之不堪，痛心疾首，究其源，乃医道不彰，杂说蔽时。
 小至百姓缪识而百害生，譬如每天一瓶牛奶以补钙长骨却不究真伪，此举于引狼入室而不自知无疑；</p>
 
-<p><em>扩展阅读</em>: <a href="https://www.hsph.harvard.edu/nutritionsource/calcium-full-story/">哈佛大学公共卫生学院之牛奶和补钙之辨伪 </a></p>
+<p><em>扩展阅读</em>: <a href="https://www.hsph.harvard.edu/nutritionsource/calcium/">哈佛大学公共卫生学院之牛奶和补钙之辨伪 </a></p>
 
 <p>或如伤寒感冒“吃药一周好不吃七日愈”等谬论甚嚣尘上，诸此种种，此皆为祸矣。</p>
 
@@ -92,12 +98,12 @@
 <li>2015年，就读复旦大学软件工程学员研究生
 <img src="//s.zysr.me/img/image-20200925140556529.png" alt="image-20200925140556529" /></li>
 <li>2016年，加入Pricerunner公司</li>
-<li>2017年，学习传统文化和中医，尝试自由职业，经再三思考，放弃复旦大学研究生学习，南下广东学习传统文化。</li>
+<li>2017年，学习传统文化和中医，尝试自由职业，经再三思考，<strong>放弃复旦大学研究生</strong>学习，南下广东学习传统文化。</li>
 <li>2018年，云字辈拜入胡逸玄先生，法用云文。</li>
 <li>2020年，起自由职业</li>
 </ul>
 
-<p><img src="//s.zysr.me/img/image-20200706220215510.png" alt="image-20200706220215510" /></p>
+<p><img src="//s.zysr.me/img/image-20200706220215510.png" alt="image-20200706220215510" style="zoom: 70%;" /></p>
 
 <hr />
 
@@ -114,9 +120,10 @@
         <li><a class="button-link" href="/blog/tags">标签</a></li>
         <li><a class="button-link" href="/blog/categories">分类</a></li>
         <li><a class="button-link" href="/about" rel="me">关于</a></li>
+        <li><a class="button-link" href="/contactMe/">联系</a></li>
       </ul>
     <div class="powered-by">
-      <p>Powered by <a href="/BuiltByTyporaOnSculpin">Typora Plus Sculpin</a></p>
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin/">Typora Plus Sculpin</a></p>
     </div>
     <div class="google-plus">
       
@@ -126,19 +133,49 @@
 
 
     
+
+  <script> 
+  //利用JQ的magnific插件，展示图片库
+  $(document).ready(function() {
+
+    var items = [] ;
+    $('p img').each( function(){
+      items.push( {src: $(this).attr('src') } ) ; 
+    }
+     ) ; 
+    var index=0 ;
+    $('p img').each( function() { 
+        $(this).magnificPopup( {
+        items: items,
+        type: 'image',
+        closeOnContentClick: true,
+
+        key: '46de12bb-623f-4b9a-88a0-8a05e1ea9dc4',  //rand unique ID
+        index: index++ ,
+        gallery: {
+          enabled: true,
+          tPrev: '上一张 (左箭头)', // title for left button
+          tNext: '下一张 (右箭头)', // title for right button
+        },
+      } ) ;
+    });
+
+
+});
+  </script>
+  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+
+    
   <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?c08f835ef0878cd5d8c15b26f8007d6f";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+    //根据 http://highlight.cndoc.wiki/doc/123 的说明
+    //利用MD的扩展语法， 设置 .hl class。 可以高亮 https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks
+    //
+  document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.hl').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+});
   
-  
-  
-  <script src="//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  </script>
 </body>
 </html>

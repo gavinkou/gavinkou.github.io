@@ -4,14 +4,21 @@
   <title>BuiltByTyporaOnsculpin &mdash; 竹叶山人 </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="Sculpin (http://sculpin.io)" />
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700|Montserrat:400,700" rel="stylesheet"> 
+
   <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" href="//cdn.staticfile.org/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+ 
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
+  
+  <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
+  
+
 
   
-  
+
+
 </head>
 <body>
 
@@ -20,7 +27,7 @@
       <h1>
         <a href="/">竹叶山人</a>
       </h1>
-      <p>西行却过流沙日，枕上寥寥心独知</p>
+      <p>西行却过流沙日 枕上寥寥心独知</p>
     </header>
 
     <nav>
@@ -28,8 +35,7 @@
         <li><a class="button-link" href="/blog">目录</a></li>
         <li><a class="button-link" href="/blog/tags">标签</a></li>
         <li><a class="button-link" href="/blog/categories">分类</a></li>
-        <li><a class="button-link" href="/about">关于</a></li>
-        <li><a class="button-link" href="/contactMe">联系我</a></li>
+        
       </ul>
     </nav>
   </aside>
@@ -43,9 +49,13 @@
 
 <p>静态日志系统Sculpin</p>
 
-<p><img src="//sculpin.io/css/sculpin-mascot-jackson-large.png" alt="img" /></p>
+<p><img src="//sculpin.io/css/sculpin-mascot-jackson-large.png" alt="Sculpin Logo" class="rad25" /></p>
 
 <p>在<a href="https://sculpin.io/">Sculpin</a>、<a href="https://spress.yosymfony.com/docs/getting-started/">spress</a>和<a href="https://jigsaw.tighten.co/docs/starter-templates/">jigsaw</a>之间，之所以选择Sculpin，是因为Sculpin面向的内容创作着，而后者、尤其是jigswa更多的是面向开发者。而且Themes也不如Sculpin的招我喜欢，所以就Sculpin了。</p>
+
+<p>Theme使用了<a href="https://github.com/naxoc/sculpin-blog">https://github.com/naxoc/sculpin-blog</a>的风格，<a href="https://naxoc.net/">原版demo</a>，外加自定义的颜色。因为此风格使用了npm与gulp，这个组合在特定组合下，可能出现问题，解决思路可以参考<a href="https://renatello.com/fix-primordials-is-not-defined-gulp-node/">这里</a>，重点在于删除pure/node_modules这个npm的目录，然后增加一个npm-shrinkwrap.json，再重新npm install既可。</p>
+
+<p>更多的Sculpin使用，参考 <a href="/moreAboutSculpin">moreAboutSculpin</a></p>
 
 <hr />
 
@@ -57,13 +67,23 @@
 
 <p>系统搭配linxu和windows一起工作，所以sculpin后台运行于linux中，并使用sambar与windows共享HOME，windows上运行的typora便可以直接使用sculpin中的文件，然后利用sculpin生成静态文章。</p>
 
-<p><img src="//s.zysr.me/img/image-20210510092102128.png" alt="image-20210510092102128" /></p>
+<p><img src="//s.zysr.me/img/2023-05-23/ScreenShot_2023-05-23_001.png" alt="ScreenShot_2023-05-23_001" class="rad15" /></p>
+
+<p>md文件sculpin要求放在source目录中，而Typora对图片的处理可以单独指定到 <strong>..</strong>/img/， 请留意"<strong>..</strong>"，这样就单独存放中某个目录了。</p>
+
+<p>而静态文件的输出目录，更加运行环境，output_${env}，默认有两个一个是output_dev和output_prod。在这两个静态文件输出目录中，sculpin不会自动将 source/img/ 同步过去，所以直接以连接的形式处理就行。</p>
+
+<p>img目录中的图片文件，如果希望支持CDN的话，还需要单独指定URL，这个可以利用typora的上传功能，做一个伪URL。</p>
 
 <p>typora支持的自定义上传图片程序，简单的一个cmd或者shell就可以支持好从本地的</p>
 
-<p>Z:\sculpin-blog\img\image-20210510095914050.png  到  //s.zysr.me/img/image-20210510095914050.png</p>
+<p>..\img\image-20210510095914050.png</p>
 
-<p>的一键转换</p>
+<p>转换成网址</p>
+
+<p>//s.zysr.me/img/image-20210510095914050.png</p>
+
+<p>前面没有加https或者http，这留给浏览器根据是否是https自动选择。</p>
 
 <hr />
 
@@ -104,9 +124,10 @@
         <li><a class="button-link" href="/blog/tags">标签</a></li>
         <li><a class="button-link" href="/blog/categories">分类</a></li>
         <li><a class="button-link" href="/about" rel="me">关于</a></li>
+        <li><a class="button-link" href="/contactMe/">联系</a></li>
       </ul>
     <div class="powered-by">
-      <p>Powered by <a href="/BuiltByTyporaOnSculpin">Typora Plus Sculpin</a></p>
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin/">Typora Plus Sculpin</a></p>
     </div>
     <div class="google-plus">
       
@@ -116,19 +137,49 @@
 
 
     
+
+  <script> 
+  //利用JQ的magnific插件，展示图片库
+  $(document).ready(function() {
+
+    var items = [] ;
+    $('p img').each( function(){
+      items.push( {src: $(this).attr('src') } ) ; 
+    }
+     ) ; 
+    var index=0 ;
+    $('p img').each( function() { 
+        $(this).magnificPopup( {
+        items: items,
+        type: 'image',
+        closeOnContentClick: true,
+
+        key: '46de12bb-623f-4b9a-88a0-8a05e1ea9dc4',  //rand unique ID
+        index: index++ ,
+        gallery: {
+          enabled: true,
+          tPrev: '上一张 (左箭头)', // title for left button
+          tNext: '下一张 (右箭头)', // title for right button
+        },
+      } ) ;
+    });
+
+
+});
+  </script>
+  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+
+    
   <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?c08f835ef0878cd5d8c15b26f8007d6f";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+    //根据 http://highlight.cndoc.wiki/doc/123 的说明
+    //利用MD的扩展语法， 设置 .hl class。 可以高亮 https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks
+    //
+  document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.hl').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+});
   
-  
-  
-  <script src="//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  </script>
 </body>
 </html>

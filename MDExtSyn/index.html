@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+<head>
+  <title>MDExtSyn &mdash; 竹叶山人 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+ 
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
+  
+  <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
+  
+
+
+  
+
+
+</head>
+<body>
+
+  <aside class="sidebar">
+    <header>
+      <h1>
+        <a href="/">竹叶山人</a>
+      </h1>
+      <p>西行却过流沙日 枕上寥寥心独知</p>
+    </header>
+
+    <nav>
+      <ul class="menu inline-list">
+        <li><a class="button-link" href="/blog">目录</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        
+      </ul>
+    </nav>
+  </aside>
+  <main role="main">
+    <section class="content-main">
+              <p><img src="//s.zysr.me/img/2023-05-28/bateau-projets-1685259755539-3.gif" alt="" /></p>
+
+<h1 id="markdown%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95%E6%94%AF%E6%8C%81">Markdown扩展语法支持</h1>
+
+<p>sculpin使用<a href="michelf/php-markdown">michelf/php-markdown</a>进行解析markdown语法，php-markdown支持<a href="https://daringfireball.net/projects/markdown/syntax">基本语法</a>和<a href="https://michelf.ca/projects/php-markdown/extra/">扩展语法</a>，本文列举扩展语法使用。</p>
+
+<h2 id="%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95">扩展语法</h2>
+
+<ul>
+<li><a href="#InlineHtml">Inline <abbr title="Hyper Text Markup Language">HTML</abbr>/内嵌<abbr title="Hyper Text Markup Language">HTML</abbr></a></li>
+<li><a href="#MDinHTML">Markdown Inside <abbr title="Hyper Text Markup Language">HTML</abbr> Blocks/<abbr title="Hyper Text Markup Language">HTML</abbr>块内MD语法支持</a></li>
+<li><a href="#SpecialAttr">Special Attributes/指定属性</a></li>
+<li><a href="#FencedCodeBlock">Fenced Code Blocks/代码块圈围</a></li>
+<li><a href="#table">Tables/表格</a></li>
+<li><a href="#definationList">Definition Lists</a></li>
+<li><a href="#footnote">脚注</a></li>
+<li><a href="#abbr">缩写</a></li>
+<li><a href="#ol">序表</a></li>
+<li><a href="#emphasis">着重</a></li>
+<li><a href="#backslashEsc">反斜杠转义</a></li>
+</ul>
+
+<h2 id="InlineHtml">Inline Html</h2>
+
+<p>MD中是支持嵌到<abbr title="Hyper Text Markup Language">HTML</abbr> tag的，但是基础MD语法中，对于块级标签p、div、table、pre等等元素，必须由空行隔开，并且起始标签不能由tab或者空格缩进。
+在扩展语法支持下，上面这个限制被简化了为两个限制：</p>
+
+<ul>
+<li>块元素的开始标签不能被多于三个空格缩进。</li>
+<li>list中的块元素，必须保持一样的缩进</li>
+</ul>
+
+<p>比如下面item使用了这个语法</p>
+
+<ul>
+<li>dfasdf</li>
+<li>aother</li>
+</ul>
+
+<h2 id="MDinHTML"><abbr title="Hyper Text Markup Language">HTML</abbr>块内MD语法支持</h2>
+
+<p><abbr title="Hyper Text Markup Language">HTML</abbr>块内MD语法支持。MD语法中，块元素内是无法使用MD的。比如说书写一个DIV中，是无法使用MD语法的。
+但是中扩展语法中，DIV中是可以支持MD的。
+只需要给块元素增加一个<code> &lt;div <em>markdown='1'</em>&gt; some <em>text</em> &lt;/div&gt;</code> 的属性,即可：</p>
+
+<div  >
+
+<p>some <em>text</em></p>
+
+</div>
+
+<h2 id="SpecialAttr">指定属性</h2>
+
+<p>可以为任意元素设置属性，比如为Head设置id 、class等等属性。方法是直接在元素后面跟个空格然后用花括号把属性围起来。比如说： { #id}  或者 {.class_name}，或者{ lang=fr }等等属性
+对于链接来说id相当于是锚点，然后在link中使用(#name)指向这个锚点。</p>
+
+<pre><code class="hl">    Header 1    { #id }
+    ## Header 2 ##      {.class}
+    [Link back to header 1](#header1)
+    ## Le Site ##    {lang=fr}
+    ## Le Site ##    {.main .shine #the-site lang=fr}
+</code></pre>
+
+<p>还可以为一下几个块元素指定属性</p>
+
+<ol>
+<li>headers</li>
+<li>围圈代码块</li>
+<li>Link</li>
+<li>图片</li>
+</ol>
+
+<pre><code class="hl">[link](url){.class  #id}  
+![img](url){.class  #id}
+
+[linkref]: url "optional title" {.class #id}
+</code></pre>
+
+<p>请留意： 此处合用了 Jquery的magnific popup插件与 <a href="https://michelf.ca/projects/php-markdown/extra/">扩展语法</a> 的技能，能够为指定内容设置高亮显示，只需要设置 { .hl }属性，既可。</p>
+
+<h2 id="FencedCodeBlock">代码块圈围</h2>
+
+<p>把代码，用首尾两行超过三个的~或者`把代码圈围起来。首末行可以加空行</p>
+
+<div>
+~~~
+<br>
+   这是~代码
+<br>
+~~~
+</div>
+
+<pre><code>   这是~代码
+</code></pre>
+
+<div>
+```
+<br>
+   这是`代码
+<br>
+```
+</div>
+
+<pre><code>这是`代码
+</code></pre>
+
+<ol>
+<li><p>List item</p>
+
+<p>Not an indented code block, but a second paragraph
+in the list item</p></li>
+</ol>
+
+<pre><code>普通代码块， 无高亮
+</code></pre>
+
+<pre><code class="hl">&lt;p&gt;paragraph &lt;b&gt;emphasis&lt;/b&gt;
+增加.hl。 高亮代码块
+</code></pre>
+
+<pre><code class="hl">&lt;p&gt;paragraph &lt;b&gt;emphasis&lt;/b&gt;
+增加.hl。 高亮代码块
+</code></pre>
+
+<p>切换MD转换器</p>
+
+<h2 id="table">表格</h2>
+
+<pre><code class="hl">First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+</code></pre>
+
+<p>产生如下表格</p>
+
+<pre><code class="hl">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+  &lt;th&gt;First Header&lt;/th&gt;
+  &lt;th&gt;Second Header&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+  &lt;td&gt;Content Cell&lt;/td&gt;
+  &lt;td&gt;Content Cell&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;td&gt;Content Cell&lt;/td&gt;
+  &lt;td&gt;Content Cell&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+<h2 id="definationList">Defination List</h2>
+
+<dl>
+<dt>Apple</dt>
+<dd>Pomaceous fruit of plants of the genus Malus in 
+the family Rosaceae.</dd>
+</dl>
+
+<h2 id="footnote">脚注</h2>
+
+<p>脚注内容方括号加</p>
+
+<pre><code class="hl"><br />本行有个脚注.[^1]
+[^1]: 这是脚注内容
+
+</code></pre>
+
+<h2 id="abbr">缩写</h2>
+
+<p>先定义缩写</p>
+
+<pre><code class="hl">*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium
+</code></pre>
+
+<p>然后在需要使用缩写的地方直接使用。</p>
+
+<pre><code class="hl">The HTML specification
+is maintained by the W3C.
+</code></pre>
+
+<p>The <abbr title="Hyper Text Markup Language">HTML</abbr> specification
+is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
+
+<h2 id="ol">有序列表/序表</h2>
+
+<p>只要使用数字引导，就可以，不需要连续，语法引擎会自动处理。</p>
+
+<pre><code class="hl">1. 1st line
+1. 2st line
+1. 3nd line
+3. 4th line
+
+</code></pre>
+
+<pre><code class="hl">&lt;ol&gt;
+&lt;li&gt;1st line&lt;/li&gt;
+&lt;li&gt;2st line&lt;/li&gt;
+&lt;li&gt;3nd line&lt;/li&gt;
+&lt;li&gt;4th line&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre>
+
+<h2 id="emphasis">重点</h2>
+
+<p>一个或者两个星号*、下划线_。 会作为着重符号对待。 单个转成<code>&lt;em&gt;</code> tag， 两个转成<code>&lt;strong&gt;</code> tag。
+如果词间下划线，在扩展语法中，不会作为着重符号对待，依旧保留原义。</p>
+
+<h2 id="backslashEsc">反斜线转义</h2>
+
+<p>除了反斜线，扩展语法支持 冒号:和管道号|来做转义
+基础语法中用</p>
+
+<pre><code class="hl">\*literal asterisks\*
+:*literal asterisks\*
+|*literal asterisks\*
+</code></pre>
+
+<ol>
+<li>&#42;literal asterisks&#42;</li>
+<li>&#42;literal asterisks&#42;</li>
+<li>&#42;literal asterisks&#42;</li>
+</ol>
+          </section>
+  </main>
+
+  <footer>
+  <div class="footer-links">
+      <ul class="inline-list">
+        <li><a class="button-link" href="//zysr.me//atom.xml">Feed</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        <li><a class="button-link" href="/about" rel="me">关于</a></li>
+        <li><a class="button-link" href="/contactMe/">联系</a></li>
+      </ul>
+    <div class="powered-by">
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin/">Typora Plus Sculpin</a></p>
+    </div>
+    <div class="google-plus">
+      
+    </div>
+  </div>
+  </footer>
+
+
+    
+
+  <script> 
+  //利用JQ的magnific插件，展示图片库
+  $(document).ready(function() {
+
+    var items = [] ;
+    $('p img').each( function(){
+      items.push( {src: $(this).attr('src') } ) ; 
+    }
+     ) ; 
+    var index=0 ;
+    $('p img').each( function() { 
+        $(this).magnificPopup( {
+        items: items,
+        type: 'image',
+        closeOnContentClick: true,
+
+        key: '46de12bb-623f-4b9a-88a0-8a05e1ea9dc4',  //rand unique ID
+        index: index++ ,
+        gallery: {
+          enabled: true,
+          tPrev: '上一张 (左箭头)', // title for left button
+          tNext: '下一张 (右箭头)', // title for right button
+        },
+      } ) ;
+    });
+
+
+});
+  </script>
+  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+
+    
+  <script>
+    //根据 http://highlight.cndoc.wiki/doc/123 的说明
+    //利用MD的扩展语法， 设置 .hl class。 可以高亮 https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks
+    //
+  document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.hl').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+});
+  
+  </script>
+</body>
+</html>

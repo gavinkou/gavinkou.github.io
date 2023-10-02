@@ -3,1097 +3,731 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//atom.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2023-02-13T06:40:13+00:00</updated>
+    <updated>2023-10-02T16:23:06+08:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
         <generator uri="http://sculpin.io/">Sculpin</generator>
             <entry>
-            <title type="html"><![CDATA[道藏说略]]></title>
-            <link href="//zysr.me//11-03-道藏说略_2022_11_03.html"/>
-            <updated>2022-11-03T00:00:00+00:00</updated>
-            <id>//zysr.me//11-03-道藏说略_2022_11_03.html</id>
-            <content type="html"><![CDATA[<p>明道藏之前，历代有九部道书（郑隐藏书、《三洞经书》、《玉纬七部经》、《开元道藏》、《大宋天宫宝藏》、《政和万寿道藏》、《大金玄都宝藏》、《大元玄都宝藏》）面世，却又佚失。</p>
+            <title type="html"><![CDATA[frp内外穿透]]></title>
+            <link href="//zysr.me//FRP内外穿透_2023_08_03.html"/>
+            <updated>2023-08-03T08:00:00+08:00</updated>
+            <id>//zysr.me//FRP内外穿透_2023_08_03.html</id>
+            <content type="html"><![CDATA[<p>NAT环境下，内网的机器是无法被外部访问到的。比如下面的LaptopA和B，都不能被公网的7.7.7.7访问到的。</p>
 
-<p>现在，仅明道藏流传至今。
-明道藏包括永乐藏＋永乐北藏，及正统道藏和万历续藏。
-世行有菡芬楼等六大版本流传。</p>
+<p><img src="//s.zysr.me/img/2023-08-03/8683f0676f35742ff1a20342afb78f5e_nat-overview-1.png" alt="8683f0676f35742ff1a20342afb78f5e_nat-overview-1" /></p>
 
-<p>道藏中以三洞（洞真、洞玄、洞神）为干，
-四辅（太玄、太平、太清、正一）为枝，
-三洞又有三十六部，宣示仙途大道。</p>
+<p>在路由器的帮助下，才能实现双向通讯。但是大部份情况下，家用路由器不支持将Laptop暴露给外网。</p>
 
-<p>明道藏五千卷，外加未收道书《藏外道书》，《老子想尔注》、《敦煌道书》等等，浩如烟海，</p>
+<p><img src="//s.zysr.me/img/2023-08-03/6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2.png" alt="6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2" /></p>
 
-<p>然皆汇于一部说《道藏说略》，
-如烟海明灯，以示迷津。</p>
+<p>这个时候，如果有一个服务能够直接穿透家用路由器而直接用TCP链接，把Laptop:xxxx和7.7.7.7:xxxx等效起来，那么就相当于直接把laptop暴露在公网了。</p>
 
-<p>又有教内高道盛克琦道长躬身编撰，绝非一般的学术著作可比。</p>
+<p><img src="http://s.zysr.me/img/2023-08-03/image-20230803203907612.png" alt="image-20230803203907612" /></p>
 
-<p>有感而作诗四句：</p>
+<p>而<a href="https://github.com/fatedier/frp">frp</a>则是这样的工具，能够完美的实现这个技能。在它的帮助下，能够让访问7.7.7.7:8080的时候，相当于在访问laptop:8080。</p>
 
-<p>九部道书传真妙
-六版明藏续玄音
-三洞四辅宣仙途
-一部说略指迷津</p>
+<p>如果laptop:8080上面是个http服务的话，那么相当于在laptop:8080上面搭建了一个公网可以访问的web服务，只不过它的访问地址是7.7.7.7:8080。而frp更是直接内置了，一个静态的web服务器插件：static_file，可以直接提供静态文件的web服务。</p>
 
-<p><img src="http://s.zysr.me/img/2022-11-03/image-20221103115344884.png" alt="image-20221103115344884" style="zoom:50%;" /></p>
+<p>因为laptop经常关机，所以它的应用场景只能是对可用性要求不高的环境，比如说图床，当然如果搭配公开的cloudlare这样的的CDN，那么一个月开机一次，就足够支持一般的图床应用了。</p>
 
-<p><img src="http://s.zysr.me/img/2022-11-03/image-20221103115922352.png" alt="image-20221103115922352" style="zoom:50%;" /></p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[长相思・玉眉山]]></title>
-            <link href="//zysr.me//长相思・玉眉山_2022_08_11.html"/>
-            <updated>2022-08-11T10:24:00+00:00</updated>
-            <id>//zysr.me//长相思・玉眉山_2022_08_11.html</id>
-            <content type="html"><![CDATA[<p>早一程，晚一程</p>
+<p>比如说可能是个基于laptop:8080的图床等等服务，再也不需要云空间的存储要求。</p>
 
-<p>身向乡关转转停</p>
+<p>frp分为服务器端frps和客户端frpc，服务器端frps运行在7.7.7.7上面，客户端frpc运行在laptop上面。</p>
 
-<p>长河映日影</p>
+<p>这个体系中，frp不仅仅会监听对外服务的8080端口，而且自己也需要一个frp自己的端口用于服务器端frps和客户端frpc通讯，</p>
 
-<p>鸟一鸣，蝉一鸣</p>
+<p>frpc客户端与frps服务端在frp端口建立链接后，会根据客户端frpc的配制，决定如何将客户端frpc的资源暴露于7.7.7.7这个frps服务器端。所以frp服务器真正提供服务的端口，其实是由frp客户端来指定的。</p>
 
-<p>幽人孤车梦不成</p>
-
-<p>松子落空岭</p>
-
-<p>——中元节，谒玉眉山归家
-填词长相思·玉眉山</p>
-
-<p><img src="//s.zysr.me/img/2022-08-13/image-20220813102650987.png" alt="image-20220813102650987" style="zoom:50%;" /></p>
-
-<p><img src="//s.zysr.me/img/2022-08-13/image-20220813104940542.png" alt="image-20220813104940542" style="zoom:50%;" /></p>
-
-<p><img src="//s.zysr.me/img/2022-08-13/image-20220813104951657.png" alt="image-20220813104951657" style="zoom:50%;" /></p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[歌禹迹山]]></title>
-            <link href="//zysr.me//歌禹迹山_2022_08_05.html"/>
-            <updated>2022-08-05T10:24:00+00:00</updated>
-            <id>//zysr.me//歌禹迹山_2022_08_05.html</id>
-            <content type="html"><![CDATA[<p>距上一次去禹迹山拜这唐佛，已过去二十年有余，上一次和同学骑自行车，周末游禹迹山，拜唐朝站佛。</p>
-
-<p>好多年没有在草木丰茂的时候，回老家看看了，更没几乎去礼佛。</p>
-
-<p>一路车行至，无路处，掉头行至农户晒坝，跟撕包谷的大叔一打听，</p>
-
-<p>答曰：无路之处即有正路，似有三份禅味。</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813110005270.png" alt="image-20220813110005270" /></p>
-
-<p>居然骑到第三层院落的观音立像脚下，被正在为鲜花浇水的居士盛赞：颇具佛缘，从未有人能骑车到这菩萨脚下，感恩护法菩萨保佑。</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813105945220.png" alt="image-20220813105945220" /></p>
-
-<p>等斋饭的功夫，大雄宝殿外石阶，有大榕树一株，正是读地藏经的绝佳之处，复觉一白狗侧卧身旁，禅宗赵州禅师曾论狗子既有佛性也无佛性。</p>
-
-<p>而居士以福报为念，即便以此为计，能生于佛院中，也算既有佛缘，又有福报之灵。</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813105911730.png" alt="赵州狗子" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813105936074.png" alt="狗子佛性" /></p>
-
-<p>距大殿百丈处，便是这唐佛，乐山大佛为石刻坐佛，大足为卧佛，禹迹山为石刻唐立佛，并称巴蜀三大佛。</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813105955547.png" alt="image-20220813105955547" /></p>
-
-<p>千年过去，历经战乱、文革等等劫难，虽华服不再，但神韵却依旧栩栩如生。</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813110248273.png" alt="image-20220813110248273" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813110319171.png" alt="image-20220813110319171" /></p>
-
-<p>这唐佛所在之处，却是真正的大佛寺所在。</p>
-
-<p>恰一对夫妇香客，山下买来香蜡，要来燃香礼佛，却被告之，大佛寺为旅游景区非宗教场所，大佛寺不能礼佛供奉。</p>
-
-<p>禹迹山能游人众多，只为礼这千年唐佛，石佛屹立千年，全赖信仰之力；</p>
-
-<p>颇为滑稽，石佛历经文革依旧为信众守护如斯，若失去这供奉，这石佛如何能屹立千年？禹迹山没这唐佛，与普通的山林毫无差别，谁会驱车三十里来此？</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813105923603.png" alt="image-20220813105923603" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813110259703.png" alt="image-20220813110259703" /></p>
-
-<p>淡然做游记：</p>
-
-<p>车辕绝，人烟灭
-花叶穷处唐佛立。
-赵州狗子佛性在？
-铜钟无声
-千年屹立</p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[故城落霞]]></title>
-            <link href="//zysr.me//故城落霞_2022_07_23.html"/>
-            <updated>2022-07-23T10:24:00+00:00</updated>
-            <id>//zysr.me//故城落霞_2022_07_23.html</id>
-            <content type="html"><![CDATA[<p>落霞与孤塔齐飞
-嘉水共长桥一色</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115131245.png" alt="image-20220813115131245" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115137139.png" alt="image-20220813115137139" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115145079.png" alt="image-20220813115145079" /></p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[陵江日出]]></title>
-            <link href="//zysr.me//陵江日出_2022_07_21.html"/>
-            <updated>2022-07-21T08:24:00+00:00</updated>
-            <id>//zysr.me//陵江日出_2022_07_21.html</id>
-            <content type="html"><![CDATA[<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115324340.png" alt="image-20220813115324340" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115329509.png" alt="image-20220813115329509" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115333225.png" alt="image-20220813115333225" /></p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[文笔塔晨光]]></title>
-            <link href="//zysr.me//文笔塔晨光_2022_07_07.html"/>
-            <updated>2022-07-07T08:24:00+00:00</updated>
-            <id>//zysr.me//文笔塔晨光_2022_07_07.html</id>
-            <content type="html"><![CDATA[<p>晨光暮露文笔塔
-九曲嘉陵两虹影</p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115625403.png" alt="image-20220813115625403" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115629469.png" alt="image-20220813115629469" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115634695.png" alt="image-20220813115634695" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115639444.png" alt="image-20220813115639444" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115645912.png" alt="image-20220813115645912" /></p>
-
-<p><img src="http://s.zysr.me/img/2022-08-13/image-20220813115651242.png" alt="image-20220813115651242" /></p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[云图Cloud Atlas]]></title>
-            <link href="//zysr.me//云图Cloud-Atlas_2022_05_02.html"/>
-            <updated>2022-05-02T00:00:00+00:00</updated>
-            <id>//zysr.me//云图Cloud-Atlas_2022_05_02.html</id>
-            <content type="html"><![CDATA[<p><img src="http://s.zysr.me/img/image-20220502225005992.png" alt="image-20220502225005992" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220502224752701.png" alt="image-20220502224752701" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220502224831844.png" alt="image-20220502224831844" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220502225150769.png" alt="image-20220502225150769" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220502224934980.png" alt="image-20220502224934980" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220502224949962.png" alt="image-20220502224949962" /></p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[中医读书之法]]></title>
-            <link href="//zysr.me//中医读书之法_2022_05_01.html"/>
-            <updated>2022-05-01T00:00:00+00:00</updated>
-            <id>//zysr.me//中医读书之法_2022_05_01.html</id>
-            <content type="html"><![CDATA[<p>中医读书之法
-虽言四大经典为必读之书，然内经之幽微，本经之玄奥，伤寒之意密，难经之幽微。绝非经读百遍其义自见，可以摡之。
-故，四书皆有后世医家注之，而引后学之迷茫，试罗列四大经典诸家注释之文，以解摸象之盲。</p>
-
-<h1 id="%E5%86%85%E7%BB%8F">内经</h1>
-
-<h1 id="%E6%9C%AC%E8%8D%89">本草</h1>
-
-<ol>
-<li>《本草思辨录》，清·周岩，另著《六气感证要义》(收于《珍本医书集成》第二册内科卷，裘庆元)。和本草与经方而思辨本草之性至极。绪论篇，驳<strong>《医林改错</strong>》诸错。赞唐荣川之《中西汇通医经精义》“持中西之平，阐造物之秘”，而翼</li>
-<li>《本经疏证》，邹澍，字润安</li>
-<li>《本草述》，刘若金，明·潜江人，字云密，官至刑部尚书</li>
-<li>《神农本草经百种录》，徐大椿，字灵胎，号洄溪。 令有《医学源流论》、《兰台轨范》、《伤寒类方》等著作</li>
-<li>《神农本草经读》，陈念祖，字修园，号慎修。另有《医学三字经》等著作</li>
-</ol>
-
-<h1 id="%E4%BC%A4%E5%AF%92%E8%AE%BA">伤寒论</h1>
-
-<ol>
-<li>伤寒来苏集，柯琴，字伯韵，来苏集含三书：伤寒论注四卷，伤寒论翼上下两卷，伤寒附翼上下两卷。
-其中伤寒论翼极具特色。
-<img src="http://s.zysr.me/img/image-20220501213357827.png" alt="image-20220501213357827" />
-<img src="http://s.zysr.me/img/image-20220501214419306.png" alt="image-20220501214419306" />
-<img src="http://s.zysr.me/img/image-20220501214519929.png" alt="image-20220501214519929" /></li>
-<li><p>中土版，伤寒论语译</p>
-
-<p><img src="http://s.zysr.me/img/image-20220501215535599.png" alt="image-20220501215535599" /></p></li>
-<li><p>伤寒论语译</p>
-
-<p><img src="http://s.zysr.me/img/image-20220501215548570.png" alt="image-20220501215548570" /></p></li>
-<li><p>中土版，伤寒论校注</p>
-
-<p><img src="http://s.zysr.me/img/image-20220501215658792.png" alt="image-20220501215658792" /></p></li>
-<li><p>伤寒扫尘论</p>
-
-<p><img src="http://s.zysr.me/img/image-20220501214741810.png" alt="image-20220501214741810" /></p></li>
-<li><p>气解伤寒</p>
-
-<p><img src="http://s.zysr.me/img/image-20220501214907175.png" alt="气解伤寒论" /></p></li>
-</ol>
-
-<h1 id="%E9%9A%BE%E7%BB%8F">难经</h1>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[希望与果业]]></title>
-            <link href="//zysr.me//希望与果业_2022_04_23.html"/>
-            <updated>2022-04-23T06:20:00+00:00</updated>
-            <id>//zysr.me//希望与果业_2022_04_23.html</id>
-            <content type="html"><![CDATA[<p>一友，只见一面，临别赠言，情切切焉，颇为感慨。
-近闻其罹患重病，时忧其近况。</p>
-
-<p>恰近半年，常与儿时好友，谈及赛斯之书，内容涉及医学与心识。</p>
-
-<p><img src="http://s.zysr.me/img/image-20220424205801132.png" alt="image-20220424205801132" /></p>
-
-<p>最后落脚于“自己的实相为自己所造”。
-注：此实相非佛经所言之实相，易为“果业为自己心念所造”更妥。译者平平，但得意忘译，勿责。</p>
-
-<p>无论佛道，都对识心，俱惕惕焉。</p>
-
-<p>六祖独言：
-迷人念佛求生于彼，
-悟者自净其心。</p>
-
-<p><img src="http://s.zysr.me/img/image-20220424205828529.png" alt="image-20220424205828529" /></p>
-
-<p>再通俗点，
-用人民日报这段话，</p>
-
-<p><img src="http://s.zysr.me/img/image-20220424205841301.png" alt="image-20220424205841301" /></p>
-
-<p>虽有鸡汤之嫌。</p>
-
-<p>然西人、六祖、世人，
-说言各异，但因果相乘，
-所指为一。</p>
-
-<p>肖申克的救赎有一句话，
-关进肖申克监狱不久的Andy，
-萌生了一个念头：希望越狱。</p>
-
-<p>morgen Freeman饰演的Red，
-跟Andy说了两句话，至今记忆犹新：
-Hope is a dangerous thing. 
-Hope can drive a man insane.<br />
-It's got no use on the inside.</p>
-
-<p>Andy带着这个希望，日拱一卒。
-从肖申克救赎了自己，
-也救赎了希望无用论的Red。</p>
-
-<p>昨夜“四月之声”，
-刺痛由民及官的神经。</p>
-
-<p>为何？是无他，只因为希望。</p>
-
-<p>hope, can drive a man insane.</p>
-
-<p>希望从何而来，
-唯信仰而来，
-唯识心而来，
-相信相信的力量。</p>
-
-<p>这也是近十来日
-经历诸多事项
-所得之最：
-无论疾病，人事还是钱财。
-心念为最。希望为最。
-Hope is a dangerous thing. 
-Hope can drive a man insane.<br />
-but we get dying if we lose it.</p>
-
-<p><img src="http://s.zysr.me/img/image-20220424210312993.png" alt="image-20220424210312993" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220424210442611.png" alt="image-20220424210442611" /></p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[中医推荐书目]]></title>
-            <link href="//zysr.me//中医推荐书目_2022_04_22.html"/>
-            <updated>2022-04-22T00:00:00+00:00</updated>
-            <id>//zysr.me//中医推荐书目_2022_04_22.html</id>
-            <content type="html"><![CDATA[<h2 id="-"> </h2>
-
-<p>学中医，自然以内经和本草经以及伤寒金匮为主要。</p>
-
-<p>医经的书籍，自古较多，目前由这样几个项目中的一些书，值得一观，书目中以<strong>黑色加粗标</strong>注。</p>
-
-<ol>
-<li>人卫的<strong><a href="#zhongtuban">中土版</a></strong>：人民卫生出版社-<a href="https://list.tmall.com/search_product.htm?q=%D6%D0%D2%BD%B9%C5%BC%AE%D5%FB%C0%ED%B4%D4%CA%E9&amp;type=p&amp;spm=a220m.1000858.a2227oh.d100&amp;from=.list.pc_1_searchbutton">中医古籍整理丛书重刊</a>。 封面黄色，附带圣象水印，由诸多名老中医领衔主持，比如何任等等，质量最优，★★★★推荐</li>
-<li>中医出版社的<strong><a href="#shengxiang">圣象版</a></strong>，中国中医药管理局所属的“中医药古籍保护与利用能力建设项目”，由中国中医药出版社主持的 <strong>“中医药古籍保护与利用能力建设项目”</strong>，其产出成果为<a href="https://zgzyycbs.tmall.com/?q=%D6%D0%B9%FA%B9%C5%D2%BD%BC%AE%D5%FB%C0%ED%B4%D4%CA%E9&amp;type=p&amp;search=y&amp;newHeader_b=s_from&amp;searcy_type=item&amp;from=.shop.pc_2_searchbutton&amp;spm=a1z10.3-b-s.a2227oh.d101">中国古医籍整理丛书</a>。注意，与前一条，一字之差。封面为山东嘉祥武氏祠汉画石像为封面，且每本书送黄帝象书签一枚，我把他简称为：黄帝石象版或者黄帝<strong>圣象版</strong>。 ★★★推荐</li>
-<li>中国医药科技出版社的<strong><a href="#feiyi">非遗经典丛书</a></strong>，其包含<a href="https://zgyykjcbs.tmall.com/?q=%D6%D0%D2%BD%B7%C7%CE%EF%D6%CA%CE%C4%BB%AF%D2%C5%B2%FA%C1%D9%B4%B2%BE%AD%B5%E4%C3%FB%D6%F8&amp;type=p&amp;search=y&amp;newHeader_b=s_from&amp;searcy_type=item&amp;from=.shop.pc_2_searchbutton&amp;spm=a1z10.1-b-s.a2227oh.d101">经典名著</a>和<a href="https://zgyykjcbs.tmall.com/?q=%D6%D0%D2%BD%B7%C7%CE%EF%D6%CA%CE%C4%BB%AF%D2%C5%B2%FA%C1%D9%B4%B2%BE%AD%B5%E4%B6%C1%B1%BE&amp;type=p&amp;search=y&amp;newHeader_b=s_from&amp;searcy_type=item&amp;from=.shop.pc_2_searchbutton&amp;spm=a1z10.3-b-s.a2227oh.d101">经典读本</a>两个子系列，因其封面不同，分别用兽鼎版和兽环版表示。★★★推荐。其中，
+<p>安装之后，frpc和frps各有自己的ini格式的配置文件，启动命令非常相似</p>
 
 <ul>
-<li>经典名著总计收录45部书籍，但遗憾的是内经等重要著作以及其注释著作，极少收录，大多为后世医家的临证典籍。</li>
-</ul></li>
-</ol>
-
-<ul>
-<li>经典读本，按出版时间，分为：
-
-<ol>
-<li>2011年出版的第一版，封面依旧为衔环兽首，<img src="http://s.zysr.me/img/image-20220422221846825.png" alt="image-20220422221846825" /></li>
-<li>2019年的第二版中，新版的方面依然有<strong>衔环兽首</strong>。但是收录书籍更多，依照收录顺序，分为第一辑和第二辑，第一辑收录54部，第二辑收录28部。</li>
-</ol></li>
+<li>frpc -c frpc.ini   #启动Laptop上面的客户端</li>
+<li>frps -c frps.ini   #启动7.7.7.7上面的服务器端</li>
 </ul>
 
-<ol start="4">
-<li>人卫的<a href="#meihua">梅花版</a>。★★★推荐</li>
+<p>比如说frps.ini中，指定frps和frpc自己的通讯端口是7000.</p>
+
+<pre><code class="hl">[common]
+bind_port = 7000
+</code></pre>
+
+<p>frpc.ini</p>
+
+<pre><code class="hl">[common]
+server_addr = 7.7.7.7
+server_port = 7000
+
+[test_static_file]
+type = tcp
+remote_port = 8080
+
+#这个由frp的静态服务插件来实现http静态服务，当然也可以用别的服务来实现。比如说端口转发等等。
+plugin = static_file
+# 要对外暴露的文件目录
+plugin_local_path = C:/Documents/sites/frp_sites/pub
+</code></pre>
+
+<p>服务器和客户端启动之后，访问 http://7.7.7.7:8080，就可以直接访问Laptop上面 C:/Documents/sites/frp_sites/pub 里面的文件了。</p>
+
+<p>比如说laptop://C:/Documents/sites/frp_sites/pub/hello.png，可以通过http://7.7.7.7:8080/hello.png来访问。</p>
+
+<p>这个配制中，还是非常的原始，只可以适用于演示。</p>
+
+<p>实际上上面这个配制，任何frp客户端都可以连接frps上去，这非常的不安全。所以需要在frpc和frps之间进行认证，frp支持的认证方法有token和oidc，oidc的认证略微复杂，直接使用token来设置密码最简单。</p>
+
+<p>在上面的frps.ini和frpc.ini的common节中，同时加入：</p>
+
+<pre><code class="hl">authentication_method = token
+token = 47866af5-cc5f-4798-a658-8a39bb61f53e
+
+</code></pre>
+
+<p>借用电影疯狂的石头的话说，7.7.7.7:7000可不是公共厕所，想来就来 :) 。</p>
+
+<p>这样frpc和frps就会进行连接认证了。</p>
+
+<p>进一步的，http://7.7.7.7:8080/hello.png，这样的URL实在太丑陋了，所以Nginx做反向代理，我们新建一个站点: frp.a.com 。</p>
+
+<p>设置DNS，将frp.a.com指向7.7.7.7之后，</p>
+
+<p>使用http://frp.a.com/hello.png，就可以非常友好的访问laptop://C:/Documents/sites/frp_sites/pub/hello.png了。</p>
+
+<pre><code class="hl">server {
+    server_name frp.a.com;
+    listen 80 ;
+    location / {
+        proxy_pass  http://7.7.7.7:8080;
+    }
+}
+
+</code></pre>
+
+<p>这个地方，还有点点可以改进的地方，既然http://7.7.7.7:8080/hello.png这样的网址，对外部来说已经不需要了，那么能不能换成只能Nginx内部 访问的网址，比如说 http://127.0.0.1:8080？</p>
+
+<p>当然是可以的，这个时候需要在服务器端的frp<strong>s</strong>.ini中配制指定：</p>
+
+<pre><code class="hl">pproxy_bind_addr = 127.0.0.1
+</code></pre>
+
+<p>这个设置，会让frp只监听127.0.0.1:8080，而不是服务器的*:8080。这样frp只接受乃至服务器本身的连接，外部不可访问7.7.7.7:8080了，就更加的安全了。</p>
+
+<p><img src="//s.zysr.me/img/2023-08-03/image-20230803211441880.png" alt="image-20230803211441880" /></p>
+
+<p>如果是windows，希望把frp运行在后台服务中，而不是一个丑陋的cmd黑框框，可以使用<a href="/NSSM开心服务管理工具_2023_03_06.html">nssm</a>来帮助实现</p>
+
+<p>更多的frp服务器端和客户端配制参见：</p>
+
+<ol>
+<li>https://gofrp.org/docs/reference/server-configures/</li>
+<li>https://gofrp.org/docs/reference/client-configures/</li>
+</ol>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[引汉济渭]]></title>
+            <link href="//zysr.me//引汉济渭_2023_07_23.html"/>
+            <updated>2023-07-23T08:00:00+08:00</updated>
+            <id>//zysr.me//引汉济渭_2023_07_23.html</id>
+            <content type="html"><![CDATA[<p>看了个新闻，引汉济渭通水了，通水了，通水了。</p>
+
+<p>忍不住想去黄金峡水库。黄金峡水库的地理位置在这儿</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/7035577d6aad6df46717001b535c1e5e.jpg" alt="7035577d6aad6df46717001b535c1e5e" /></p>
+
+<p>最终会进入陕西的供水管网，但不是自然水系。</p>
+
+<p>去‮安西‬旅游，并不‮觉感‬缺水，是因为渭南黑河‮利水‬枢纽的暂‮性时‬缓解。</p>
+
+<p>在‮以北岭秦‬七十二峪‮还口‬有诸‮的多‬瀑布、溪河，甚至在渭南的师门‮场道‬附近，还有山‮空色‬蒙雨亦奇‮江的‬南之色。</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/6257084b283fa09c69ca5d0568d6fe15.jpg" alt="6257084b283fa09c69ca5d0568d6fe15" /></p>
+
+<p>实际上，渭河平原非‮缺常‬水，很严重，西安抽取‮下地‬水严重，导致‮面地‬沉降，看看大雁塔，就快‮成变‬东方比‮斜萨‬塔，就‮道知‬有多严重。</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/a3719eb180fcb032efe1de70406193f2.jpg" alt="a3719eb180fcb032efe1de70406193f2" /></p>
+
+<p>陕西辖下，除了不够用的渭河，还有另外两个重要的长江支流，汉水和嘉陵江。</p>
+
+<p>汉水，长江的一条重要支流，也称汉江，起于汉中，而汉中的归属，历史上，汉中在四川和陕西多次反复，历史原因，元代起，控汉中握秦岭以制蜀，所以汉中归陕西。</p>
+
+<p>但是汉水却不这么认为，和嘉陵江等别的四川河流一样，不跟渭河去黄河，反而奔湖北往长江去了，没错，身在曹营心在汉，说的就是汉水。</p>
+
+<p>实际上是因为秦岭的阻隔，汉水它去不了北方。</p>
+
+<p>就像四川因为秦岭的阻隔很难去陕西一样，当年李白到了首都长安后，一把鼻涕一把泪的在《蜀道难》里哭闹：“尔来四万八千岁，不与秦塞通人烟”。</p>
+
+<p>秦岭脚下‮个打‬洞，跨秦岭，把汉江水，引到缺水严‮的重‬渭河平原，这样渭河平‮的原‬西安、渭南、咸阳不‮缺再‬水了。
+汉水于关中平原，功莫大焉。</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/2be4f3ad13e469b2ac9c1471b8549135.jpg" alt="2be4f3ad13e469b2ac9c1471b8549135" /></p>
+
+<p>进出四川的三条铁路中，成昆、宝成之外，往华东方向最近的、最险要的襄渝铁路，进入汉中后全线沿着汉水南侧大巴山脚往东走，直到进入襄阳，入武汉三镇的汉口汇入长江。</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/c694722c6150ced5c6472cd2a7a2b61d.jpg" alt="c694722c6150ced5c6472cd2a7a2b61d" /></p>
+
+<p>火车襄渝线进出四川，最喜欢的就是这一段风景。
+沿路往北望，汉水北侧的无限秦岭风光，甚是壮美，尽收眼底。</p>
+
+<p>如今又多了一个黄金峡水库，值得期待。</p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[nginx的多证书应用]]></title>
+            <link href="//zysr.me//Nginx的多证书应用_2023_07_23.html"/>
+            <updated>2023-07-23T08:00:00+08:00</updated>
+            <id>//zysr.me//Nginx的多证书应用_2023_07_23.html</id>
+            <content type="html"><![CDATA[<p>运行多证书反向代理，充当NOSTR中继转发器快四个月了，今天准备下线这个服务。随便把配制思路分享一下。</p>
+
+<p>NOSTR因为众所周知的原因，国内是无法访问的，而NOSTR需要中继才能存活，本来NOSTR的设计思路就是天然的</p>
+
+<p>去中心社交模式。但是现在因为没有使用分布式方式发布和订阅中继，反而让NOSTR的分布式社交变得有名无实 了。</p>
+
+<p>国内访问那些著名的中继器比如说wss://relay.damus.io, wss://offchain.pub等等。</p>
+
+<p>那么如果有VPS且有域名和证书的情况下，使用Nginx是很容易架设一个反向代理服务器，充当中继转发（Forwarder of Relay）。</p>
+
+<p>这样子，中继还是那些中继。但是因为转发器的存在，让中继器拥有了无数个“分身”。</p>
+
+<ol>
+<li>域名的申请，跳过，这个非常容易几美金就能完成的事情。</li>
+<li>证书的申请，本文跳过，最简单的是使用<a href="https://certbot.eff.org/">certbot</a>来完成，但是官方的certbot手册真的很一般，很容易出错。而且它的基于域名认证的扩展也不够及时，还需要用户自己经验足够丰富。还不如使用稍为麻烦但是可靠的http文件认证模式。但是范域名证书不支持http文件认证，必须用DNS认证。好在DNS认证可以通过手</li>
 </ol>
 
-<hr />
+<p>这里，需要证书，是因为wss协议的要求。其实建立连接之后，Nginx还需要offload原wss请求中的Host，然后重新封装新的wss请求，然后将新的wss请求转发到中继器去。</p>
 
-<h2 id="%E4%B8%AD%E5%9C%9F%E7%89%88%EF%BC%9A%E4%BA%BA%E6%B0%91%E5%8D%AB%E7%94%9F%E5%87%BA%E7%89%88%E7%A4%BE-%E4%B8%AD%E5%8C%BB%E5%8F%A4%E7%B1%8D%E6%95%B4%E7%90%86%E4%B8%9B%E4%B9%A6%E9%87%8D%E5%88%8A"><a name="zhongtuban">中土版</a>：人民卫生出版社-中医古籍整理丛书重刊</h2>
-
-<p><img src="http://s.zysr.me/img/image-20220422211045488.png" alt="image-20220422211045488" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220422211844085.png" alt="image-20220422211844085" /></p>
-
-<p><img src="http://s.zysr.me/img/image-20220422212258596.png" alt="image-20220422212258596" /></p>
-
-<p>人民卫生出版社的<a href="https://rmws.tmall.com/?q=%D6%D0%D2%BD%B9%C5%BC%AE%D5%FB%C0%ED%B4%D4%CA%E9%D6%D8%BF%AF&amp;type=p&amp;search=y&amp;newHeader_b=s_from&amp;searcy_type=item&amp;from=.detail.pc_2_searchbutton&amp;spm=a220o.0.a2227oh.d101">中医古籍整理丛书重刊</a>， 黄色封面，色为中土，古称中土版。</p>
-
-<p>《中医古籍整理重书重刊》书目：</p>
+<p>同时，因为Nginx默认情况下，一般还会提供正常的https访问，所以这就要求在ssl的443端口，提供https以及中继转发的wss多个服务。为了区别这些服务，必须Nginx开启ngx_stream_ssl_preread_module模块，这个模块提供<a href="https://datatracker.ietf.org/doc/html/rfc6066#section-3">SNI</a>和<a href="https://datatracker.ietf.org/doc/html/rfc7301">ALPN</a>功能，在本文的应用场景中，只需要SNI支持，它允许客户端连接的时候，通知Ningx连接的是那个服务，是https的服务？还是wss的中继转发服务。这样Nginx就会根据客户端连接的通知，选择不同的处理逻辑：</p>
 
 <ol>
-<li>中医古籍整理重书重刊 黄元御医集 1 素问悬解 附校余偶识 素灵微蕴</li>
-<li>中医古籍整理重书重刊 黄元御医集 2 灵枢悬解 难经悬解</li>
-<li>中医古籍整理重书重刊 黄元御医集 3 伤寒悬解 伤寒说意</li>
-<li>中医古籍整理重书重刊 黄元御医集 4 金匮悬解</li>
-<li>中医古籍整理重书重刊 黄元御医集 5 四圣心源 四圣悬枢</li>
-<li>中医古籍整理重书重刊 黄元御医集 6 长沙药解 玉楸药解</li>
-<li>中医古籍整理重书重刊 证治准绳 1 杂病证治准绳 明·王肯堂辑；倪和宪点校 北京：人民卫生出版社 2014</li>
-<li>中医古籍整理重书重刊 证治准绳 2 类方证治准绳 明·王肯堂辑；彭怀仁点校 北京：人民卫生出版社 2014</li>
-<li>中医古籍整理重书重刊 证治准绳 3 类方证治准绳 明·王肯堂辑；宋立人点校 北京：人民卫生出版社 2014</li>
-<li>中医古籍整理重书重刊 证治准绳 4 疡医证治准绳 王肯堂著；施仲安 北京：人民卫生出版社 2014</li>
-<li>中医古籍整理重书重刊 证治准绳 5 幼科证治准绳 （明）王肯堂辑，陈立行点校 北京：人民卫生出版社 2014</li>
-<li>中医古籍整理重书重刊 证治准绳 6 女科证治准绳 臧载阳，王肯堂编 北京：人民卫生出版社 2014</li>
-<li>中医古籍整理重书重刊 <strong>针灸甲乙经校注</strong> 下</li>
-<li>中医古籍整理重书重刊 <strong>针灸甲乙经校注</strong> 上</li>
-<li>中医古籍整理重书重刊 <strong>伤寒论校注</strong> <strong>刘渡舟</strong>编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 <strong>伤寒论语译</strong> <strong>刘渡舟</strong>主编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 <strong>黄帝内经素问语译</strong> <strong>郭霭春</strong>主编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 <strong>黄帝内经素问校注</strong> <strong>郭霭春</strong>著 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 <strong>金匮要略语译</strong> <strong>何任</strong>主编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 <strong>金匮要略校注</strong> <strong>何任</strong>主编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 难经校注 凌耀星主编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 难经语译 凌耀星主编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 中藏经校注 李聪甫编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 中藏经语译</li>
-<li>中医古籍整理重书重刊 千金翼方校释</li>
-<li>中医古籍整理重书重刊 备急千金要方校释</li>
-<li>中医古籍整理重书重刊 诸病源候论校注 丁光迪编 北京：人民卫生出版社 2013</li>
-<li>中医古籍整理重书重刊 <strong>神农本草经辑注</strong></li>
-<li>中医古籍整理重书重刊 <strong>脉经校注</strong></li>
-<li>中医古籍整理重书重刊 寿世保元 龚廷贤，鲁兆麟著 北京：人民卫生出版社 2014</li>
-<li>中医古籍整理重书重刊 丹溪医集 （元）朱震亨著 北京：人民卫生出版社 2014</li>
+<li>如果是wss中继转发服务，则进行wss的offload，重新组装wss请求转发到对应的中继器。这个offload主要是替换wss请求中的Host头。</li>
+<li>如果是普通的https服务，则按照正常的https流程，交给本地的https应用来处理。</li>
+<li>如果还有其它的服务，比如说Trojan服务那就一样的专交给Trojan服务。</li>
 </ol>
 
-<hr />
+<p>在这里，可以看到，其实Nginx的的处理层<strong>不是在http层来进行的，而是在strea层进行</strong>的。</p>
 
-<h2 id="%E5%9C%A3%E8%B1%A1%E7%89%88%EF%BC%8C%E3%80%8A%E4%B8%AD%E5%8C%BB%E5%8F%A4%E7%B1%8D%E6%95%B4%E7%90%86%E4%B8%9B%E4%B9%A6%E3%80%8B%EF%BC%8C%E4%B8%AD%E5%9B%BD%E4%B8%AD%E5%8C%BB%E8%8D%AF%E7%AE%A1%E7%90%86%E5%B1%80%E9%A1%B9%E7%9B%AE"><a name="shengxiang">圣象版</a>，《中医古籍整理丛书》，中国中医药管理局项目</h2>
+<p>换句话说nginx需要<strong>先配制stream块</strong>，<strong>然后配制http块</strong>。</p>
 
-<p><strong>中国中医药管理局</strong>所属的“中医药古籍保护与利用能力建设项目”，由<strong>中国中医药出出版社</strong>发行的 “中医药古籍保护与利用能力建设项目”出版的《中国古医籍整理丛书》。</p>
+<pre><code class="hl"><br />    stream {
+        log_format stream_log '$remote_addr $ssl_preread_server_name [$time_local] '
+                            '$protocol $status $bytes_sent $bytes_received '
+                            '$session_time "$upstream" "$upstream_addr" '
+                            '"$upstream_bytes_sent" "$upstream_bytes_received" "$upstream_connect_time"';
+        access_log logs/stream.log stream_log;
+        #access_log off;
+        map $ssl_preread_server_name $upstream{
+            ~t\.            trojan; #begin with t.xxx.yyy.. means trojan traffic
+            ~\.relay\.center    relay;  #nostr relay
+            default         web;
+        }
+    upstream trojan{
+        server 127.0.0.1:8443;
+    }
 
-<p>2010年，中国中医药局积极争取财政部公共卫生资金，支持开展“中医药古籍保护与利用能力建设项目”。该项目由山东中医药大学等9家行业内中医文献研究机构承担，<strong>马继兴</strong>、张灿玾和李经纬、余瀛鳌等21位行业内外资深专家牵头指导。本项目是中国继1982～1986年两批重点中医古籍整理之后，又一次由政府主导的大规模古籍整理工作。该项目以出版通行本、传世本为目标，对未曾整理出版过的400余种重要中医药古籍进行了校注整理。</p>
+    upstream web{
+        server 127.0.0.1:1443;
+    }
 
-<p>本套丛书涵盖了医经、基础理论、诊法、伤寒金匮、温病、本草、方书、内科、外科、女科、儿科、伤科、眼科、咽喉口齿、针灸推拿、养生、医案医话医论、医史、临证综合、综合20个门类，跨越唐、宋、金元、明以迄清末。《<strong>中国古医籍整理丛书</strong>》是新中国成立以来，在中医古籍整理出版工作中规模最大的一次，体现了当代中医文献研究成果。绝大多数中医药古籍是第一次校注出版，一批孤本、稿本、抄本更是首次整理面世。</p>
+    upstream relay{
+        server 127.0.0.1:1443;
+    }
+    server {
+        listen 443 reuseport;
+        ssl_preread on;
+        proxy_pass  $upstream;
+        #proxy_ssl on;
+    }
+    }
 
-<p>这套丛书，<strong>封面为山东嘉祥武氏祠汉画石像为封面，且每本书送黄帝象书签一枚，我把他简称为：黄帝石象版或者黄帝圣象版</strong>。</p>
+</code></pre>
 
-<p><img src="http://s.zysr.me/img/image-20220422144811730.png" alt="image-20220422144811730" /></p>
+<p>在这里Nginx所使用到的变量<strong>$ssl_preread_server_name</strong>，就是<strong>ngx_stream_ssl_preread_module</strong>模块提供的。它通过在建立ssl连接的时候，提前读取Client Hello中的server_name来给<strong>$ssl_preread_server_name</strong>赋值，这个时候ssl的握手建立还没有完成，只是收到了客户端的hello数据包，服务器没有返回任何ssl数据包，需要根据配制逻辑，选择不同的服务器证书来完成ssl握手，然后才能进入到https层面的工作。</p>
 
-<ol>
-<li><h4 id="%E5%8C%BB%E7%BB%8F%EF%BC%88%E5%8D%81%E5%9B%9B%E7%A7%8D%EF%BC%89">医经（十四种）</h4>
+<p>在这里根据<strong>$ssl_preread_server_name</strong>定义了不同的正则表达式，然后使用proxy_pass选择不同的后端。</p>
 
-<ol>
-<li>《内经博议》 ，清，罗美，★★★★</li>
-<li>《内经提要》</li>
-<li>《内经精要》</li>
-<li>《医经津渡》</li>
-<li>《素灵微蕴》 ，清，黄元御，★★★★</li>
-<li>《难经直解》</li>
-<li>《内经评文灵枢》 ，周学海，感慨文法结构优美居多，论述医理过少，★</li>
-<li>《内经评文素问》  ，周学海，感慨文法结构优美居多，论述医理过少，★</li>
-<li>《内经素问校证》</li>
-<li>《灵素节要浅注》 ,陈念祖，★★★★</li>
-<li>《素问灵枢类纂约注》</li>
-<li>《清儒内经校记五种》</li>
-<li>《勿听子俗解八十一难经》</li>
-<li>《黄帝内经素问详注直讲全集》 ，清，高亿，★★★</li>
-</ol></li>
-<li><h4 id="%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%88%E5%8D%81%E4%BA%8C%E7%A7%8D%EF%BC%89">基础理论（十二种）</h4>
+<pre><code class="hl">    map $ssl_preread_server_name $upstream{
+        ~t\.            trojan; #begin with t.xxx.yyy.. means trojan traffic
+        ~\.relay\.center    relay;  #nostr relay
+        default         web;
+    }
+</code></pre>
 
-<ol>
-<li>《运气商》</li>
-<li>《运气易览》</li>
-<li>《医学寻源》</li>
-<li>《医学阶梯》</li>
-<li>《医学辨正》</li>
-<li>《病机纂要》</li>
-<li>《脏腑性鉴》</li>
-<li>《校注病机赋》</li>
-<li>《内经运气病释 附内经遗篇病释 内经运气表》</li>
-<li>《松菊堂医学溯源》</li>
-<li>《脏腑证治图说人镜经》</li>
-<li>《藏腑图书症治要言合璧》</li>
-</ol></li>
-<li><h4 id="%E4%BC%A4%E5%AF%92%E9%87%91%E5%8C%AE%EF%BC%88%E5%9B%9B%E5%8D%81%E5%9B%9B%E7%A7%8D%EF%BC%89">伤寒金匮（四十四种）</h4>
+<p>然后后端的配制，就使用普通的https既可，</p>
 
-<ol>
-<li>《伤寒考》</li>
-<li>《伤寒大白》</li>
-<li>《伤寒分经》</li>
-<li>《伤寒正宗》</li>
-<li>《伤寒寻源》</li>
-<li>《伤寒折衷》</li>
-<li>《伤寒经注》</li>
-<li>《伤寒指归》</li>
-<li>《伤寒指掌》</li>
-<li>《伤寒选录》</li>
-<li>《伤寒绪论》</li>
-<li>《伤寒源流》</li>
-<li>《伤寒撮要》</li>
-<li>《伤寒缵论》</li>
-<li>《医宗承启》</li>
-<li>《桑韩笔语》</li>
-<li>《伤寒正医录》</li>
-<li>《伤寒全生集》</li>
-<li>《伤寒论证辨》</li>
-<li>《伤寒论纲目》</li>
-<li>《伤寒论直解》</li>
-<li>《伤寒论类方》</li>
-<li>《伤寒论特解》</li>
-<li>《伤寒论集注（徐赤)》</li>
-<li>《伤寒论集注(熊寿诚)》</li>
-<li>《伤寒微旨论》</li>
-<li>《伤寒溯源集》</li>
-<li>《订正医圣全书》</li>
-<li>《伤寒启蒙集稿》</li>
-<li>《伤寒尚论辨似》</li>
-<li>《伤寒兼证析义》</li>
-<li>《张卿子伤寒论》</li>
-<li>《金匮要略正义》</li>
-<li>《金匮要略直解》</li>
-<li>《高注金匮要略》</li>
-<li>《伤寒论大方图解》</li>
-<li>《伤寒论辨证广注》</li>
-<li>《伤寒活人指掌图》</li>
-<li>《张仲景金匮要略》</li>
-<li>《伤寒六书纂要辨疑》</li>
-<li>《伤寒六经辨证治法》</li>
-<li>《伤寒类书活人总括》</li>
-<li>《张仲景伤寒原文点精》</li>
-<li>《伤寒活人指掌补注辨疑》</li>
-</ol></li>
-<li><h4 id="%E8%AF%8A%E6%B3%95%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%E7%A7%8D%EF%BC%89">诊法（二十三种）</h4>
+<p>中继转发的时候，需要动态的把请求代理出去既可。</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/image-20230723100309287.png" alt="image-20230723100309287" /></p>
+
+<p>需要注意的三个地方：</p>
 
 <ol>
-<li>《脉微》</li>
-<li>《玉函经》</li>
-<li>《外诊法》</li>
-<li>《舌鉴辨正》</li>
-<li>《医学辑要》</li>
-<li>《脉义简摩》</li>
-<li>《脉诀汇辨》</li>
-<li>《脉学辑要》</li>
-<li>《脉经直指》</li>
-<li>《脉理正义》</li>
-<li>《脉理存真》</li>
-<li>《脉理宗经》</li>
-<li>《脉镜须知》</li>
-<li>《察病指南》</li>
-<li>《崔真人脉诀》</li>
-<li>《四诊脉鉴大全》</li>
-<li>《删注脉诀规正》</li>
-<li>《图注脉诀辨真》</li>
-<li>《脉诀刊误集解》</li>
-<li>《重订诊家直诀》</li>
-<li>《人元脉影归指图说》</li>
-<li>《脉诀指掌病式图说》</li>
-<li>《脉学注释汇参证治》</li>
-</ol></li>
-<li><h4 id="%E9%92%88%E7%81%B8%E6%8E%A8%E6%8B%BF%EF%BC%88%E5%8D%81%E7%A7%8D%EF%BC%89">针灸推拿（十种）</h4>
-
-<ol>
-<li>《针灸节要》</li>
-<li>《针灸全生》 ，清·萧福庵，道号：学正道人，佛：本圆。以病名重新集《针灸大成》并加入自己实践的穴位处方。二星。★</li>
-<li>《针灸逢源》</li>
-<li>《备急灸法》</li>
-<li>《神灸经纶》 ，以艾灸为主要治法，但是其中有几个内容值得一读：周身名位静脉骨度，介绍人体各个部位名字和骨度法，以配合穴位识别。又有理论重点相结合，是灸法的一部重要典籍，与针法合二为一的推荐书籍，四星：★★★★</li>
-<li>《传悟灵济录》</li>
-<li>《小儿推拿广意》</li>
-<li>《小儿推拿秘诀》</li>
-<li>《太乙神针心法》，按病处方，并分症型单穴处方，并附有医案集。 ，三星。</li>
-<li>《杨敬斋针灸全书》</li>
-</ol></li>
-<li><h4 id="%E6%9C%AC%E8%8D%89%EF%BC%88%E4%BA%94%E5%8D%81%E5%85%AB%E7%A7%8D%EF%BC%89">本草（五十八种）</h4>
-
-<ol>
-<li>《药征》</li>
-<li>《药鉴》</li>
-<li>《药镜》</li>
-<li>《本草汇》</li>
-<li>《本草便》</li>
-<li>《法古录》</li>
-<li>《食品集》</li>
-<li>《上医本草》</li>
-<li>《山居本草》</li>
-<li>《长沙药解》</li>
-<li>《本经经释》</li>
-<li>《本经疏证》</li>
-<li>《本草分经》</li>
-<li>《本草正义》</li>
-<li>《本草汇笺》</li>
-<li>《本草汇纂》</li>
-<li>《本草发明》</li>
-<li>《本草发挥》</li>
-<li>《本草约言》</li>
-<li>《本草求原》</li>
-<li>《本草明览》</li>
-<li>《本草详节》</li>
-<li>《本草洞诠》</li>
-<li>《本草真诠》</li>
-<li>《本草通玄》</li>
-<li>《本草集要》</li>
-<li>《本草辑要》</li>
-<li>《本草纂要》</li>
-<li>《识病捷法》</li>
-<li>《药性提要》</li>
-<li>《药征续编》</li>
-<li>《药性纂要》</li>
-<li>《药品化义》</li>
-<li>《药理近考》</li>
-<li>《食物本草》</li>
-<li>《食鉴本草》</li>
-<li>《炮炙全书》</li>
-<li>《分类草药性》</li>
-<li>《本经序疏要》</li>
-<li>《本经续疏证》</li>
-<li>《本草经解要》</li>
-<li>《青囊药性赋》</li>
-<li>《分部本草妙用》</li>
-<li>《本草二十四品》</li>
-<li>《本草经疏辑要》</li>
-<li>《本草乘雅半偈》</li>
-<li>《生草药性备要》</li>
-<li>《芷园臆草题药》</li>
-<li>《类经证治本草》</li>
-<li>《神农本草经赞》</li>
-<li>《神农本经会通》</li>
-<li>《神农本经校注》</li>
-<li>《药性分类主治》</li>
-<li>《艺林汇考饮食篇》</li>
-<li>《本草纲目易知录》</li>
-<li>《汤液本草经雅正》</li>
-<li>《新刊药性要略大全》</li>
-<li>《淑景堂改订注释寒热温平药性赋》</li>
-</ol></li>
-<li><h4 id="%E6%96%B9%E4%B9%A6%EF%BC%88%E4%B8%89%E5%8D%81%E4%B8%83%E7%A7%8D%EF%BC%89">方书（三十七种）</h4>
-
-<ol>
-<li>《医便》</li>
-<li>《卫生编》</li>
-<li>《袖珍方》</li>
-<li>《仁术便览》</li>
-<li>《古方汇精》</li>
-<li>《圣济总录》</li>
-<li>《众妙仙方》</li>
-<li>《李氏医鉴》</li>
-<li>《医方丛话》</li>
-<li>《医方约说》</li>
-<li>《医方便览》</li>
-<li>《乾坤生意》</li>
-<li>《悬袖便方》</li>
-<li>《救急易方》</li>
-<li>《程氏释方》</li>
-<li>《集古良方》</li>
-<li>《摄生总论》</li>
-<li>《摄生秘剖》</li>
-<li>《辨症良方》</li>
-<li>《活人心法》</li>
-<li>《卫生家宝方》</li>
-<li>《见心斋药录》</li>
-<li>《寿世简便集》</li>
-<li>《医方大成论》</li>
-<li>《医方考绳愆》</li>
-<li>《鸡峰普济方》</li>
-<li>《饲鹤亭集方》</li>
-<li>《临证经验方》</li>
-<li>《思济堂方书》</li>
-<li>《济世碎金方》</li>
-<li>《揣摩有得集》</li>
-<li>《亟斋急应奇方》</li>
-<li>《乾坤生意秘韫》</li>
-<li>《简易普济良方》</li>
-<li>《内外验方秘传》</li>
-<li>《名方类证医书大全》</li>
-<li>《新编南北经验医方大全》</li>
-</ol></li>
-<li><h4 id="%E4%B8%B4%E8%AF%81%E7%BB%BC%E5%90%88%EF%BC%88%E4%B8%89%E5%8D%81%E7%A7%8D%EF%BC%89">临证综合（三十种）</h4>
-
-<ol>
-<li>《医级》</li>
-<li>《医悟》</li>
-<li>《丹台玉案》</li>
-<li>《玉机辨症》</li>
-<li>《古今医诗》</li>
-<li>《本草权度》</li>
-<li>《弄丸心法》</li>
-<li>《医林绳墨》</li>
-<li>《医学碎金》</li>
-<li>《医学粹精》</li>
-<li>《医宗备要》</li>
-<li>《医宗宝镜》</li>
-<li>《医宗撮精》</li>
-<li>《医经小学》</li>
-<li>《医垒元戎》</li>
-<li>《证治要义》</li>
-<li>《松厓医径》</li>
-<li>《扁鹊心书》</li>
-<li>《慎斋遗书》</li>
-<li>《折肱漫录》</li>
-<li>《济众新编》</li>
-<li>《丹溪心法附余》</li>
-<li>《方氏脉症正宗》</li>
-<li>《世医通变要法》</li>
-<li>《医林绳墨大全》</li>
-<li>《医林纂要探源》</li>
-<li>《普济内外全书》</li>
-<li>《医方一盘珠全集》</li>
-<li>《医林口谱六法秘书》</li>
-</ol></li>
-<li><h4 id="%E6%B8%A9%E7%97%85%EF%BC%88%E4%B8%83%E7%A7%8D%EF%BC%89">温病（七种）</h4>
-
-<ol>
-<li>《伤暑论》</li>
-<li>《温证指归》</li>
-<li>《瘟疫发源》</li>
-<li>《医寄伏阴论》</li>
-<li>《温热论笺正》</li>
-<li>《温热病指南集》</li>
-<li>《瘟疫条辨摘要》</li>
-</ol></li>
-<li><p>#### 内科（十二种）</p>
-
-<ol>
-<li>《医镜》</li>
-<li>《内科摘录》</li>
-<li>《证因通考》</li>
-<li>《解围元薮》</li>
-<li>《燥气总论》</li>
-<li>《医法征验录》</li>
-<li>《医略十三篇》</li>
-<li>《琅嬛青囊要》</li>
-<li>《医林类证集要》（上中下册）</li>
-<li>《林氏活人录汇编》</li>
-<li>《罗太无口授三法》</li>
-<li>《芷园素社痎疟论疏》</li>
-</ol></li>
-<li><p>#### 女科（三十四种）</p>
-
-<ol>
-<li>《广生编》</li>
-<li>《仁寿镜》</li>
-<li>《树蕙编》</li>
-<li>《女科指掌》</li>
-<li>《女科撮要》</li>
-<li>《广嗣全诀》</li>
-<li>《广嗣要语》</li>
-<li>《广嗣须知》</li>
-<li>《孕育玄机》</li>
-<li>《妇科玉尺》</li>
-<li>《妇科百辨》</li>
-<li>《妇科良方》</li>
-<li>《妇科备考》</li>
-<li>《妇科宝案》</li>
-<li>《妇科指归》</li>
-<li>《求嗣指源》</li>
-<li>《坤元是保》</li>
-<li>《坤中之要》</li>
-<li>《祈嗣真诠》</li>
-<li>《种子心法》</li>
-<li>《济阴近编》</li>
-<li>《济阴宝筏》</li>
-<li>《秘传女科》</li>
-<li>《秘珍济阴》</li>
-<li>《黄氏女科》</li>
-<li>《女科万金方》</li>
-<li>《彤园妇人科》</li>
-<li>《女科百效全书》</li>
-<li>《叶氏女科证治》</li>
-<li>《妇科秘兰全书》</li>
-<li>《宋氏女科秘书》</li>
-<li>《茅氏女科秘书》</li>
-<li>《节斋公胎产医案》</li>
-<li>《秘传内府经验女科》</li>
-</ol></li>
-<li><p>#### 儿科（十四种）</p>
-
-<ol>
-<li>《婴儿论》</li>
-<li>《幼科折衷》</li>
-<li>《幼科指归》</li>
-<li>《全幼心鉴》</li>
-<li>《保婴全方》</li>
-<li>《保婴撮要》</li>
-<li>《活幼口议》</li>
-<li>《活幼心书》</li>
-<li>《小儿病源方论》</li>
-<li>《幼科医学指南》</li>
-<li>《痘疹活幼心法》</li>
-<li>《新刻幼科百效全书》</li>
-<li>《补要袖珍小儿方论》</li>
-<li>《儿科推拿摘要辨症指南》</li>
-</ol></li>
-<li><h4 id="%E5%A4%96%E7%A7%91%EF%BC%88%E5%8D%81%E4%BA%8C%E7%A7%8D%EF%BC%89">外科（十二种）</h4>
-
-<ol>
-<li>《大河外科》</li>
-<li>《外科真诠》</li>
-<li>《枕藏外科》</li>
-<li>《外科明隐集》</li>
-<li>《外科集验方》</li>
-<li>《外证医案汇编》</li>
-<li>《外科百效全书》</li>
-<li>《外科活人定本》</li>
-<li>《外科秘授著要》</li>
-<li>《疮疡经验全书》</li>
-<li>《外科心法真验指掌》</li>
-<li>《片石居疡科治法辑要》</li>
-</ol></li>
-<li><h4 id="%E4%BC%A4%E7%A7%91%EF%BC%88%E4%BA%94%E7%A7%8D%EF%BC%89">伤科（五种）</h4>
-
-<ol>
-<li>《正骨范》</li>
-<li>《接骨全书》</li>
-<li>《跌打大全》</li>
-<li>《全身骨图考正》</li>
-<li>《伤科方书六种》</li>
-</ol></li>
-<li><h4 id="%E7%9C%BC%E7%A7%91%EF%BC%88%E5%8D%81%E4%BA%94%E7%A7%8D%EF%BC%89">眼科（十五种）</h4>
-
-<ol>
-<li>《目经大成》</li>
-<li>《目科捷径》</li>
-<li>《眼科启明》</li>
-<li>《眼科要旨》</li>
-<li>《眼科阐微》</li>
-<li>《眼科集成》</li>
-<li>《眼科纂要》</li>
-<li>《银海指南》</li>
-<li>《明目神验方》</li>
-<li>《银海精微补》</li>
-<li>《医理折衷目科》</li>
-<li>《证治准绳眼科》</li>
-<li>《鸿飞集论眼科》</li>
-<li>《眼科开光易简秘本》</li>
-<li>《眼科正宗原机启微》</li>
-</ol></li>
-<li><h4 id="%E5%92%BD%E5%96%89%E5%8F%A3%E9%BD%BF%EF%BC%88%E4%B8%83%E7%A7%8D%EF%BC%89">咽喉口齿（七种）</h4>
-
-<ol>
-<li>《咽喉论》</li>
-<li>《咽喉秘集》</li>
-<li>《喉科心法》</li>
-<li>《喉科杓指》</li>
-<li>《喉科枕秘》</li>
-<li>《喉科秘钥》</li>
-<li>《咽喉经验秘传》</li>
-</ol></li>
-<li><h4 id="%E5%85%BB%E7%94%9F%EF%BC%88%E5%8D%81%E4%B8%80%E7%A7%8D%EF%BC%89">养生（十一种）</h4>
-
-<ol>
-<li>《易筋经》</li>
-<li>《山居四要》</li>
-<li>《寿世新编》</li>
-<li>《厚生训纂》</li>
-<li>《修龄要指》</li>
-<li>《香奁润色》</li>
-<li>《养生四要》</li>
-<li>《养生类纂》</li>
-<li>《神仙服饵》</li>
-<li>《尊生要旨》</li>
-<li>《黄庭内景五脏六腑补泻图》</li>
-</ol></li>
-<li><h4 id="%E5%8C%BB%E6%A1%88%E5%8C%BB%E8%AF%9D%E5%8C%BB%E8%AE%BA%EF%BC%88%E4%B8%89%E5%8D%81%E5%85%AB%E7%A7%8D%EF%BC%89">医案医话医论（三十八种）</h4>
-
-<ol>
-<li>《纪恩录》</li>
-<li>《胃气论》</li>
-<li>《北行日记》</li>
-<li>《李翁医记》</li>
-<li>《两都医案》</li>
-<li>《医案梦记》</li>
-<li>《医源经旨》</li>
-<li>《沈氏医案》</li>
-<li>《易氏医按》</li>
-<li>《高氏医案》</li>
-<li>《温氏医案》</li>
-<li>《鲁峰医案》</li>
-<li>《赖氏脉案》</li>
-<li>《瞻山医案》</li>
-<li>《旧德堂医案》</li>
-<li>《医论三十篇》</li>
-<li>《医学穷源集》</li>
-<li>《吴门治验录》</li>
-<li>《沈芊绿医案》</li>
-<li>《诊余举隅录》</li>
-<li>《得心集医案》</li>
-<li>《程原仲医案》</li>
-<li>《心太平轩医案》</li>
-<li>《东皋草堂医案》</li>
-<li>《冰壑老人医案》</li>
-<li>《芷园臆草存案》</li>
-<li>《陆氏三世医验》</li>
-<li>《罗谦甫治验案》</li>
-<li>《临症医案笔记》</li>
-<li>《丁授堂先生医案》</li>
-<li>《张梦庐先生医案》</li>
-<li>《养性轩临证医案》</li>
-<li>《养新堂医论读本》</li>
-<li>《祝茹穹先生医印》</li>
-<li>《谦益斋外科医案》</li>
-<li>《太医局诸科程文格》</li>
-<li>《古今医家经论汇编》</li>
-<li>《莲斋医意立斋案疏》</li>
-</ol></li>
-<li><h4 id="%E5%8C%BB%E5%8F%B2%EF%BC%88%E4%BA%8C%E7%A7%8D%EF%BC%89">医史（二种）</h4>
-
-<ol>
-<li>《医学读书志》</li>
-<li>《医学读书附志》</li>
-</ol></li>
-<li><h4 id="%E7%BB%BC%E5%90%88%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B9%9D%E7%A7%8D%EF%BC%89">综合（二十九种）</h4>
-
-<ol>
-<li>《元汇医镜》</li>
-<li>《平法寓言》</li>
-<li>《寿芝医略》</li>
-<li>《杏苑生春》</li>
-<li>《医林正印》</li>
-<li>《医法青篇》</li>
-<li>《医学五则》</li>
-<li>《医学汇函》</li>
-<li>《医学集成》</li>
-<li>《医学辩害》</li>
-<li>《医经允中》</li>
-<li>《医钞类编》（四册）</li>
-<li>《证治合参》</li>
-<li>《宝命真诠》</li>
-<li>《活人心法》</li>
-<li>《家藏蒙筌》（上下册）</li>
-<li>《心印绀珠经》</li>
-<li>《雪潭居医约》</li>
-<li>《嵩厓尊生书》十五卷</li>
-<li>《医书汇参辑成》（上中下册）</li>
-<li>《罗氏会约医镜》</li>
-<li>《罗浩医书二种》</li>
-<li>《景岳全书发挥》</li>
-<li>《新刊医学集成》</li>
-<li>《寿身小补家藏》</li>
-<li>《胡文焕医书三种》</li>
-<li>《铁如意轩医书四种》</li>
-<li>《脉药联珠药性食物考》</li>
-<li>《汉阳叶氏丛刻医集二种》</li>
-</ol></li>
+<li>客户端证书需要自己生成，很多地方都可以，openssl也应该可以</li>
+<li>proxy_ssl_protocals的协议版本，最好把最新的1.3版本加上支持，否则有的服务器可能会拒绝连接，比如说damus.io</li>
+<li>最后需要把普通的https升级为wss，这个用proxy_set_header指令既可完成。</li>
 </ol>
 
-<h2 id="%E2%80%9C%E5%85%BD%E9%BC%8E%E7%89%88%E2%80%9D%E5%92%8C%E2%80%9C%E5%85%BD%E9%A6%96%E7%89%88%E2%80%9D-%EF%BC%8C%E9%9D%9E%E9%81%97%E4%B8%B4%E5%BA%8A%E7%BB%8F%E5%85%B8%E4%B8%9B%E4%B9%A6%2C%E4%B8%AD%E5%9B%BD%E5%8C%BB%E8%8D%AF%E7%A7%91%E6%8A%80%E5%87%BA%E7%89%88%E7%A4%BE"><a name="feiyi">“兽鼎版”和“兽首版” </a>，非遗临床经典丛书,中国医药科技出版社</h2>
-
-<p>2008年起，中国医药科技出版社牵头，由马继兴、朱良春、铁涛、何任、张伯礼等一批名老中医组成的顾问团参与，的《中医非物质文化遗产临床经典》丛书项目，简称“中医非遗经典”丛书，，筹划的一部丛书。该丛书包含两个系列：</p>
+<p>至于如何混用trojan流量，等有机会再说。这样子Nginx就一肩挑三担：</p>
 
 <ol>
-<li><p>《<a href="https://zgyykjcbs.tmall.com/?userId=&amp;shopId=112376288&amp;view_type=&amp;order_type=&amp;search=y&amp;keyword=%D6%D0%D2%BD%B7%C7%CE%EF%D6%CA%CE%C4%BB%AF%D2%C5%B2%FA%C1%D9%B4%B2%BE%AD%B5%E4%C3%FB%D6%F8">中医非物质文化遗产临床经典名著</a>》三十种，简称<strong>非遗名著</strong>，兽鼎版</p></li>
-<li><p>《<a href="#anchor">中医非物质文化遗产临床经典读本</a>》七十种和，简称<strong>非遗读本</strong>，兽首版</p></li>
+<li>本地的https服务</li>
+<li>远程基于WSS的NOSTR中继服务器</li>
+<li>Trojan流量</li>
 </ol>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[关于中医AI]]></title>
+            <link href="//zysr.me//关于中医AI_2023_07_21.html"/>
+            <updated>2023-07-21T08:00:00+08:00</updated>
+            <id>//zysr.me//关于中医AI_2023_07_21.html</id>
+            <content type="html"><![CDATA[<p>这篇文字，其实是师门群中，师兄师姐们，关于中医AI的探讨。转成文字，以记之。</p>
 
-<p>其中，</p>
+<p><img src="//s.zysr.me/img/2023-07-23/image-20230723065403736.png" alt="image-20230723065403736" /></p>
 
-<p>非遗名著的封面，由有<strong>衔环的兽首</strong>和<strong>三足兽钮鼎</strong>图案，故称之为“<strong>兽鼎版</strong>”。硬壳十六开。收录45部医书，多为名家著作，但遗憾的是，内经素问和灵枢等四大经典都未收录，反而收录进入非遗读本中。</p>
+<p>人工智能，虽然冠了这个名字，但并不等于真的是“智能”，很多时候出来的结果很荒谬，称之为“人工智障”一点不为过。</p>
 
-<p><img src="http://s.zysr.me/img/image-20220422185944078.png" alt="image-20220422185944078"  /><img src="http://s.zysr.me/img/image-20220422190050968.png" alt="image-20220422190050968" /></p>
+<p>这一代火热的工智能技术ChatGPT其实是大语言模型，要解释大语言模型需要点笔墨。</p>
 
-<p><img src="http://s.zysr.me/img/image-20220422190207244.png" alt="image-20220422190207244"  /></p>
+<p>它是机器学习技术对人类语言的模型模拟和重现，所以是“语言模型language model”，是机器利用“深度学习”技术试图模拟重现人类语言“表达”背后的模型。</p>
 
-<p>兽鼎版，非遗名著，共收录45部著作，包含：</p>
+<p>“表达”和“表达背后”有点类似现象和本质的关系，“树”这个东西，在中文的表达叫“树”，英文表达叫tree。</p>
 
-<ol>
-<li>医宗金鉴</li>
-<li>医学纲目</li>
-<li>医学入门</li>
-<li>张氏医通</li>
-<li>诸病源候论</li>
-<li>辨证录</li>
-<li>名医类案正续编</li>
-<li>赤水玄珠</li>
-<li>玉机微义</li>
-<li>类证治裁</li>
-<li>医学衷中参西录</li>
-<li>类经</li>
-<li>景岳全书</li>
-<li>冯氏锦囊秘录</li>
-<li>沈氏尊生书</li>
-<li>幼幼新书</li>
-<li>薛氏医案</li>
-<li>临证医案指南</li>
-<li>医方解集</li>
-<li>备急千金要方</li>
-<li>千金翼方</li>
-<li>外台秘要方</li>
-<li>世医得效方</li>
-<li>验方新编</li>
-<li>寿世保元</li>
-<li>遵生八笺</li>
-<li>证类本草</li>
-<li>本草纲目</li>
-<li>神农本草经疏</li>
-<li>素问直解</li>
-<li>永类钤方</li>
-<li>黄帝内经素问集注</li>
-<li>伤寒论纲目</li>
-<li>济阴纲目</li>
-<li>张聿青医案</li>
-<li>针灸大成</li>
-<li>医碥</li>
-<li>万病回春</li>
-<li>本草乘雅半偈</li>
-<li>保婴撮要</li>
-<li>古今医案按</li>
-<li>通俗伤寒论</li>
-<li>古今医鉴</li>
-<li>顾松园医镜</li>
-<li>素问王冰注</li>
-</ol>
+<p>表达本身的意义其实是在展示“表达背后”，比如说“一根木质圆棍儿上面撑着绿油油伞状覆盖冠”，当然也可以是别的，比如说“光合作用的乔木”等等。</p>
 
-<p>非遗读本，封面为无兽首鼎，只有<strong>衔环兽首</strong>图案而无兽鼎，称之为<strong>兽首版</strong>。</p>
+<p>这个“圆棍和冠的组合”就是“表达背后”的东西。</p>
 
-<p>中医非遗经典<strong>读本</strong>系列，在时间上分有2010年版和2019年版。2019年版本，收录著作较多，再分为第一辑和第二辑。</p>
+<p>我们人类关注的是这个“表达背后”的东西，而不是“树”或者“tree”这样的表达，所有换个语种，“圆木棍加伞状冠”可能就变了，法文里可能是“阿猫阿狗”</p>
 
-<p><img src="http://s.zysr.me/img/image-20220422192738910.png" alt="image-20220422192738910" style="zoom: 67%;" /><img src="http://s.zysr.me/img/image-20220422192745969.png" alt="image-20220422192745969" style="zoom: 67%;" /></p>
+<p>进一步的，单独的“树”或者“tree”没有实际意义，需要上下文支持才有意义，
+比如“河边有棵树”或者“there is a tree beside the river”，这个语境下“树”才有意义，语言模型就是试图从训练数据集中得出结果：什么情况下“树”应该跟在“河边有棵”后面。</p>
 
-<p>《中医非物质文化遗产临床经典读本》的第二辑，由总主编是柳长华、吴少祯主持，</p>
+<p>如果把这个由“河边有棵﹏”推导出“河边有棵树”的过程，看作推导概率函数的话，</p>
 
-<p>中国医药科技出版社2019</p>
+<p>其实是计算一个概率的过程，</p>
 
-<ol>
-<li><strong>《素问》</strong>（第二版）穆俊霞、王平校注</li>
-<li>《灵枢经》（第二版）张秀琴校注</li>
-<li>《难经集注》（第二版）[明]王九思、王鼎象、石友谅、王惟一辑，穆俊霞、翟春涛、王玉校注</li>
-<li>《内经知要》（第二版）[明]李中梓著，王体校注</li>
-<li>《外经微言》（第二版）[清]陈士铎著，柳璇、宋白杨校注</li>
-<li>《素问玄机原病式》（第二版）[金]刘完素著，丁侃校注</li>
-<li>《素问病机气宜保命集》（第二版）[金]刘完素著，刘阳校注</li>
-<li>《校正素问精要宣明论方》[金]刘完素著，柳长华校注</li>
-<li>《本经逢原》（第二版）[清]张璐著，顾漫、杨亦周校注</li>
-<li>《本草备要》（第二版）[清]汪昂著</li>
-<li>《本草新编》（第二版）[清]陈士铎著，柳璇、宋白杨校注</li>
-<li>《本草衍义》（第二版）[宋]寇宗奭著，张丽君、丁侃校注</li>
-<li>《神农本草经百种录》[清]徐灵胎著，罗琼校注</li>
-<li>《汤液本草》（第二版）[元]王好古著，张永鹏校注</li>
-<li>《三因极一病证方论》（第二版）[宋]陈无择著，侯如艳校注</li>
-<li>《严氏济生方》（第二版）[南宋]严用和著，刘阳校注</li>
-<li>《串雅内外编》（第二版）[清]赵学敏著，郭华校注</li>
-<li>《绛雪园古方选注》（第二版）[清]王子接著，谷建军校注</li>
-<li>《卫生宝鉴》（第二版）[元]罗天益著，武文玉、孙洪生校注</li>
-<li>《古今名医方论》（第二版）[清]罗美著，张晓伟、曹瑛校注</li>
-<li>《苏沈良方》（第二版）[宋]沈括、苏轼著，成莉校注</li>
-<li>《丹溪心法》（第二版）[元]朱丹溪著</li>
-<li>《注解伤寒论》（第二版）[金]成无己著，田思胜、马梅青校注</li>
-<li>《伤寒来苏集》（第二版）[清]柯琴著，柳璇校注</li>
-<li>《伤寒贯珠集》（第二版）[清]尤在泾编，李玉清等校</li>
-<li>《伤寒温疫条辨》（第二版）[清]杨璇著，李玉清校注</li>
-<li>《儒门事亲》（第二版）[金]张从正著，谷建军校注</li>
-<li>《先醒斋医学广笔记》（第二版）[明]缪希雍著，杨洁校注</li>
-<li>《兰台轨范》（第二版）[清]徐灵胎著，陈婷校注</li>
-<li>《兰室秘藏》（第二版）[金]李东垣著，李仲平校注</li>
-<li>《内外伤辨惑论》（第二版）[金]李东垣著，田翠时校注</li>
-<li>《内科摘要》（第二版）[明]薛己著，申玮红校注</li>
-<li>《医学三字经》（第二版）[清]陈修园著，国华校注</li>
-<li>《医学从众录》（第二版）[清]陈修园著，宋白杨校注</li>
-<li>《医学源流论》（第二版）[清]徐灵胎著，古求知校注</li>
-<li>《医学读书记》（第二版）[清]尤怡著，艾青华校注</li>
-<li>《医宗必读》（第二版）[明]李中梓著，成莉校注</li>
-<li>《医方考 脉语》（第二版）[明]吴崑著，宋白杨校注</li>
-<li>《医旨绪余》（第二版）[明]孙一奎著，王雅丽校注</li>
-<li>《医林改错》（第二版）[清]王清任著，穆俊霞、张文平校注</li>
-<li>《医醇賸义》（第二版）[清]费伯雄著，赵艳校注</li>
-<li>《医门棒喝》（第二版）[清]章楠著，李玉清、曹金虎、黄娟、孔长征校注</li>
-<li>《医门法律》（第二版）[清]喻昌著，丁侃校注</li>
-<li>《华氏中藏经》（第二版）[汉]华佗著，古求知校注</li>
-<li>《吴鞠通医案》（第二版）[清]吴瑭著</li>
-<li>《四诊抉微》（第二版）[清]林之翰著，王宏利校注</li>
-<li>《外科正宗》（第二版）[明]陈实功著，郭华、吕文瑞校注</li>
-<li>《外科精要》（第二版）[宋]陈自明著，顾漫校注</li>
-<li>《经效产宝》（第二版）[唐]昝殷著，朱定华、杜晓明校注</li>
-<li>《女科经纶》（第二版）[清]萧壎著，朱定华、杜晓明校注</li>
-<li>《女科辑要》（第二版）[清]沈又彭著，曹瑛校注</li>
-<li>《女科百问》[南宋]齐仲甫著</li>
-<li>《妇人大全良方》（第二版）[宋]陈自明著，刘洋校注</li>
-<li>《傅青主女科》（第二版）[清]傅山著，申玮红校注</li>
-<li>《孙文垣医案》（第二版）[明]孙一奎著，杨洁校注</li>
-<li>《寓意草》（第二版）[清]喻嘉言著，于恒校注</li>
-<li>《理瀹骈文》（第二版）[清]吴尚先著，孙洪生校注</li>
-<li>《小儿药证直诀》（第二版）[宋]钱乙著，邰东梅校注</li>
-<li>《幼科推拿秘书》（第二版）[清]骆如龙著</li>
-<li>《感证辑要》（第二版）严鸿志著，李玉清、黄娟、孔长征校注</li>
-<li>《扁鹊心书》（第二版）[宋]窦材集，宋白杨校注</li>
-<li>《时病论》（第二版）[清]雷丰著，何永校注</li>
-<li>《望诊遵经》（第二版）[清]汪宏著，李海波校注</li>
-<li>《杂症会心录》（第二版）[清]汪文绮著，侯如艳校注</li>
-<li>《松厓医径》（第二版）[明]程玠著，李君校注</li>
-<li>《格致余论 局方发挥》（第二版）[元]朱丹溪著，张春晖、李刚校注</li>
-<li>《此事难知》（第二版）[元]王好古著，李永民校注</li>
-<li>《泰定养生主论》（第二版）[元]王珪著，程志立、宋白杨校注</li>
-<li>《养生四要》（第二版）[明]万全著，国华校注</li>
-<li>《饮膳正要》（第二版）[元]忽思慧著，刘光华校注</li>
-<li>《洞天奥旨》（第二版）[清]陈士铎著，柳璇、宋白杨校注</li>
-<li>《温热经纬》（第二版）[清]王士雄著，何永、李秋校注</li>
-<li>《温疫论》（第二版）[明]吴又可著，何永校注</li>
-<li>《温病条辨》（第二版）[清]吴鞠通著，李玉等校</li>
-<li>《炮炙全书》（第二版）[日]稻生宣义著，成莉校注</li>
-<li>《炮炙大法》（第二版）[明]缪希雍著，成莉校注</li>
-<li>《王旭高临证医案》（第二版）[清]王泰林著，王宏利校注</li>
-<li>《瑞竹堂经验方》（第二版）[元]沙图穆苏著，宋白杨校注</li>
-<li>《石室秘录》（第二版）[清]陈士铎著，柳璇、宋白杨校注</li>
-<li>《福寿丹书》（第二版）[明]龚居中著</li>
-<li>《种福堂公选良方》（第二版）[清]华岫云编撰，刘燕君校注</li>
-<li>《笔花医镜》（第二版）[清]江涵暾著，刘燕君校注</li>
-<li>《经方实验录》（第二版）曹颖甫著，姜佐景整理，李玉清校注</li>
-<li>《经络全书》（第二版）[明]沈子禄、徐师曾著</li>
-<li>《经络考》（第二版）[明]张三锡著</li>
-<li>《脉因证治》（第二版）[元]朱丹溪著</li>
-<li>《脉经》（第二版）[晋]王叔和著，陈婷校注</li>
-<li>《诊家正眼》（第二版）[明]李中梓著，张丽君校注</li>
-<li>《濒湖脉学 奇经八脉考》（第二版）[明]李时珍著，柳长华校注</li>
-<li>《脾胃论》（第二版）[金]李东垣著，靳国印校注</li>
-<li>《血证论》（第二版）[清]唐容川著，谷建军校注</li>
-<li>《读医随笔》（第二版）[清]周学海著，艾青华校注</li>
-<li>《辨症玉函 脉诀阐微》（第二版）[清]陈士铎著，柳长华、柳璇校注</li>
-<li>《辨证奇闻》（第二版）[清]陈士铎著，柳长华、柳璇、宋白杨校注</li>
-<li>《重楼玉钥》（第二版）[清]郑梅涧著，李玉清、步瑞兰、曹金虎校注</li>
-<li>《针灸甲乙经》（第二版）（第二版）[晋]皇甫谧著，周琦校注</li>
-<li>《针灸逢源》（第二版）[清]李学川著</li>
-<li>《十四经发挥》（第二版）[元]滑寿著，李玉清校注</li>
-<li>《阴证略例》（第二版）[元]王好古著，李君校注</li>
-</ol>
+<p>不好的模型可能得出结果“河边有一颗猪”，
+好的模型可能得出“河边有棵花”，
+理想模型才会得出“河边有棵树”。</p>
 
-<hr />
+<p>这里“猪”、“花”、“树”这样的组合有无数个，比如说“人”、“狗”、“猫”，组合结果称之为海量的，大量的。
+就是“大语言模型”中的“大”的来源，当然也代表了他需要巨大的环境支持（CPU、内存等硬件和训练数据集）。
+大语言模型和之前的类似ifelse模式的专家系统有很大差别，比如说：
+if( 体温 > 37℃) { 桂枝汤解表} 这个决策中， 根据if来采取行动是专家系统的思想，
+有方科技之前碰到的难点也在于此，讨论中可知，胡老师推演决策树发现每增加一层，ifelse的决策树指数为18的复杂度疯狂递增，这不是乘法递增，是指数递增。</p>
 
-<h2 id="%2A%2A%E6%A2%85%E8%8A%B1%E7%89%88%2A%2A%EF%BC%9A%E5%8C%BB%E5%AD%A6%E4%B8%9B%E4%B9%A6"><a name="meihua"><strong>梅花版</strong></a>：医学丛书</h2>
+<p>而精准到37℃是基于阈值的建立的向量模型才是大语言模型的难点和精髓。
+这里，大语言模型只能知道概率函数的结果，永远不知道“圆棍加覆盖冠”的意义。</p>
 
-<p>梅花版曾经是最好的版本，购买过六七套，行走坐卧都喜欢读的，现在已经被前面的中土版取代，曾经的好书，留作纪念。</p>
+<p>师姐说的AI不具备灵性，从这个角度，可以更进一步的说，AI甚至连“树”是“圆棍儿加伞状冠”的组合都不知道。</p>
 
-<p><img src="http://s.zysr.me/img/image-20220422212617993.png" alt="image-20220422212617993" /></p>
+<p><img src="//s.zysr.me/img/2023-07-23/image-20230723065508854.png" alt="image-20230723065508854" /></p>
+
+<p>但它知道把“树”填进去，更符合由训练数据集得到的“语言模型”。</p>
+
+<p>这里，多次提到数据集，其实是喂数据的过程，喂给模型什么数据，就回答出什么样的结果。
+前段时间有人反馈AI开始污染《坛经》：在坛经中插入不存在的经文。
+这应该是数据集被污染的原因。</p>
+
+<p>当中医整体水平偏高的时候，喂的文献数据集质量偏高，自然养出来的模型就是接近完美理想的中医模型，否则就是不完美的中医模型。</p>
+
+<p>所有“AI能不能代替中医”这个问题，可以转化为“以目前的评价体系，目前的中医文献能不能支撑中医被评价为更好的医学体系”？</p>
+
+<p>对于这个问题，个人更倾向于古人的看法：</p>
+
+<blockquote>
+  <p>医书汗牛充栋，大抵下驷十之七、中驷十之二、上驷十之一</p>
+</blockquote>
+
+<p>如此估算，训练出来的模型，百分之七十的概率是“下驷”。</p>
+
+<p>只有训练集水平达到“上驷”，得到的中医AI，才会是“上驷AI”</p>
+
+<p>脉学方面，切脉和治疗，因为“舍脉从证”的情况还是很多的。
+千辛万苦切出来的脉证结果，反而会被舍掉。
+甚至有的金氏盲派脉证结果精准程度和CT完全一致，肝肿瘤位置和大小，精准到cm级别。但是他们在治疗上，也是常常求诸外援。这就真的很尬了。</p>
+
+<p>基于已有准确数据集诞生的AI，在”守成“上，能够超越大部分人群的能力。
+如果现有文献质量不高，那也中医AI也够呛。所以从这个角度来说，结论和师兄类似：目前远远不够成熟。</p>
+
+<p><img src="//s.zysr.me/img/2023-07-23/image-20230723065721721.png" alt="image-20230723065721721" /></p>
+
+<p>师兄提到的形气神和算法的统一，这是很高的角度，高到气文化为代表的东方思想能够立足，能够旺盛的前提。否则，还是“形式”医学主导的“形式AI”。
+算不得“中医AI”，“西医AI”可能更加恰当。</p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[关于生命的随想]]></title>
+            <link href="//zysr.me//关于生命的随想_2023_06_09.html"/>
+            <updated>2023-06-09T08:00:00+08:00</updated>
+            <id>//zysr.me//关于生命的随想_2023_06_09.html</id>
+            <content type="html"><![CDATA[<p>本文源于一次交流，聊作记录，以资回忆。</p>
+
+<p><img src="//s.zysr.me/img/2023-06-09/image-20230609144522385.png" alt="image-20230609144522385" /></p>
+
+<p>原文做些提炼，简述之个人看法。</p>
+
+<blockquote>
+  <p>到底什么是生命<br />
+  关于什么是生命这个问题，佛家探讨的比较少，但是总体给出了一个范畴更大的笼统答案那就是地水火风四大所合，<br />
+  当然不是说四大  合成的只是生命，而是说四大合成眼前的色法，其中包含色身，这个色身狭义上，是可以和生命划等号的。<br />
+  至于四大合成色身的细  节，揭露的很少。而道家对此的披露，更加详尽，当然四大在道家体系中，换了名字，<br />
+  简要来看称之为阴阳、细分来看称之为五行  （木火土金水）、空间来看天之气与地之气交媾而成人（抽象的人），<br />
+  具体的人则由父母交媾来完成，所以传统文化说“天地君亲  师”中，双亲是与天地一样具备崇高的地位。</p>
+</blockquote>
+
+<p>人这样的生命诞生之后，运行变化的规律，以及受外部环境的影响规律，则在黄帝内经中，充分展示。
+自己的允许规律是，生命自己按照女七男八的小周期，生长收藏，“藏”代表死亡，为下一次“生”做准备，请留意，无论佛家还是到家，“生”从来不是独指生为“人”这种生命体的，而是包含猫狗猪牛等等“众生”生命体。就是说此生为人，来生为猪狗都是可能的。</p>
+
+<p>所以，无论中外的宗教，都有一个很重要的普遍认知：护持众生。
+甚至，宰杀牛羊的伊斯兰教，对待宰杀牛羊时，古兰经也要求：要用锋利的刀具带着至善的慈祥，安详的死去，不可以水灌，憋气，钝器等等方法。</p>
+
+<p>请留意：安详的死去。
+人如果安详的死去，就算得了五福之一的“善终”这一福了。现在的人，能善终的，还是少数，都得去ICU，各种刀具下走一遭。
+善终，也是很多高僧大德很圆满的人生之行，因为他们能够做到“坐脱立亡”。坐着或者躺着，就去世了，完美。</p>
+
+<p>佛教普遍的教义是：此世你杀他，别世他杀你。
+所以，正真修习佛法的人，不管出家在家，一定是自觉的少吃甚至不吃“腥”，至于吃肉的和尚，那是门槛都没迈入。</p>
+
+<p>“荤腥”不是同一个东西，“腥”和此处的杀生有关系。
+“荤”主要指葱韭蒜菜之类的味道重的，佛教称之为五荤。</p>
+
+<p>至于外部影响规律，主要是六淫（风寒署湿燥火六种过度偏颇的气，传统文化中“淫”不是淫荡的意思，而是“过度”的意思，所以范仲淹的岳阳楼记有“淫雨霏霏”一说，那不是淫荡的雨，而是下太过多的雨），还有人与外部互动过程中，出现的七情（喜怒忧思悲恐惊）。</p>
+
+<p>六淫和七情是干扰女七男八周期的正常运作，六淫称之为外因，七情称之为内因。
+内因现在西方发展出一个学科分支，称之为心理学就是试图从内，化解人的内在矛盾。</p>
+
+<p>除此之外还有一个“非内外”因，可能干扰生命正常发展，典型的就是意外，比如说办公室同事的哥哥，这就碰到了非内外因的干扰，非内外因的运行规律，道家也给出了答案，那就是内嵌在“八字”之内的命里体系，俗称算命。</p>
+
+<p>以上，为我之见，对这个问题的一点点看法。</p>
+
+<blockquote>
+  <p>很多空，这个空那个空<br />
+  王朔认为的人是承载信息的原子，最会归于成土所以为空。</p>
+</blockquote>
+
+<p>这两个问题合在一起，比较合适，佛教的“”，最常见于“心经”的名言“色即是空空即是色”。这句话，中“色”和“空”，有独立的所指的。</p>
+
+<p>“色”指五蕴的色蕴，“蕴”有“聚积”、“炽盛”的意思，色蕴两个字，可以理解为眼睛所看到的东西，我们眼睛看到的东西，其实是不存在的，我们学过物理，很容易理解，只是光线的原因，看电影，玩AR，一个意思，看到的不是真实的，“所见非实”。
+类似的，我们听到的、感受到的也不为真实。这些都是色蕴的“色”字所包含。</p>
+
+<p>等等另外“四蕴”也不为实，为空的。</p>
+
+<p>这就是心经中后面一句“受想行识亦复如是”。</p>
+
+<p>原子能为我们仪器所见，也为“非实”，自然为空。所以王朔的“原子”论，也是不符合经义的。
+推而广之，凡有所实，皆非经义。</p>
+
+<blockquote>
+  <p>苦修是什么，是不是把信息加载到原子上？肉身消散后，在下一世重新加载。<br />
+  不一定是原子，原子只是载体，修的是信息载体。</p>
+</blockquote>
+
+<p>这两个观点，合在一起，就非常的接近本意了，佛家的“苦修”和“修”其实是不一样的，“苦修”重在“苦”字，身苦心苦，甚至现代人极其不理解的，很极端的做法，燃指断臂，现代人想都不敢想的事情，现代很多时候的和尚的舒服程度，相当于躺平式修行。</p>
+
+<p>我们还是只说“修”吧，修的的目的佛家讲肯定是成佛，道家必然是成道成仙。
+至于下一世的成功加载，只是修行过程中的一个附加成果，就相当于，西藏的活佛，生下来的小娃娃，就完成了上一世记忆的加载，对前世的物品，如数家珍，前世的弟子能够直呼其名了如指掌。
+加载成功，只是附属功效，不是终途，但就这附属攻击，就已经<br />
+足够吸引人，<br />
+足够骇人听闻，<br />
+足够的被人否定了。</p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[伤寒源流论]]></title>
+            <link href="//zysr.me//伤寒源流论_2023_05_26.html"/>
+            <updated>2023-05-26T08:00:00+08:00</updated>
+            <id>//zysr.me//伤寒源流论_2023_05_26.html</id>
+            <content type="html"><![CDATA[<h1 id="%E4%BC%A4%E5%AF%92%E6%BA%90%E6%B5%81%E8%AE%BA">伤寒源流论</h1>
+
+<p>学习中医，伤寒论乃是必学经典，现在可以看到很多版本的伤寒论，比如说名气挺大的梅花本、还有国家中医药管理局主持的中医古籍整理成果等等，
+<img src="//s.zysr.me/img/2023-05-26/image-20230526160532572.png" alt="梅花本" /></p>
+
+<p>面对众多的版本，却难以厘清他们之间的关系。尤其是与世传伤寒论有很大差别的<a href="#sdgb">四大古本</a>伤寒论：</p>
+
+<ul>
+<li><strong>桂林本</strong>、</li>
+<li><strong>白云阁本</strong>、</li>
+<li><strong>长沙本</strong>、</li>
+<li><strong>涪陵本</strong>和</li>
+<li>东传日本再回传的<strong>康平本</strong>。</li>
+</ul>
+
+<p>关系纷繁复杂，本文试图简析之。</p>
+
+<h2 id="%E4%B8%96%E4%BC%A0%E4%B9%8B%E7%A5%96%E6%9C%AC%3A-%E5%AE%8B%E6%9C%AC%E5%8F%8A%E8%B5%B5%E6%9C%AC">世传之祖本: 宋本及赵本</h2>
+
+<p><img src="//s.zysr.me/img/2023-05-26/image-20230526161451417.png" alt="image-20230526161451417" /></p>
+
+<p>众所周知，伤寒论失佚之后，在西晋，经过太医令王叔和搜集整理之后，经过五百多年，流传到宋朝，这个时候以及出现了很多不一样的抄本，有鉴于此，宋英宗平治二年(1056)，诏定校勘官定版颁行，此版本即为林亿孙奇整理的版本，出了两个正式的官修本，一个大字本、另一个是小字本。</p>
+
+<p>大约一百年后，金大定十二年，成无己注解伤寒论刊行，成本伤寒论以宋板为底本。成本一出，逐渐取代宋本，成为主要流通版本，反而导致宋本逐步失佚。</p>
+
+<p>到了明朝，赵开美刊刻《仲景全书》时，已无法觅得宋本，不得已用成本为底本，辑如仲景全书，谁知，刚刚完成刻版，竟然复得一部小字本宋板伤寒论，对此，赵开美评价到“<strong>固知成注非全文，及得是书，不啻拱璧，转卷间而后知成之荒也，因复并刻之</strong>”，赵开美所刻的版本，采用摹刻之法，每页行数、每行字数、行距、字体，全部都与宋板《伤寒论》万全一致。幸得赵开美此举，宋板伤寒论与存亡垂绝之际，得以保存，一灯独传，引来千灯续焰。《仲景全书》一共收书四部：小字本宋本《伤寒论》、成本《注解伤寒论》、宋云公《伤寒类证》、《金匮要略》。</p>
+
+<p>《仲景全书》1599年完成刊刻之后，至清初，不到半个世纪的时间，又难觅踪迹，甚至1773年的四库全书中，竟然都无法收录宋本《伤寒论》此书。</p>
+
+<p>至今，赵开美翻刻本的小字宋本，存世仅五部：中国中医科学院、上海图书馆、上海中医药大学、沈阳中国医科大学、台湾故宫博物馆各一。其中其三者为初刻本，有少许错讹；后两者为修刻本，改正初刻版的讹字。其中台湾故宫本有“<strong>东海仙蠹室藏</strong>”的图章，此为赵开美本人印张，是书为赵开美本人亲手摩研之书。</p>
+
+<p>而宋大字本据称在台湾故宫博物馆有孤本，但未可知尚存否。</p>
+
+<p>成本和赵本的宋本伤寒论，是目前所有世传本的祖本。</p>
+
+<h2 id="sdgb">四大古本</h2>
+
+<p>仲景出伤寒论于西汉，历经失佚，王叔和整理，宋本再整理，赵本重刻，无不都是残本。然于华夏危急存亡的一九三几年，居然连续面世了五个完整程度远超世行本的古本，她们是：</p>
+
+<ul>
+<li><a href="#csgb">长沙古本</a>，1932年浏阳刘崑湘先生公于世</li>
+<li><a href="#flb">涪陵本</a>，1935年四川刘熔先生公于世</li>
+<li><a href="#bygglgb">白云阁本</a>，1939年黄竹斋先生公于世，黄竹斋先生得之于桂林名医罗哲初</li>
+<li><a href="#kpb">康平本</a>，1937年，大塚敬节公于世</li>
+<li><a href="#bygglgb">桂林本</a>，1956年，罗哲初过世后，由其子中医罗继寿公于世，相较于白云阁本，卷三多出“六气主客”一节</li>
+</ul>
+
+<h3 id="bygglgb">白云阁本与桂林古本</h3>
+
+<p>五个古本中，联系最紧密的当数白云阁本和桂林古本。</p>
+
+<p>白云阁本和桂林本都是以仲景十六代孙张绍祖持有的《伤寒论》十二稿十六卷为母本，将之传给左盛德，然后再传给罗哲初。</p>
+
+<p>1934年，罗哲初的结识好友黄竹斋，并誊抄副本，</p>
+
+<p>1935年罗与黄共事于南京中央国医馆，黄竹斋在序言中写到：“国难作，南京陷，罗君返桂，途遭匪劫，十二稿副本幸存余家”，罗君助人者亦助己，天佑中华，文脉不断。</p>
+
+<p>竹斋先生于1939年公于世，此即为<strong>白云阁本</strong>。</p>
+
+<p>后1956年，哲初先生之子罗继寿也献出罗家版本，此即为<strong>桂林古本</strong>。</p>
+
+<p>两个版本内容相似程度极高，唯独桂林本卷三多“六气主客”一节。此节内容，为运气学之概述，罗哲初分享于黄竹斋之版本中，无此内容，疑为其子罗继寿后续补入。</p>
+
+<p><img src="//s.zysr.me/img/2023-05-26/image-20230526232444065.png" alt="白云阁本和桂林古本" /></p>
+
+<h3 id="csgb">长沙古本</h3>
+
+<h3 id="flb">涪陵本</h3>
+
+<h3 id="kpb">康平本</h3>
+
+<p><img src="//s.zysr.me/img/2023-05-26/shl_history.png" alt="张仲景 《伤寒杂病论》 合十六卷 西汉 AD15 -21 " /></p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[传习录的读书笔记]]></title>
+            <link href="//zysr.me//传习录的读书笔记_2023_05_25.html"/>
+            <updated>2023-05-25T08:00:00+08:00</updated>
+            <id>//zysr.me//传习录的读书笔记_2023_05_25.html</id>
+            <content type="html"><![CDATA[<h1 id="%E4%BC%A0%E4%B9%A0%E5%BD%95%E7%9A%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0">传习录的读书笔记</h1>
+
+<p>死生之道，
+阳明心学源自其早年所学之佛老之道，外加其龙门悟道而成。
+这段话用从道门来看，比较容易，死生之道即为阳消阴长之道，如日月消长之阴阳之道，即为昼夜之道。
+<img src="//s.zysr.me/img/2023-06-01/p9bY0US.jpg" alt="传习录" /></p>
+
+<pre><code class="hl">汝能知昼？懵懵而兴，蠢蠢而食，行不着，习不察，终日昏昏，只是梦昼。惟‘息有养，瞬有存’[插图]，此心惺惺明明，天理无一息间断，才是能知昼。这便是天德，便是通乎昼夜之道而知[插图]，更有甚么死生？”
+</code></pre>
+
+<p>阴阳之道，须臾不可离，所谓人天合一，即为此，而人之难察此道，因不查不著，终日昏聩所致。
+要破昏聩，回到能察能觉的觉悟状态，实现路径在于，“息有养瞬有存”，此存养之道，是存养己心，也是王阳明开示的炼心之道，此心明明之时，内可察己身，外可察天地日月，而觉阴阳，明死生。
+这里面，虽然没明说成佛成仙之法，但是基础路径可是对肖惠毫无保留，至于后学能否get到，真的是存疑的，因为整部传习录中，大量的这样的对话场景，他的弟子们反复用知见之语淹没着心学的光芒。</p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[历法和易学]]></title>
+            <link href="//zysr.me//历法和易学_2023_04_28.html"/>
+            <updated>2023-04-28T08:00:00+08:00</updated>
+            <id>//zysr.me//历法和易学_2023_04_28.html</id>
+            <content type="html"><![CDATA[<p>现代人都习惯于以农耕文明这个基础来解读，解读是对时间周期（四季）的刻画，然而那个时代，是不具备那些观测条件的，甚至准确的天文记录，也要等到秦汉才初具雏形，这也是太初历是为什么，到了西汉，被认作传统历法的开端太初历，才被制定出来。</p>
+
+<h1 id="%E6%98%93%E5%AD%A6%E4%BD%93%E7%B3%BB">易学体系</h1>
+
+<pre><code class="hl">所以《周易》是建立在农耕比较关心的一些规律，以及对这些规律进行的进一步抽象上的形而上学？🤔
+
+也许结论已经过时或者不准了，但是方法值得研究和借鉴的，说不定还能找到一些自己作为中国人的本能思维的根源。
+
+https://m.bilibili.com/video/BV1Fc411n7cR  
+</code></pre>
+
+<p>太初历被认为是传统历法的开端，而实际上中国最早的其实是黄帝历，在黄帝历和太初历之间，还有其它五部历法，他们和黄帝历一起合成古六历。</p>
+
+<p>最早的黄帝历到西汉落下闳的太初历，时间跨度接近两千五百年。</p>
+
+<p>计算依据是两部历法的元年，古六历第一的黄帝历的元年是公元前2697年，西汉太初历太初元年是104年。  相差两千五百年左右。</p>
+
+<p>黄帝历长什么样子呢？
+开元占经这样记载黄帝历的数据：“章岁十九，章闰七，章月二百三十五”。
+这句话的意思就是说：十九年的二百三十五月内置七润。</p>
+
+<p>这个周期，和我们现在的观测数据，一模一样，是一模一样啊。</p>
+
+<p>黄帝历中章动岁差数据不可知，但是岁差的证实记录已知的是到了宋朝的时候。《宋书·历下》记载的“冬至所在，岁岁微差”。这就是岁差两个字的来历。
+西汉到宋朝，差不多又是一千年。</p>
+
+<p>4720年前，相距太初历两千五百年前，农耕文明具备这样先进的观测技术，那是不可想象和不可思议的事情。</p>
+
+<p>借用圣经的说法，这只能是“Miricle”，是“神迹”。</p>
+
+<p>而八卦，世人皆知，伏羲画卦，创于三皇，而三皇要早于五帝的，皇帝在后，伏羲在前。</p>
+
+<p>也就是黄帝历在后，八卦在前。</p>
+
+<p>总结说来就是，以两至两分的天文观测（冬夏至和春秋分）来定四象，解释四象，虽然普通人能够接受，但是时间跨度上和天文观察的逻辑上来讲，是不成立的。</p>
+
+<p>至于后世还有十二月解读十二消息卦，我认为也是有些勉强。</p>
+
+<p>原因很是这样的，中国的历法，岁首放在那个月，不是像今天这样子，固定不变的，有的时候岁首在十一月，有的时候在十二月，现在都是放在一月。</p>
+
+<p>岁首在几月，这个在历法和命理学都称之为月建，以寅月（历法以十二地支记月，一月为寅月，十一月为子月，十二月为丑月）为岁首，称之为建寅；也称之为建寅。
+因为是时间上年首的正式标定基准，也称之为“寅正”。这也是为什么以前朝代更迭或说要定“正朔”。实际上就是历史翻新篇的味道。</p>
+
+<p>除了寅正，还有“丑正”、“正子子正”的做法，戌正（彝族）、亥正（立冬，秦朝）、子正（冬至，周朝）、丑正（商朝）、寅正。
+这么一来，岁首都是在变化的。那消息卦岂不是也会随着历法变动？</p>
+
+<p>所以，消息卦索性以复卦定子月为首，实际上采取了“子正”的做法，又和现代历法不一致了。
+但是和周文王的周朝所用的周历子正一致的。</p>
+
+<p>如果文王活在现代，十二消息卦，估计就以泰卦的寅月为首了。
+这就是为什么说八卦里面，很多东西的后世解读，是不得要领的，大名鼎鼎的消息卦，就是其中之一。</p>
+
+<p>那么，八卦到底在说什么？
+还是得要回到道家的典籍里去才能有一半的答案。</p>
+
+<p>P.S:</p>
+
+<p>说到历法，现代的历法计算，利用计算机和天文数据，可以比较精确的实现计算，这方面，许剑伟 <a href="xunmeng04@163.com">Email</a>制作的寿星天文历非常完美的实现了。这一点。</p>
+
+<p>基于此，本人做了二次增强以支持年号：各朝年号增强的寿星万年历。<a href="/wnl/">点我</a>开始使用。</p>
+
+<p><img src="//s.zysr.me/img/2023-06-01/image-20230601215654099.png" alt="image-20230601215654099" /></p>
+
+<p>比如说，宋朝官定伤寒论，于治平二年诏定校勘。按图，既可检索到治平二年前后的年代信息、年号信息。</p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[谒桐柏宫及国清寺]]></title>
+            <link href="//zysr.me//谒桐柏宫及国清寺_2023_03_09.html"/>
+            <updated>2023-03-09T08:00:00+08:00</updated>
+            <id>//zysr.me//谒桐柏宫及国清寺_2023_03_09.html</id>
+            <content type="html"><![CDATA[<p><img src="//s.zysr.me/img/2023-05-23/image-20230523163143113.png" alt="七世诸佛塔" /></p>
+
+<p>千年屹立的隋塔下，
+有七世诸佛塔，
+恰好这光影，
+如一束佛光，
+在浑浊中，
+独耀世间，指引有情。
+傍国清寺，夜诵法华，
+读智者大师之《教观纲宗》，
+久不能寐，浑噩至天明。</p>
+
+<p>与友辗转九曲山路，
+又至高明讲寺，
+此乃智者大师亲手创建，为其在天台山真正讲经之所，而国清寺乃晋王杨光尊其遗愿所修之皇家寺庙，愿“寺若成，国则清”，故名国清寺。</p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523163105544.png" alt="国清寺" /></p>
+
+<p>天台为教观双运之殊胜法，
+故国清寺门前有“教观总持”之影壁，</p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523163228051.png" alt="教观双绝" /></p>
+
+<p>“教观双运”为天台宗之藩篱：
+外则依入它法，入则皈止天台。</p>
+
+<p>高明讲寺内声声净土佛号，</p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523163308119.png" alt="image-20230523163308119" /></p>
+
+<p>“教观双运”也只能远播异域，
+普照日韩两蕃国了，
+海外有亲戚，祖庭说话便硬气，
+倒也能为国清寺这5A景区
+争个不要门票的窗口期
+于是这检票机器也就摆设了</p>
+
+<p>——谒国清寺浅记</p>
+]]></content>
+        </entry>
+            <entry>
+            <title type="html"><![CDATA[拜桐柏宫及赤城山]]></title>
+            <link href="//zysr.me//拜桐柏宫及赤城山_2023_03_09.html"/>
+            <updated>2023-03-09T08:00:00+08:00</updated>
+            <id>//zysr.me//拜桐柏宫及赤城山_2023_03_09.html</id>
+            <content type="html"><![CDATA[<p>天台一郡，有桐柏宫和赤城山。
+天台一山，佛家称之天台，道门谓之桐柏。</p>
+
+<p>桐柏宫为紫阳真人张伯端建南宗之祖庭，由葛玄奉吴主孙权之命而建，代有司马承祯、闵一得、白玉蟾等诸多高真居之。
+修日‬建桐柏水库，迁宫至鸣鹤观，今又于水库旧址旁，重起桐柏宫，并内设道学院，为国内第四所道学院，即网络所言当代“霍格沃茨”魔法学校。</p>
+
+<p>新宫启用</p>
+
+<p>鸣鹤观逐步淡出</p>
+
+<p>游咸鲜客‬绝</p>
+
+<p>然观中</p>
+
+<p>内可运八卦</p>
+
+<p>俯能揽繁华
+<img src="//s.zysr.me/img/2023-05-23/image-20230523165315006.png" alt="庭内运八卦" /></p>
+
+<p>绝楼品茗</p>
+
+<p>琼台谈玄</p>
+
+<p>赏红日落于天际</p>
+
+<p>惊明月已至同框</p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523165557376.png" alt="image-20230523165557376" /></p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523165626220.png" alt="image-20230523165626220" /></p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523165721396.png" alt="image-20230523165721396" /></p>
+
+<p>赤城山素为天台南门</p>
+
+<p>近代道门式微</p>
+
+<p>玉金洞天，划至佛协。</p>
+
+<p>玉金匿声，只留其名</p>
+
+<p>茅濛游于此</p>
+
+<p>三茅拜于此</p>
+
+<p>魏夫人治于此</p>
+
+<p>左慈隐于此</p>
+
+<p>葛玄拜师于此</p>
+
+<p>陶弘景炼丹于此</p>
+
+<p>……</p>
+
+<p>独不见其地</p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523165642706.png" alt="image-20230523165642706" /></p>
+
+<p>籍山顶之梁妃塔</p>
+
+<p>竟因旅游开发</p>
+
+<p>而有重回道门之缘</p>
+
+<p>得再建之日</p>
+
+<p><img src="//s.zysr.me/img/2023-05-23/image-20230523165707913.png" alt="image-20230523165707913" /></p>
+
+<p>两千年古宫在水底</p>
+
+<p>数千年洞天刚刚建</p>
+
+<p>时耶？！</p>
+
+<p>势耶！</p>
 ]]></content>
         </entry>
     </feed>

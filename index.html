@@ -4,14 +4,21 @@
   <title>Home &mdash; 竹叶山人 </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="Sculpin (http://sculpin.io)" />
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700|Montserrat:400,700" rel="stylesheet"> 
+
   <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" href="//cdn.staticfile.org/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+ 
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
+  
+  <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
+  
+
 
   
-  
+
+
 </head>
 <body>
 
@@ -20,7 +27,7 @@
       <h1>
         <a href="/">竹叶山人</a>
       </h1>
-      <p>西行却过流沙日，枕上寥寥心独知</p>
+      <p>西行却过流沙日 枕上寥寥心独知</p>
     </header>
 
     <nav>
@@ -28,8 +35,7 @@
         <li><a class="button-link" href="/blog">目录</a></li>
         <li><a class="button-link" href="/blog/tags">标签</a></li>
         <li><a class="button-link" href="/blog/categories">分类</a></li>
-        <li><a class="button-link" href="/about">关于</a></li>
-        <li><a class="button-link" href="/contactMe">联系我</a></li>
+        
       </ul>
     </nav>
   </aside>
@@ -38,12 +44,12 @@
               <div class="hfeed">
   <article class="paginated hentry">
     <header>
-      <h2 class="entry-title"><a href="/11-03-道藏说略_2022_11_03.html">道藏说略</a></h2>
+      <h2 class="entry-title"><a href="/FRP内外穿透_2023_08_03.html">frp内外穿透</a></h2>
 
       <p class="meta">
-        <time class="published" datetime="2022-11-03T00:00:00+00:00">
-          <a href="//zysr.me//11-03-道藏说略_2022_11_03.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>11</span>-<span class='day'>03</span>
+        <time class="published" datetime="2023-08-03T08:00:00+08:00">
+          <a href="//zysr.me//FRP内外穿透_2023_08_03.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>08</span>-<span class='day'>03</span>
             
           </a>
         </time>
@@ -55,37 +61,108 @@
         </span>
       </p>
             <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E9%81%93%E8%97%8F" rel="tag">道藏</a>              </p>
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/frp" rel="tag">frp</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3" rel="tag">技术文档</a>              </p>
     </header>
     <div class="content">
-    <a href="/11-03-道藏说略_2022_11_03.html" >
-      明道藏之前，历代有九部道书（郑隐藏书、《三洞经书》、《玉纬七部经》、《开元道藏》、《大宋天宫宝藏》、《政和万寿道藏》、《大金玄都宝藏》、《大元玄都宝藏》）面世，却又佚失。
-
-现在，仅明道藏流传至今。
-明道藏包括永乐藏＋永乐北藏，及正统道藏和万历续藏。
-世行有菡芬楼等六大版本流传。
-
-道藏中以三洞（洞真、洞玄、洞神）为干，
-四辅（太玄、太平、太清、正一）为枝，
-三洞又有三十六部，宣示仙途大道。
-
-明道藏五千卷，外加未收道书《藏外道书》，《老子想尔注》、《敦煌道书》等等，浩如烟海，
-
-然皆汇于一部说《道藏说略》，
-如烟海明灯，以示迷津。
-
-又有教内高道盛克琦道长躬身编撰，绝非一般的学术著作可比。
-
-有感而作诗四句：
-
-九部道书传真妙
-六版明藏续玄音
-三洞四辅宣仙途
-一部说略指迷津
+    <a href="/FRP内外穿透_2023_08_03.html" >
+      NAT环境下，内网的机器是无法被外部访问到的。比如下面的LaptopA和B，都不能被公网的7.7.7.7访问到的。
 
 
 
+在路由器的帮助下，才能实现双向通讯。但是大部份情况下，家用路由器不支持将Laptop暴露给外网。
 
+
+
+这个时候，如果有一个服务能够直接穿透家用路由器而直接用TCP链接，把Laptop:xxxx和7.7.7.7:xxxx等效起来，那么就相当于直接把laptop暴露在公网了。
+
+
+
+而frp则是这样的工具，能够完美的实现这个技能。在它的帮助下，能够让访问7.7.7.7:8080的时候，相当于在访问laptop:8080。
+
+如果laptop:8080上面是个http服务的话，那么相当于在laptop:8080上面搭建了一个公网可以访问的web服务，只不过它的访问地址是7.7.7.7:8080。而frp更是直接内置了，一个静态的web服务器插件：static_file，可以直接提供静态文件的web服务。
+
+因为laptop经常关机，所以它的应用场景只能是对可用性要求不高的环境，比如说图床，当然如果搭配公开的cloudlare这样的的CDN，那么一个月开机一次，就足够支持一般的图床应用了。
+
+比如说可能是个基于laptop:8080的图床等等服务，再也不需要云空间的存储要求。
+
+frp分为服务器端frps和客户端frpc，服务器端frps运行在7.7.7.7上面，客户端frpc运行在laptop上面。
+
+这个体系中，frp不仅仅会监听对外服务的8080端口，而且自己也需要一个frp自己的端口用于服务器端frps和客户端frpc通讯，
+
+frpc客户端与frps服务端在frp端口建立链接后，会根据客户端frpc的配制，决定如何将客户端frpc的资源暴露于7.7.7.7这个frps服务器端。所以frp服务器真正提供服务的端口，其实是由frp客户端来指定的。
+
+安装之后，frpc和frps各有自己的ini格式的配置文件，启动命令非常相似
+
+
+frpc...
+      </a>
+    </div>
+        <hr />
+  </article>
+  <article class="paginated hentry">
+    <header>
+      <h2 class="entry-title"><a href="/引汉济渭_2023_07_23.html">引汉济渭</a></h2>
+
+      <p class="meta">
+        <time class="published" datetime="2023-07-23T08:00:00+08:00">
+          <a href="//zysr.me//引汉济渭_2023_07_23.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>07</span>-<span class='day'>23</span>
+            
+          </a>
+        </time>
+                 By<span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          
+        </span>
+      </p>
+            <p class="tags">
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E9%9A%8F%E6%83%B3" rel="tag">随想</a>              </p>
+    </header>
+    <div class="content">
+    <a href="/引汉济渭_2023_07_23.html" >
+      看了个新闻，引汉济渭通水了，通水了，通水了。
+
+忍不住想去黄金峡水库。黄金峡水库的地理位置在这儿
+
+
+
+最终会进入陕西的供水管网，但不是自然水系。
+
+去‮安西‬旅游，并不‮觉感‬缺水，是因为渭南黑河‮利水‬枢纽的暂‮性时‬缓解。
+
+在‮以北岭秦‬七十二峪‮还口‬有诸‮的多‬瀑布、溪河，甚至在渭南的师门‮场道‬附近，还有山‮空色‬蒙雨亦奇‮江的‬南之色。
+
+
+
+实际上，渭河平原非‮缺常‬水，很严重，西安抽取‮下地‬水严重，导致‮面地‬沉降，看看大雁塔，就快‮成变‬东方比‮斜萨‬塔，就‮道知‬有多严重。
+
+
+
+陕西辖下，除了不够用的渭河，还有另外两个重要的长江支流，汉水和嘉陵江。
+
+汉水，长江的一条重要支流，也称汉江，起于汉中，而汉中的归属，历史上，汉中在四川和陕西多次反复，历史原因，元代起，控汉中握秦岭以制蜀，所以汉中归陕西。
+
+但是汉水却不这么认为，和嘉陵江等别的四川河流一样，不跟渭河去黄河，反而奔湖北往长江去了，没错，身在曹营心在汉，说的就是汉水。
+
+实际上是因为秦岭的阻隔，汉水它去不了北方。
+
+就像四川因为秦岭的阻隔很难去陕西一样，当年李白到了首都长安后，一把鼻涕一把泪的在《蜀道难》里哭闹：“尔来四万八千岁，不与秦塞通人烟”。
+
+秦岭脚下‮个打‬洞，跨秦岭，把汉江水，引到缺水严‮的重‬渭河平原，这样渭河平‮的原‬西安、渭南、咸阳不‮缺再‬水了。
+汉水于关中平原，功莫大焉。
+
+
+
+进出四川的三条铁路中，成昆、宝成之外，往华东方向最近的、最险要的襄渝铁路，进入汉中后全线沿着汉水南侧大巴山脚往东走，直到进入襄阳，入武汉三镇的汉口汇入长江。
+
+
+
+火车襄渝线进出四川，最喜欢的就是这一段风景。
+沿路往北望，汉水北侧的无限秦岭风光，甚是壮美，尽收眼底。
+
+如今又多了一个黄金峡水库，值得期待。
 
       </a>
     </div>
@@ -93,12 +170,12 @@
   </article>
   <article class="paginated hentry">
     <header>
-      <h2 class="entry-title"><a href="/长相思・玉眉山_2022_08_11.html">长相思・玉眉山</a></h2>
+      <h2 class="entry-title"><a href="/Nginx的多证书应用_2023_07_23.html">nginx的多证书应用</a></h2>
 
       <p class="meta">
-        <time class="published" datetime="2022-08-11T10:24:00+00:00">
-          <a href="//zysr.me//长相思・玉眉山_2022_08_11.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>08</span>-<span class='day'>11</span>
+        <time class="published" datetime="2023-07-23T08:00:00+08:00">
+          <a href="//zysr.me//Nginx的多证书应用_2023_07_23.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>07</span>-<span class='day'>23</span>
             
           </a>
         </time>
@@ -110,30 +187,172 @@
         </span>
       </p>
             <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%AD%8C%E4%BB%A5%E5%92%8F%E5%BF%97" rel="tag">歌以咏志</a>              </p>
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/nginx" rel="tag">nginx</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3" rel="tag">技术文档</a>              </p>
     </header>
     <div class="content">
-    <a href="/长相思・玉眉山_2022_08_11.html" >
-      早一程，晚一程
+    <a href="/Nginx的多证书应用_2023_07_23.html" >
+      运行多证书反向代理，充当NOSTR中继转发器快四个月了，今天准备下线这个服务。随便把配制思路分享一下。
 
-身向乡关转转停
+NOSTR因为众所周知的原因，国内是无法访问的，而NOSTR需要中继才能存活，本来NOSTR的设计思路就是天然的
 
-长河映日影
+去中心社交模式。但是现在因为没有使用分布式方式发布和订阅中继，反而让NOSTR的分布式社交变得有名无实...
+      </a>
+    </div>
+        <hr />
+  </article>
+  <article class="paginated hentry">
+    <header>
+      <h2 class="entry-title"><a href="/关于中医AI_2023_07_21.html">关于中医AI</a></h2>
 
-鸟一鸣，蝉一鸣
+      <p class="meta">
+        <time class="published" datetime="2023-07-21T08:00:00+08:00">
+          <a href="//zysr.me//关于中医AI_2023_07_21.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>07</span>-<span class='day'>21</span>
+            
+          </a>
+        </time>
+                 By<span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          
+        </span>
+      </p>
+            <p class="tags">
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E4%B8%AD%E5%8C%BB" rel="tag">中医</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/AI" rel="tag">AI</a>              </p>
+    </header>
+    <div class="content">
+    <a href="/关于中医AI_2023_07_21.html" >
+      这篇文字，其实是师门群中，师兄师姐们，关于中医AI的探讨。转成文字，以记之。
 
-幽人孤车梦不成
-
-松子落空岭
-
-——中元节，谒玉眉山归家
-填词长相思·玉眉山
 
 
+人工智能，虽然冠了这个名字，但并不等于真的是“智能”，很多时候出来的结果很荒谬，称之为“人工智障”一点不为过。
+
+这一代火热的工智能技术ChatGPT其实是大语言模型，要解释大语言模型需要点笔墨。
+
+它是机器学习技术对人类语言的模型模拟和重现，所以是“语言模型language...
+      </a>
+    </div>
+        <hr />
+  </article>
+  <article class="paginated hentry">
+    <header>
+      <h2 class="entry-title"><a href="/关于生命的随想_2023_06_09.html">关于生命的随想</a></h2>
+
+      <p class="meta">
+        <time class="published" datetime="2023-06-09T08:00:00+08:00">
+          <a href="//zysr.me//关于生命的随想_2023_06_09.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>06</span>-<span class='day'>09</span>
+            
+          </a>
+        </time>
+                 By<span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          
+        </span>
+      </p>
+            <p class="tags">
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E9%9A%8F%E6%83%B3" rel="tag">随想</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E7%94%9F%E5%91%BD" rel="tag">生命</a>                   <a class="tag-color tag-color-3" href="//zysr.me//blog/tags/%E4%BF%AE%E8%A1%8C" rel="tag">修行</a>                   <a class="tag-color tag-color-4" href="//zysr.me//blog/tags/notesOnNostr" rel="tag">notesOnNostr</a>              </p>
+    </header>
+    <div class="content">
+    <a href="/关于生命的随想_2023_06_09.html" >
+      本文源于一次交流，聊作记录，以资回忆。
 
 
 
+原文做些提炼，简述之个人看法。
 
+
+  到底什么是生命
+  关于什么是生命这个问题，佛家探讨的比较少，但是总体给出了一个范畴更大的笼统答案那就是地水火风四大所合，...
+      </a>
+    </div>
+        <hr />
+  </article>
+  <article class="paginated hentry">
+    <header>
+      <h2 class="entry-title"><a href="/伤寒源流论_2023_05_26.html">伤寒源流论</a></h2>
+
+      <p class="meta">
+        <time class="published" datetime="2023-05-26T08:00:00+08:00">
+          <a href="//zysr.me//伤寒源流论_2023_05_26.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>05</span>-<span class='day'>26</span>
+            
+          </a>
+        </time>
+                 By<span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          
+        </span>
+      </p>
+            <p class="tags">
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E4%BC%A4%E5%AF%92%E8%AE%BA" rel="tag">伤寒论</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E6%BA%90%E6%B5%81" rel="tag">源流</a>              </p>
+    </header>
+    <div class="content">
+    <a href="/伤寒源流论_2023_05_26.html" >
+      伤寒源流论
+
+学习中医，伤寒论乃是必学经典，现在可以看到很多版本的伤寒论，比如说名气挺大的梅花本、还有国家中医药管理局主持的中医古籍整理成果等等，
+
+
+面对众多的版本，却难以厘清他们之间的关系。尤其是与世传伤寒论有很大差别的四大古本伤寒论：
+
+
+桂林本、
+白云阁本、
+长沙本、
+涪陵本和
+东传日本再回传的康平本。
+
+
+关系纷繁复杂，本文试图简析之。
+
+世传之祖本:...
+      </a>
+    </div>
+        <hr />
+  </article>
+  <article class="paginated hentry">
+    <header>
+      <h2 class="entry-title"><a href="/传习录的读书笔记_2023_05_25.html">传习录的读书笔记</a></h2>
+
+      <p class="meta">
+        <time class="published" datetime="2023-05-25T08:00:00+08:00">
+          <a href="//zysr.me//传习录的读书笔记_2023_05_25.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>05</span>-<span class='day'>25</span>
+            
+          </a>
+        </time>
+                 By<span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          
+        </span>
+      </p>
+            <p class="tags">
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E8%AF%BB%E4%B9%A6" rel="tag">读书</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E4%BC%A0%E4%B9%A0%E5%BD%95" rel="tag">传习录</a>                   <a class="tag-color tag-color-3" href="//zysr.me//blog/tags/%E7%8E%8B%E9%98%B3%E6%98%8E" rel="tag">王阳明</a>              </p>
+    </header>
+    <div class="content">
+    <a href="/传习录的读书笔记_2023_05_25.html" >
+      传习录的读书笔记
+
+死生之道，
+阳明心学源自其早年所学之佛老之道，外加其龙门悟道而成。
+这段话用从道门来看，比较容易，死生之道即为阳消阴长之道，如日月消长之阴阳之道，即为昼夜之道。
+
+
+汝能知昼？懵懵而兴，蠢蠢而食，行不着，习不察，终日昏昏，只是梦昼。惟‘息有养，瞬有存’[插图]，此心惺惺明明，天理无一息间断，才是能知昼。这便是天德，便是通乎昼夜之道而知[插图]，更有甚么死生？”
+
+
+阴阳之道，须臾不可离，所谓人天合一，即为此，而人之难察此道，因不查不著，终日昏聩所致。
+要破昏聩，回到能察能觉的觉悟状态，实现路径在于，“息有养瞬有存”，此存养之道，是存养己心，也是王阳明开示的炼心之道，此心明明之时，内可察己身，外可察天地日月，而觉阴阳，明死生。
+这里面，虽然没明说成佛成仙之法，但是基础路径可是对肖惠毫无保留，至于后学能否get到，真的是存疑的，因为整部传习录中，大量的这样的对话场景，他的弟子们反复用知见之语淹没着心学的光芒。
 
       </a>
     </div>
@@ -141,12 +360,12 @@
   </article>
   <article class="paginated hentry">
     <header>
-      <h2 class="entry-title"><a href="/歌禹迹山_2022_08_05.html">歌禹迹山</a></h2>
+      <h2 class="entry-title"><a href="/历法和易学_2023_04_28.html">历法和易学</a></h2>
 
       <p class="meta">
-        <time class="published" datetime="2022-08-05T10:24:00+00:00">
-          <a href="//zysr.me//歌禹迹山_2022_08_05.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>08</span>-<span class='day'>05</span>
+        <time class="published" datetime="2023-04-28T08:00:00+08:00">
+          <a href="//zysr.me//历法和易学_2023_04_28.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>04</span>-<span class='day'>28</span>
             
           </a>
         </time>
@@ -158,74 +377,31 @@
         </span>
       </p>
             <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%AD%8C%E4%BB%A5%E5%92%8F%E5%BF%97" rel="tag">歌以咏志</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E6%B8%B8%E8%AE%B0" rel="tag">游记</a>              </p>
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%98%93%E5%AD%A6" rel="tag">易学</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E6%97%A5%E5%8E%86" rel="tag">日历</a>                   <a class="tag-color tag-color-3" href="//zysr.me//blog/tags/%E5%A4%AA%E5%88%9D%E5%8E%86" rel="tag">太初历</a>              </p>
     </header>
     <div class="content">
-    <a href="/歌禹迹山_2022_08_05.html" >
-      距上一次去禹迹山拜这唐佛，已过去二十年有余，上一次和同学骑自行车，周末游禹迹山，拜唐朝站佛。
+    <a href="/历法和易学_2023_04_28.html" >
+      现代人都习惯于以农耕文明这个基础来解读，解读是对时间周期（四季）的刻画，然而那个时代，是不具备那些观测条件的，甚至准确的天文记录，也要等到秦汉才初具雏形，这也是太初历是为什么，到了西汉，被认作传统历法的开端太初历，才被制定出来。
 
-好多年没有在草木丰茂的时候，回老家看看了，更没几乎去礼佛。
+易学体系
 
-一路车行至，无路处，掉头行至农户晒坝，跟撕包谷的大叔一打听，
+所以《周易》是建立在农耕比较关心的一些规律，以及对这些规律进行的进一步抽象上的形而上学？🤔
 
-答曰：无路之处即有正路，似有三份禅味。
+也许结论已经过时或者不准了，但是方法值得研究和借鉴的，说不定还能找到一些自己作为中国人的本能思维的根源。
 
-
-
-居然骑到第三层院落的观音立像脚下，被正在为鲜花浇水的居士盛赞：颇具佛缘，从未有人能骑车到这菩萨脚下，感恩护法菩萨保佑。
-
-
-
-等斋饭的功夫，大雄宝殿外石阶，有大榕树一株，正是读地藏经的绝佳之处，复觉一白狗侧卧身旁，禅宗赵州禅师曾论狗子既有佛性也无佛性。
-
-而居士以福报为念，即便以此为计，能生于佛院中，也算既有佛缘，又有福报之灵。
-
-
-
-
-
-距大殿百丈处，便是这唐佛，乐山大佛为石刻坐佛，大足为卧佛，禹迹山为石刻唐立佛，并称巴蜀三大佛。
-
-
-
-千年过去，历经战乱、文革等等劫难，虽华服不再，但神韵却依旧栩栩如生。
-
-
-
-
-
-这唐佛所在之处，却是真正的大佛寺所在。
-
-恰一对夫妇香客，山下买来香蜡，要来燃香礼佛，却被告之，大佛寺为旅游景区非宗教场所，大佛寺不能礼佛供奉。
-
-禹迹山能游人众多，只为礼这千年唐佛，石佛屹立千年，全赖信仰之力；
-
-颇为滑稽，石佛历经文革依旧为信众守护如斯，若失去这供奉，这石佛如何能屹立千年？禹迹山没这唐佛，与普通的山林毫无差别，谁会驱车三十里来此？
-
-
-
-
-
-淡然做游记：
-
-车辕绝，人烟灭
-花叶穷处唐佛立。
-赵州狗子佛性在？
-铜钟无声
-千年屹立
-
+https://m.bilibili.com/video/BV1Fc411n7cR...
       </a>
     </div>
         <hr />
   </article>
   <article class="paginated hentry">
     <header>
-      <h2 class="entry-title"><a href="/故城落霞_2022_07_23.html">故城落霞</a></h2>
+      <h2 class="entry-title"><a href="/谒桐柏宫及国清寺_2023_03_09.html">谒桐柏宫及国清寺</a></h2>
 
       <p class="meta">
-        <time class="published" datetime="2022-07-23T10:24:00+00:00">
-          <a href="//zysr.me//故城落霞_2022_07_23.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>07</span>-<span class='day'>23</span>
+        <time class="published" datetime="2023-03-09T08:00:00+08:00">
+          <a href="//zysr.me//谒桐柏宫及国清寺_2023_03_09.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>03</span>-<span class='day'>09</span>
             
           </a>
         </time>
@@ -237,51 +413,48 @@
         </span>
       </p>
             <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%AD%8C%E4%BB%A5%E5%92%8F%E5%BF%97" rel="tag">歌以咏志</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E9%9A%8F%E6%89%8B%E6%8B%8D" rel="tag">随手拍</a>              </p>
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%8B%9C%E8%B0%92" rel="tag">拜谒</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E5%9B%BD%E6%B8%85%E5%AF%BA" rel="tag">国清寺</a>                   <a class="tag-color tag-color-3" href="//zysr.me//blog/tags/%E6%A1%90%E6%9F%8F%E5%AE%AB" rel="tag">桐柏宫</a>                   <a class="tag-color tag-color-4" href="//zysr.me//blog/tags/%E6%B8%B8%E8%AE%B0" rel="tag">游记</a>              </p>
     </header>
     <div class="content">
-    <a href="/故城落霞_2022_07_23.html" >
-      落霞与孤塔齐飞
-嘉水共长桥一色
-
-
-
-
-
-
-
-      </a>
-    </div>
-        <hr />
-  </article>
-  <article class="paginated hentry">
-    <header>
-      <h2 class="entry-title"><a href="/陵江日出_2022_07_21.html">陵江日出</a></h2>
-
-      <p class="meta">
-        <time class="published" datetime="2022-07-21T08:24:00+00:00">
-          <a href="//zysr.me//陵江日出_2022_07_21.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>07</span>-<span class='day'>21</span>
-            
-          </a>
-        </time>
-                 By<span class="author vcard">
-          <a class="url fn n" href="//zysr.me/">
-            <span class="given-name">雲文</span>
-          </a>
-          
-        </span>
-      </p>
-            <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%AD%8C%E4%BB%A5%E5%92%8F%E5%BF%97" rel="tag">歌以咏志</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E9%9A%8F%E6%89%8B%E6%8B%8D" rel="tag">随手拍</a>              </p>
-    </header>
-    <div class="content">
-    <a href="/陵江日出_2022_07_21.html" >
+    <a href="/谒桐柏宫及国清寺_2023_03_09.html" >
       
 
+千年屹立的隋塔下，
+有七世诸佛塔，
+恰好这光影，
+如一束佛光，
+在浑浊中，
+独耀世间，指引有情。
+傍国清寺，夜诵法华，
+读智者大师之《教观纲宗》，
+久不能寐，浑噩至天明。
+
+与友辗转九曲山路，
+又至高明讲寺，
+此乃智者大师亲手创建，为其在天台山真正讲经之所，而国清寺乃晋王杨光尊其遗愿所修之皇家寺庙，愿“寺若成，国则清”，故名国清寺。
 
 
 
+天台为教观双运之殊胜法，
+故国清寺门前有“教观总持”之影壁，
+
+
+
+“教观双运”为天台宗之藩篱：
+外则依入它法，入则皈止天台。
+
+高明讲寺内声声净土佛号，
+
+
+
+“教观双运”也只能远播异域，
+普照日韩两蕃国了，
+海外有亲戚，祖庭说话便硬气，
+倒也能为国清寺这5A景区
+争个不要门票的窗口期
+于是这检票机器也就摆设了
+
+——谒国清寺浅记
 
       </a>
     </div>
@@ -289,12 +462,12 @@
   </article>
   <article class="paginated hentry">
     <header>
-      <h2 class="entry-title"><a href="/文笔塔晨光_2022_07_07.html">文笔塔晨光</a></h2>
+      <h2 class="entry-title"><a href="/拜桐柏宫及赤城山_2023_03_09.html">拜桐柏宫及赤城山</a></h2>
 
       <p class="meta">
-        <time class="published" datetime="2022-07-07T08:24:00+00:00">
-          <a href="//zysr.me//文笔塔晨光_2022_07_07.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>07</span>-<span class='day'>07</span>
+        <time class="published" datetime="2023-03-09T08:00:00+08:00">
+          <a href="//zysr.me//拜桐柏宫及赤城山_2023_03_09.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>03</span>-<span class='day'>09</span>
             
           </a>
         </time>
@@ -306,12 +479,36 @@
         </span>
       </p>
             <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%AD%8C%E4%BB%A5%E5%92%8F%E5%BF%97" rel="tag">歌以咏志</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E9%9A%8F%E6%89%8B%E6%8B%8D" rel="tag">随手拍</a>              </p>
+                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%8B%9C%E8%B0%92" rel="tag">拜谒</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E8%B5%A4%E5%9F%8E%E5%B1%B1" rel="tag">赤城山</a>                   <a class="tag-color tag-color-3" href="//zysr.me//blog/tags/%E6%A1%90%E6%9F%8F%E5%AE%AB" rel="tag">桐柏宫</a>                   <a class="tag-color tag-color-4" href="//zysr.me//blog/tags/%E6%B8%B8%E8%AE%B0" rel="tag">游记</a>              </p>
     </header>
     <div class="content">
-    <a href="/文笔塔晨光_2022_07_07.html" >
-      晨光暮露文笔塔
-九曲嘉陵两虹影
+    <a href="/拜桐柏宫及赤城山_2023_03_09.html" >
+      天台一郡，有桐柏宫和赤城山。
+天台一山，佛家称之天台，道门谓之桐柏。
+
+桐柏宫为紫阳真人张伯端建南宗之祖庭，由葛玄奉吴主孙权之命而建，代有司马承祯、闵一得、白玉蟾等诸多高真居之。
+修日‬建桐柏水库，迁宫至鸣鹤观，今又于水库旧址旁，重起桐柏宫，并内设道学院，为国内第四所道学院，即网络所言当代“霍格沃茨”魔法学校。
+
+新宫启用
+
+鸣鹤观逐步淡出
+
+游咸鲜客‬绝
+
+然观中
+
+内可运八卦
+
+俯能揽繁华
+
+
+绝楼品茗
+
+琼台谈玄
+
+赏红日落于天际
+
+惊明月已至同框
 
 
 
@@ -319,188 +516,50 @@
 
 
 
+赤城山素为天台南门
+
+近代道门式微
+
+玉金洞天，划至佛协。
+
+玉金匿声，只留其名
+
+茅濛游于此
+
+三茅拜于此
+
+魏夫人治于此
+
+左慈隐于此
+
+葛玄拜师于此
+
+陶弘景炼丹于此
+
+……
+
+独不见其地
 
 
 
+籍山顶之梁妃塔
+
+竟因旅游开发
+
+而有重回道门之缘
+
+得再建之日
 
 
 
-      </a>
-    </div>
-        <hr />
-  </article>
-  <article class="paginated hentry">
-    <header>
-      <h2 class="entry-title"><a href="/云图Cloud-Atlas_2022_05_02.html">云图Cloud Atlas</a></h2>
+两千年古宫在水底
 
-      <p class="meta">
-        <time class="published" datetime="2022-05-02T00:00:00+00:00">
-          <a href="//zysr.me//云图Cloud-Atlas_2022_05_02.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>05</span>-<span class='day'>02</span>
-            
-          </a>
-        </time>
-                 By<span class="author vcard">
-          <a class="url fn n" href="//zysr.me/">
-            <span class="given-name">雲文</span>
-          </a>
-          
-        </span>
-      </p>
-            <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E8%A7%82%E5%BD%B1%E8%AE%B0" rel="tag">观影记</a>              </p>
-    </header>
-    <div class="content">
-    <a href="/云图Cloud-Atlas_2022_05_02.html" >
-      
+数千年洞天刚刚建
 
+时耶？！
 
+势耶！
 
-
-
-
-
-
-
-
-
-      </a>
-    </div>
-        <hr />
-  </article>
-  <article class="paginated hentry">
-    <header>
-      <h2 class="entry-title"><a href="/中医读书之法_2022_05_01.html">中医读书之法</a></h2>
-
-      <p class="meta">
-        <time class="published" datetime="2022-05-01T00:00:00+00:00">
-          <a href="//zysr.me//中医读书之法_2022_05_01.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>05</span>-<span class='day'>01</span>
-            
-          </a>
-        </time>
-                 By<span class="author vcard">
-          <a class="url fn n" href="//zysr.me/">
-            <span class="given-name">雲文</span>
-          </a>
-          
-        </span>
-      </p>
-            <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E4%B8%AD%E5%8C%BB" rel="tag">中医</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E8%AF%BB%E4%B9%A6" rel="tag">读书</a>              </p>
-    </header>
-    <div class="content">
-    <a href="/中医读书之法_2022_05_01.html" >
-      中医读书之法
-虽言四大经典为必读之书，然内经之幽微，本经之玄奥，伤寒之意密，难经之幽微。绝非经读百遍其义自见，可以摡之。
-故，四书皆有后世医家注之，而引后学之迷茫，试罗列四大经典诸家注释之文，以解摸象之盲。
-
-内经
-
-本草
-
-
-《本草思辨录》，清·周岩，另著《六气感证要义》(收于《珍本医书集成》第二册内科卷，裘庆元)。和本草与经方而思辨本草之性至极。绪论篇，驳《医林改错》诸错。赞唐荣川之《中西汇通医经精义》“持中西之平，阐造物之秘”，而翼
-《本经疏证》，邹澍，字润安
-《本草述》，刘若金，明·潜江人，字云密，官至刑部尚书
-《神农本草经百种录》，徐大椿，字灵胎，号洄溪。...
-      </a>
-    </div>
-        <hr />
-  </article>
-  <article class="paginated hentry">
-    <header>
-      <h2 class="entry-title"><a href="/希望与果业_2022_04_23.html">希望与果业</a></h2>
-
-      <p class="meta">
-        <time class="published" datetime="2022-04-23T06:20:00+00:00">
-          <a href="//zysr.me//希望与果业_2022_04_23.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>04</span>-<span class='day'>23</span>
-            
-          </a>
-        </time>
-                 By<span class="author vcard">
-          <a class="url fn n" href="//zysr.me/">
-            <span class="given-name">雲文</span>
-          </a>
-          
-        </span>
-      </p>
-            <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%9E%9C%E4%B8%9A" rel="tag">果业</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E5%B8%8C%E6%9C%9B" rel="tag">希望</a>              </p>
-    </header>
-    <div class="content">
-    <a href="/希望与果业_2022_04_23.html" >
-      一友，只见一面，临别赠言，情切切焉，颇为感慨。
-近闻其罹患重病，时忧其近况。
-
-恰近半年，常与儿时好友，谈及赛斯之书，内容涉及医学与心识。
-
-
-
-最后落脚于“自己的实相为自己所造”。
-注：此实相非佛经所言之实相，易为“果业为自己心念所造”更妥。译者平平，但得意忘译，勿责。
-
-无论佛道，都对识心，俱惕惕焉。
-
-六祖独言：
-迷人念佛求生于彼，
-悟者自净其心。
-
-
-
-再通俗点，
-用人民日报这段话，
-
-
-
-虽有鸡汤之嫌。
-
-然西人、六祖、世人，
-说言各异，但因果相乘，
-所指为一。
-
-肖申克的救赎有一句话，
-关进肖申克监狱不久的Andy，
-萌生了一个念头：希望越狱。
-
-morgen...
-      </a>
-    </div>
-        <hr />
-  </article>
-  <article class="paginated hentry">
-    <header>
-      <h2 class="entry-title"><a href="/中医推荐书目_2022_04_22.html">中医推荐书目</a></h2>
-
-      <p class="meta">
-        <time class="published" datetime="2022-04-22T00:00:00+00:00">
-          <a href="//zysr.me//中医推荐书目_2022_04_22.html" rel="bookmark">
-            <span class='year'>2022</span>-<span class='month'>04</span>-<span class='day'>22</span>
-            
-          </a>
-        </time>
-                 By<span class="author vcard">
-          <a class="url fn n" href="//zysr.me/">
-            <span class="given-name">雲文</span>
-          </a>
-          
-        </span>
-      </p>
-            <p class="tags">
-                  <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E4%B8%AD%E5%8C%BB%E4%B9%A6%E7%9B%AE" rel="tag">中医书目</a>                   <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E4%B9%A6%E7%9B%AE" rel="tag">书目</a>              </p>
-    </header>
-    <div class="content">
-    <a href="/中医推荐书目_2022_04_22.html" >
-       
-
-学中医，自然以内经和本草经以及伤寒金匮为主要。
-
-医经的书籍，自古较多，目前由这样几个项目中的一些书，值得一观，书目中以黑色加粗标注。
-
-
-人卫的中土版：人民卫生出版社-中医古籍整理丛书重刊。 封面黄色，附带圣象水印，由诸多名老中医领衔主持，比如何任等等，质量最优，★★★★推荐
-中医出版社的圣象版，中国中医药管理局所属的“中医药古籍保护与利用能力建设项目”，由中国中医药出版社主持的...
       </a>
     </div>
         <hr />
@@ -521,9 +580,10 @@ morgen...
         <li><a class="button-link" href="/blog/tags">标签</a></li>
         <li><a class="button-link" href="/blog/categories">分类</a></li>
         <li><a class="button-link" href="/about" rel="me">关于</a></li>
+        <li><a class="button-link" href="/contactMe/">联系</a></li>
       </ul>
     <div class="powered-by">
-      <p>Powered by <a href="/BuiltByTyporaOnSculpin">Typora Plus Sculpin</a></p>
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin/">Typora Plus Sculpin</a></p>
     </div>
     <div class="google-plus">
       
@@ -533,19 +593,49 @@ morgen...
 
 
     
+
+  <script> 
+  //利用JQ的magnific插件，展示图片库
+  $(document).ready(function() {
+
+    var items = [] ;
+    $('p img').each( function(){
+      items.push( {src: $(this).attr('src') } ) ; 
+    }
+     ) ; 
+    var index=0 ;
+    $('p img').each( function() { 
+        $(this).magnificPopup( {
+        items: items,
+        type: 'image',
+        closeOnContentClick: true,
+
+        key: '46de12bb-623f-4b9a-88a0-8a05e1ea9dc4',  //rand unique ID
+        index: index++ ,
+        gallery: {
+          enabled: true,
+          tPrev: '上一张 (左箭头)', // title for left button
+          tNext: '下一张 (右箭头)', // title for right button
+        },
+      } ) ;
+    });
+
+
+});
+  </script>
+  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+
+    
   <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?c08f835ef0878cd5d8c15b26f8007d6f";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+    //根据 http://highlight.cndoc.wiki/doc/123 的说明
+    //利用MD的扩展语法， 设置 .hl class。 可以高亮 https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks
+    //
+  document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.hl').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+});
   
-  
-  
-  <script src="//cdn.staticfile.org/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  </script>
 </body>
 </html>

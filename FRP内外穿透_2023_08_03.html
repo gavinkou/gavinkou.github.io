@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+<head>
+  <title>frp内外穿透 &mdash; 竹叶山人 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+ 
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
+  
+  <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
+  
+
+
+  <link rel="canonical" href="//zysr.me//FRP内外穿透_2023_08_03.html" />
+
+
+
+
+</head>
+<body>
+
+  <aside class="sidebar">
+    <header>
+      <h1>
+        <a href="/">竹叶山人</a>
+      </h1>
+      <p>西行却过流沙日 枕上寥寥心独知</p>
+    </header>
+
+    <nav>
+      <ul class="menu inline-list">
+        <li><a class="button-link" href="/blog">目录</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        
+      </ul>
+    </nav>
+  </aside>
+  <main role="main">
+    <section class="content-main">
+        <article class="hentry post">
+    <header>
+      <h1 class="entry-title">frp内外穿透</h1>
+
+      <p class="meta">
+        <time class="published" datetime="2023-08-03T08:00:00+08:00">
+          <a href="//zysr.me//FRP内外穿透_2023_08_03.html" rel="bookmark">
+            <span class='year'>2023</span>-<span class='month'>08</span>-<span class='day'>03</span>
+          </a>
+        </time>
+        <time class="updated" datetime="2023-08-03T08:00:00+08:00"></time>
+        <span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          <span class="nickname">雲文</span>
+        </span>
+      </p>
+
+              <p class="tags">
+                      <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/frp" rel="tag">frp</a>                       <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3" rel="tag">技术文档</a>                  </p>
+          </header>
+
+    <div class="entry-content content">
+      <p>NAT环境下，内网的机器是无法被外部访问到的。比如下面的LaptopA和B，都不能被公网的7.7.7.7访问到的。</p>
+
+<p><img src="//s.zysr.me/img/2023-08-03/8683f0676f35742ff1a20342afb78f5e_nat-overview-1.png" alt="8683f0676f35742ff1a20342afb78f5e_nat-overview-1" /></p>
+
+<p>在路由器的帮助下，才能实现双向通讯。但是大部份情况下，家用路由器不支持将Laptop暴露给外网。</p>
+
+<p><img src="//s.zysr.me/img/2023-08-03/6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2.png" alt="6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2" /></p>
+
+<p>这个时候，如果有一个服务能够直接穿透家用路由器而直接用TCP链接，把Laptop:xxxx和7.7.7.7:xxxx等效起来，那么就相当于直接把laptop暴露在公网了。</p>
+
+<p><img src="http://s.zysr.me/img/2023-08-03/image-20230803203907612.png" alt="image-20230803203907612" /></p>
+
+<p>而<a href="https://github.com/fatedier/frp">frp</a>则是这样的工具，能够完美的实现这个技能。在它的帮助下，能够让访问7.7.7.7:8080的时候，相当于在访问laptop:8080。</p>
+
+<p>如果laptop:8080上面是个http服务的话，那么相当于在laptop:8080上面搭建了一个公网可以访问的web服务，只不过它的访问地址是7.7.7.7:8080。而frp更是直接内置了，一个静态的web服务器插件：static_file，可以直接提供静态文件的web服务。</p>
+
+<p>因为laptop经常关机，所以它的应用场景只能是对可用性要求不高的环境，比如说图床，当然如果搭配公开的cloudlare这样的的CDN，那么一个月开机一次，就足够支持一般的图床应用了。</p>
+
+<p>比如说可能是个基于laptop:8080的图床等等服务，再也不需要云空间的存储要求。</p>
+
+<p>frp分为服务器端frps和客户端frpc，服务器端frps运行在7.7.7.7上面，客户端frpc运行在laptop上面。</p>
+
+<p>这个体系中，frp不仅仅会监听对外服务的8080端口，而且自己也需要一个frp自己的端口用于服务器端frps和客户端frpc通讯，</p>
+
+<p>frpc客户端与frps服务端在frp端口建立链接后，会根据客户端frpc的配制，决定如何将客户端frpc的资源暴露于7.7.7.7这个frps服务器端。所以frp服务器真正提供服务的端口，其实是由frp客户端来指定的。</p>
+
+<p>安装之后，frpc和frps各有自己的ini格式的配置文件，启动命令非常相似</p>
+
+<ul>
+<li>frpc -c frpc.ini   #启动Laptop上面的客户端</li>
+<li>frps -c frps.ini   #启动7.7.7.7上面的服务器端</li>
+</ul>
+
+<p>比如说frps.ini中，指定frps和frpc自己的通讯端口是7000.</p>
+
+<pre><code class="hl">[common]
+bind_port = 7000
+</code></pre>
+
+<p>frpc.ini</p>
+
+<pre><code class="hl">[common]
+server_addr = 7.7.7.7
+server_port = 7000
+
+[test_static_file]
+type = tcp
+remote_port = 8080
+
+#这个由frp的静态服务插件来实现http静态服务，当然也可以用别的服务来实现。比如说端口转发等等。
+plugin = static_file
+# 要对外暴露的文件目录
+plugin_local_path = C:/Documents/sites/frp_sites/pub
+</code></pre>
+
+<p>服务器和客户端启动之后，访问 http://7.7.7.7:8080，就可以直接访问Laptop上面 C:/Documents/sites/frp_sites/pub 里面的文件了。</p>
+
+<p>比如说laptop://C:/Documents/sites/frp_sites/pub/hello.png，可以通过http://7.7.7.7:8080/hello.png来访问。</p>
+
+<p>这个配制中，还是非常的原始，只可以适用于演示。</p>
+
+<p>实际上上面这个配制，任何frp客户端都可以连接frps上去，这非常的不安全。所以需要在frpc和frps之间进行认证，frp支持的认证方法有token和oidc，oidc的认证略微复杂，直接使用token来设置密码最简单。</p>
+
+<p>在上面的frps.ini和frpc.ini的common节中，同时加入：</p>
+
+<pre><code class="hl">authentication_method = token
+token = 47866af5-cc5f-4798-a658-8a39bb61f53e
+
+</code></pre>
+
+<p>借用电影疯狂的石头的话说，7.7.7.7:7000可不是公共厕所，想来就来 :) 。</p>
+
+<p>这样frpc和frps就会进行连接认证了。</p>
+
+<p>进一步的，http://7.7.7.7:8080/hello.png，这样的URL实在太丑陋了，所以Nginx做反向代理，我们新建一个站点: frp.a.com 。</p>
+
+<p>设置DNS，将frp.a.com指向7.7.7.7之后，</p>
+
+<p>使用http://frp.a.com/hello.png，就可以非常友好的访问laptop://C:/Documents/sites/frp_sites/pub/hello.png了。</p>
+
+<pre><code class="hl">server {
+    server_name frp.a.com;
+    listen 80 ;
+    location / {
+        proxy_pass  http://7.7.7.7:8080;
+    }
+}
+
+</code></pre>
+
+<p>这个地方，还有点点可以改进的地方，既然http://7.7.7.7:8080/hello.png这样的网址，对外部来说已经不需要了，那么能不能换成只能Nginx内部 访问的网址，比如说 http://127.0.0.1:8080？</p>
+
+<p>当然是可以的，这个时候需要在服务器端的frp<strong>s</strong>.ini中配制指定：</p>
+
+<pre><code class="hl">pproxy_bind_addr = 127.0.0.1
+</code></pre>
+
+<p>这个设置，会让frp只监听127.0.0.1:8080，而不是服务器的*:8080。这样frp只接受乃至服务器本身的连接，外部不可访问7.7.7.7:8080了，就更加的安全了。</p>
+
+<p><img src="//s.zysr.me/img/2023-08-03/image-20230803211441880.png" alt="image-20230803211441880" /></p>
+
+<p>如果是windows，希望把frp运行在后台服务中，而不是一个丑陋的cmd黑框框，可以使用<a href="/NSSM开心服务管理工具_2023_03_06.html">nssm</a>来帮助实现</p>
+
+<p>更多的frp服务器端和客户端配制参见：</p>
+
+<ol>
+<li>https://gofrp.org/docs/reference/server-configures/</li>
+<li>https://gofrp.org/docs/reference/client-configures/</li>
+</ol>
+
+    </div>
+
+
+
+
+
+          <nav class="article">
+        <div class="previous-next">
+
+                      <div class="previous">
+              <a href="/引汉济渭_2023_07_23.html" title="前一页: 引汉济渭"><span class="arrow arrow-west"></span><span class="title">引汉济渭</span></a>
+            </div>
+          		  
+		            		  
+		  
+          </div>
+      </nav>
+    
+  </article>
+    </section>
+  </main>
+
+  <footer>
+  <div class="footer-links">
+      <ul class="inline-list">
+        <li><a class="button-link" href="//zysr.me//atom.xml">Feed</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        <li><a class="button-link" href="/about" rel="me">关于</a></li>
+        <li><a class="button-link" href="/contactMe/">联系</a></li>
+      </ul>
+    <div class="powered-by">
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin/">Typora Plus Sculpin</a></p>
+    </div>
+    <div class="google-plus">
+      
+    </div>
+  </div>
+  </footer>
+
+
+    
+
+  <script> 
+  //利用JQ的magnific插件，展示图片库
+  $(document).ready(function() {
+
+    var items = [] ;
+    $('p img').each( function(){
+      items.push( {src: $(this).attr('src') } ) ; 
+    }
+     ) ; 
+    var index=0 ;
+    $('p img').each( function() { 
+        $(this).magnificPopup( {
+        items: items,
+        type: 'image',
+        closeOnContentClick: true,
+
+        key: '46de12bb-623f-4b9a-88a0-8a05e1ea9dc4',  //rand unique ID
+        index: index++ ,
+        gallery: {
+          enabled: true,
+          tPrev: '上一张 (左箭头)', // title for left button
+          tNext: '下一张 (右箭头)', // title for right button
+        },
+      } ) ;
+    });
+
+
+});
+  </script>
+  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+
+    
+  <script>
+    //根据 http://highlight.cndoc.wiki/doc/123 的说明
+    //利用MD的扩展语法， 设置 .hl class。 可以高亮 https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks
+    //
+  document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.hl').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+});
+  
+  </script>
+</body>
+</html>
