@@ -2,9 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>//zysr.me/</loc>
-        <lastmod>2023-10-02</lastmod>
+        <lastmod>2023-10-03</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//清远内训之内丹秘承_2023_10_01.html</loc>
+        <lastmod>2023-10-01T08:00:00+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
         <url>
         <loc>//zysr.me//FRP内外穿透_2023_08_03.html</loc>
