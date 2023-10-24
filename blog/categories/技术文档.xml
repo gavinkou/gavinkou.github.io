@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title><![CDATA[竹叶山人]]></title>
+    <link href="//zysr.me//blog/categories/技术文档.xml" rel="self"/>
+    <link href="//zysr.me//"/>
+    <updated>2023-10-24T23:02:46+08:00</updated>
+    <id>//zysr.me//</id>
+            <author>
+            <name><![CDATA[雲文]]></name>                    </author>
+        <generator uri="http://sculpin.io/">Sculpin</generator>
+            <entry>
+            <title type="html"><![CDATA[Windows中SSH上运行Rsync]]></title>
+            <link href="//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html"/>
+            <updated>2021-10-24T22:42:00+08:00</updated>
+            <id>//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html</id>
+            <content type="html"><![CDATA[<p><a href="https://linux.die.net/man/1/rsync">rsync</a> 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。</p>
+
+<p>但是如果rsync用于windows和linx之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">plink</a>）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid handle” 错误。</p>
+
+<p>原因在于rsync和plin之间是用标准IO来进行进程间通讯，这是linux上常见的IPC方式，但是这个方式在windows上，支持的并不完善，导致标准IO sdtin和sdtout不可用的错误。出现文件句柄不可用的问题。</p>
+
+<p>不过这个时候<a href="https://github.com/davidecolombo/cygnative">cygnative</a> 出场了，他用原生win32API封装出来stdin和stdout的句柄调用，这样可以让两者之间协同工作。</p>
+
+<p>而rsync则利用其--rsh/-e参数先调用cygnative这个封装器，然后封装器再调用plink，这样就完美的解决了windwos上面的工具链不兼容问题。</p>
+
+<blockquote>
+  <p>软件工程中，经常发生这样的事情，为了解决一个兼容性问题，引入一个新的兼容层，同时引入了一个新的bug层。</p>
+</blockquote>
+
+<p>这个时候</p>
+
+<p><img src="//s.zysr.me/img/2023-10-24/image-20231024225544333.png" alt="image-20231024225544333" /></p>
+
+<pre><code>rsync  -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+</code></pre>
+
+<p>修改为：</p>
+
+<pre><code>rsync  -e "cygnative plink.exe " -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+</code></pre>
+
+<p>就可以正常工作了。而且因为plink中可以支持密钥验证无密码输入等等putty特征。rsync的密码都不用设置了。</p>
+]]></content>
+        </entry>
+    </feed>

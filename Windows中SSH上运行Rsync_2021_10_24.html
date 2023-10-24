@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>复杂的世界与发展的趋势以及应对的随机性 &mdash; 竹叶山人 </title>
+  <title>Windows中SSH上运行Rsync &mdash; 竹叶山人 </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,7 +18,7 @@
   
 
 
-  <link rel="canonical" href="//zysr.me//复杂的世界与发展的趋势以及应对的随机性_2023_10_24.html" />
+  <link rel="canonical" href="//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html" />
 
 
 
@@ -47,15 +47,15 @@
     <section class="content-main">
         <article class="hentry post">
     <header>
-      <h1 class="entry-title">复杂的世界与发展的趋势以及应对的随机性</h1>
+      <h1 class="entry-title">Windows中SSH上运行Rsync</h1>
 
       <p class="meta">
-        <time class="published" datetime="2023-10-24T20:41:00+08:00">
-          <a href="//zysr.me//复杂的世界与发展的趋势以及应对的随机性_2023_10_24.html" rel="bookmark">
-            <span class='year'>2023</span>-<span class='month'>10</span>-<span class='day'>24</span>
+        <time class="published" datetime="2021-10-24T22:42:00+08:00">
+          <a href="//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html" rel="bookmark">
+            <span class='year'>2021</span>-<span class='month'>10</span>-<span class='day'>24</span>
           </a>
         </time>
-        <time class="updated" datetime="2023-10-24T20:41:00+08:00"></time>
+        <time class="updated" datetime="2021-10-24T22:42:00+08:00"></time>
         <span class="author vcard">
           <a class="url fn n" href="//zysr.me/">
             <span class="given-name">雲文</span>
@@ -65,54 +65,37 @@
       </p>
 
               <p class="tags">
-                      <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E9%9A%8F%E6%83%B3" rel="tag">随想</a>                  </p>
+                      <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3" rel="tag">技术文档</a>                       <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/plink" rel="tag">plink</a>                       <a class="tag-color tag-color-3" href="//zysr.me//blog/tags/rsync" rel="tag">rsync</a>                  </p>
           </header>
 
     <div class="entry-content content">
-      <p>看到一篇<a href="https://mp.weixin.qq.com/s/vMjqg61Jt4AOyxmHElaxGA">文章</a>，里面提到世界的复杂性，以及用随机性来处理的应对之法。</p>
+      <p><a href="https://linux.die.net/man/1/rsync">rsync</a> 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。</p>
 
-<p>这个文章很有意思，   第一个是复杂问题的复杂度，和其决定因素。  现代社会越来越多的问题，其牵涉的因素非常多，甚至蝴蝶抖抖翅膀都引发巨大灾难。 所以复杂问题的完整刻画，其实是做不到的。</p>
+<p>但是如果rsync用于windows和linx之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">plink</a>）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid handle” 错误。</p>
 
-<p>丁圣元（他把K线图引入中国）在谈股票的描述时，说股票市场的复杂度表述，这样的图来表达。
-但也只是说，这是现实社会的极度简化，而且还说不要以为这张图就能分析纷繁复杂的现实世界。</p>
+<p>原因在于rsync和plin之间是用标准IO来进行进程间通讯，这是linux上常见的IPC方式，但是这个方式在windows上，支持的并不完善，导致标准IO sdtin和sdtout不可用的错误。出现文件句柄不可用的问题。</p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/4cf494ae61fa549cdbe2d4c581bdc48.jpg" alt="4cf494ae61fa549cdbe2d4c581bdc48" style="zoom:50%;" /></p>
+<p>不过这个时候<a href="https://github.com/davidecolombo/cygnative">cygnative</a> 出场了，他用原生win32API封装出来stdin和stdout的句柄调用，这样可以让两者之间协同工作。</p>
 
-<p>文章说的随机性，“随机抽样”，严格说来，这是概率这个数学工具的运用。 而且计算机系统目前为止是无法产生真的随机数，无论是不是大数据，也不是使用随机来应对。</p>
-
-<p>目前计算机使用的随机函数正式的名字是pseudorandom，准确的翻译是“伪随机数”。 也是以概率为基础来产生的。 计算机世界没有随机。但是有假的随机（伪随机）。</p>
-
-<p>既然是基于概率的不同选择，使用不同的概率模型，自然会得出不同的结论，那柯达的选择与佳能、尼康的选择，必然会不同。<strong>概率很擅长骗人</strong>，这以及不是秘密了。</p>
-
-<ul>
-<li>不能完美刻画现实世界，也必然没有完美的计划，找不到完美的讲师和完美的课程。</li>
-<li>不存在随机性，只有选择的时候倾向于选择更大概率性发生的可能。</li>
-</ul>
-
-<p>决策的更多价值在于：</p>
-
-<ol>
-<li>快速的响应（让客户聚焦在此处而不是别处）</li>
-<li>问题的解决耗时短（10秒钟解决好过20秒）</li>
-<li>和直观的表达（直观性上排序：文字＜声音＜图片＜视频）。</li>
-</ol>
-
-<p>三者搭在一起，就是短视频吸引人的“短、平、快” 。</p>
-
-<p>之前和朋友聊运营，吸客的事情。也都在关注相同的点。那时的看法是：</p>
+<p>而rsync则利用其--rsh/-e参数先调用cygnative这个封装器，然后封装器再调用plink，这样就完美的解决了windwos上面的工具链不兼容问题。</p>
 
 <blockquote>
-  <p>时长短，拥抱用户快，内容深度上降智化、扁平化、普世化，这是短视频的精髓。 
-  不是反对专业内容的存在。而是面对这样的客户画像，作出的大概率选择。</p>
+  <p>软件工程中，经常发生这样的事情，为了解决一个兼容性问题，引入一个新的兼容层，同时引入了一个新的bug层。</p>
 </blockquote>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024200451567.png" alt="image-20231024200451567" style="zoom: 67%;" /></p>
+<p>这个时候</p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024200513595.png" alt="image-20231024200513595" style="zoom:67%;" /></p>
+<p><img src="//s.zysr.me/img/2023-10-24/image-20231024225544333.png" alt="image-20231024225544333" /></p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024200531237.png" alt="image-20231024200531237" style="zoom:67%;" /></p>
+<pre><code>rsync  -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+</code></pre>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024201054057.png" alt="image-20231024201054057" style="zoom:67%;" /></p>
+<p>修改为：</p>
+
+<pre><code>rsync  -e "cygnative plink.exe " -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+</code></pre>
+
+<p>就可以正常工作了。而且因为plink中可以支持密钥验证无密码输入等等putty特征。rsync的密码都不用设置了。</p>
 
     </div>
 
@@ -124,10 +107,13 @@
         <div class="previous-next">
 
                       <div class="previous">
-              <a href="/清远内训之内丹秘承_2023_10_01.html" title="前一页: 清远内训之内丹秘承"><span class="arrow arrow-west"></span><span class="title">清远内训之内丹秘承</span></a>
+              <a href="/退烧药退烧的药理是什么_2021_08_05.html" title="前一页: 退烧药的药理是什么"><span class="arrow arrow-west"></span><span class="title">退烧药的药理是什么</span></a>
             </div>
           		  
-		            		  
+		                        <div class="next">
+              <a href="/中医推荐书目_2022_04_22.html" title="下一页: 中医推荐书目"><span class="title">中医推荐书目</span><span class="arrow arrow-east"></span></a>
+            </div>
+          		  
 		  
           </div>
       </nav>
