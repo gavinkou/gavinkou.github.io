@@ -203,9 +203,9 @@ morgen...
     </header>
     <div class="content">
     <a href="/Windows中SSH上运行Rsync_2021_10_24.html" >
-      rsync 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。
+      rsync 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。可以直接使用rsync设置服务器来进行同步。也可以借助rsync的rsh/ssh特征直接在rsh/ssh层进行通讯和文件同步，避免新开rsync服务导致的风险。
 
-但是如果rsync用于windows和linx之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是plink）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid...
+但是如果rsync用于windows和Linux之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是plink）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid...
       </a>
     </div>
         <hr />

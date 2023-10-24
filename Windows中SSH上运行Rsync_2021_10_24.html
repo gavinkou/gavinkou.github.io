@@ -69,9 +69,9 @@
           </header>
 
     <div class="entry-content content">
-      <p><a href="https://linux.die.net/man/1/rsync">rsync</a> 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。</p>
+      <p><a href="https://linux.die.net/man/1/rsync">rsync</a> 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。可以直接使用rsync设置服务器来进行同步。也可以借助rsync的rsh/ssh特征直接在rsh/ssh层进行通讯和文件同步，避免新开rsync服务导致的风险。</p>
 
-<p>但是如果rsync用于windows和linx之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">plink</a>）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid handle” 错误。</p>
+<p>但是如果rsync用于windows和Linux之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">plink</a>）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid handle” 错误。</p>
 
 <p>原因在于rsync和plin之间是用标准IO来进行进程间通讯，这是linux上常见的IPC方式，但是这个方式在windows上，支持的并不完善，导致标准IO sdtin和sdtout不可用的错误。出现文件句柄不可用的问题。</p>
 
