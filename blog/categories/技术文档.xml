@@ -3,7 +3,7 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//blog/categories/技术文档.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2023-10-24T23:05:30+08:00</updated>
+    <updated>2023-10-24T23:07:45+08:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
@@ -31,12 +31,12 @@
 
 <p><img src="//s.zysr.me/img/2023-10-24/image-20231024225544333.png" alt="image-20231024225544333" /></p>
 
-<pre><code>rsync  -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+<pre><code class="hl">rsync  -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
 </code></pre>
 
 <p>修改为：</p>
 
-<pre><code>rsync  -e "cygnative plink.exe " -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+<pre><code class="hl">rsync  -e "cygnative plink.exe " -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
 </code></pre>
 
 <p>就可以正常工作了。而且因为plink中可以支持密钥验证无密码输入等等putty特征。rsync的密码都不用设置了。</p>
