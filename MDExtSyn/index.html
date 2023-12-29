@@ -65,10 +65,17 @@
 <li><a href="#backslashEsc">反斜杠转义</a></li>
 </ul>
 
-<h2 id="InlineHtml">Inline Html</h2>
+<h2 id="InlineHtml">Inline Html 内嵌<abbr title="Hyper Text Markup Language">HTML</abbr></h2>
 
-<p>MD中是支持嵌到<abbr title="Hyper Text Markup Language">HTML</abbr> tag的，但是基础MD语法中，对于块级标签p、div、table、pre等等元素，必须由空行隔开，并且起始标签不能由tab或者空格缩进。
-在扩展语法支持下，上面这个限制被简化了为两个限制：</p>
+<p>在Markdown Extra中，嵌入<abbr title="Hyper Text Markup Language">HTML</abbr> tag，可以在任何markdown语句中嵌入<abbr title="Hyper Text Markup Language">HTML</abbr> Tag， 这在一些markdown很难实现但是html异常容易的场景下，非常有意义。</p>
+
+<p>但是对对于p、div、table、pre等等块级标签，由于markdown的语法标准中，有如下限制：</p>
+
+<pre><code class="hl">Block-level HTML elements ” e.g. div, table, pre, p, etc. ” must be separated from surrounding content by blank lines, and the start and end tags of the block should not be indented with tabs or spaces.
+HTML块元素比如div、table、pre、p、等等，必须由空行隔开，并且起始标签不能由tab或者空格缩进。
+</code></pre>
+
+<p>在Markdown Extra扩展语法支持下，上面这个限制被简化了为两个限制：</p>
 
 <ul>
 <li>块元素的开始标签不能被多于三个空格缩进。</li>
@@ -77,16 +84,22 @@
 
 <p>比如下面item使用了这个语法</p>
 
-<ul>
-<li>dfasdf</li>
-<li>aother</li>
-</ul>
+<p> 这是p tag </p>
 
-<h2 id="MDinHTML"><abbr title="Hyper Text Markup Language">HTML</abbr>块内MD语法支持</h2>
+<div >这是个div块 </div>
+
+<h2 id="MDinHTML"><abbr title="Hyper Text Markup Language">HTML</abbr>代码内嵌入MD支持</h2>
 
 <p><abbr title="Hyper Text Markup Language">HTML</abbr>块内MD语法支持。MD语法中，块元素内是无法使用MD的。比如说书写一个DIV中，是无法使用MD语法的。
 但是中扩展语法中，DIV中是可以支持MD的。
-只需要给块元素增加一个<code> &lt;div <em>markdown='1'</em>&gt; some <em>text</em> &lt;/div&gt;</code> 的属性,即可：</p>
+只需要给块元素增加一个 markdown='1'就可以。</p>
+
+<pre><code><br /><br />&lt;div markdown='1' &gt;; some text &lt;/div&gt;
+
+
+</code></pre>
+
+<p>的属性,即可：</p>
 
 <div  >
 
