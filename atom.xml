@@ -3,7 +3,7 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//atom.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2023-11-04T12:00:02+08:00</updated>
+    <updated>2023-12-29T10:19:36+00:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
@@ -11,7 +11,7 @@
             <entry>
             <title type="html"><![CDATA[复杂的世界与发展的趋势以及应对的随机性]]></title>
             <link href="//zysr.me//复杂的世界与发展的趋势以及应对的随机性_2023_10_24.html"/>
-            <updated>2023-10-24T20:41:00+08:00</updated>
+            <updated>2023-10-24T20:41:00+00:00</updated>
             <id>//zysr.me//复杂的世界与发展的趋势以及应对的随机性_2023_10_24.html</id>
             <content type="html"><![CDATA[<p>看到一篇<a href="https://mp.weixin.qq.com/s/vMjqg61Jt4AOyxmHElaxGA">文章</a>，里面提到世界的复杂性，以及用随机性来处理的应对之法。</p>
 
@@ -62,14 +62,14 @@
             <entry>
             <title type="html"><![CDATA[清远内训之内丹秘承]]></title>
             <link href="//zysr.me//清远内训之内丹秘承_2023_10_01.html"/>
-            <updated>2023-10-01T08:00:00+08:00</updated>
+            <updated>2023-10-01T00:00:00+00:00</updated>
             <id>//zysr.me//清远内训之内丹秘承_2023_10_01.html</id>
             <content type="html"><![CDATA[]]></content>
         </entry>
             <entry>
             <title type="html"><![CDATA[frp内外穿透]]></title>
             <link href="//zysr.me//FRP内外穿透_2023_08_03.html"/>
-            <updated>2023-08-03T08:00:00+08:00</updated>
+            <updated>2023-08-03T00:00:00+00:00</updated>
             <id>//zysr.me//FRP内外穿透_2023_08_03.html</id>
             <content type="html"><![CDATA[<p>NAT环境下，内网的机器是无法被外部访问到的。比如下面的LaptopA和B，都不能被公网的7.7.7.7访问到的。</p>
 
@@ -185,7 +185,7 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
             <entry>
             <title type="html"><![CDATA[引汉济渭]]></title>
             <link href="//zysr.me//引汉济渭_2023_07_23.html"/>
-            <updated>2023-07-23T08:00:00+08:00</updated>
+            <updated>2023-07-23T00:00:00+00:00</updated>
             <id>//zysr.me//引汉济渭_2023_07_23.html</id>
             <content type="html"><![CDATA[<p>看了个新闻，引汉济渭通水了，通水了，通水了。</p>
 
@@ -233,7 +233,7 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
             <entry>
             <title type="html"><![CDATA[nginx的多证书应用]]></title>
             <link href="//zysr.me//Nginx的多证书应用_2023_07_23.html"/>
-            <updated>2023-07-23T08:00:00+08:00</updated>
+            <updated>2023-07-23T00:00:00+00:00</updated>
             <id>//zysr.me//Nginx的多证书应用_2023_07_23.html</id>
             <content type="html"><![CDATA[<p>运行多证书反向代理，充当NOSTR中继转发器快四个月了，今天准备下线这个服务。随便把配制思路分享一下。</p>
 
@@ -336,7 +336,7 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
             <entry>
             <title type="html"><![CDATA[关于中医AI]]></title>
             <link href="//zysr.me//关于中医AI_2023_07_21.html"/>
-            <updated>2023-07-21T08:00:00+08:00</updated>
+            <updated>2023-07-21T00:00:00+00:00</updated>
             <id>//zysr.me//关于中医AI_2023_07_21.html</id>
             <content type="html"><![CDATA[<p>这篇文字，其实是师门群中，师兄师姐们，关于中医AI的探讨。转成文字，以记之。</p>
 
@@ -416,7 +416,7 @@ if( 体温 > 37℃) { 桂枝汤解表} 这个决策中， 根据if来采取行�
             <entry>
             <title type="html"><![CDATA[关于生命的随想]]></title>
             <link href="//zysr.me//关于生命的随想_2023_06_09.html"/>
-            <updated>2023-06-09T08:00:00+08:00</updated>
+            <updated>2023-06-09T00:00:00+00:00</updated>
             <id>//zysr.me//关于生命的随想_2023_06_09.html</id>
             <content type="html"><![CDATA[<p>本文源于一次交流，聊作记录，以资回忆。</p>
 
@@ -493,7 +493,7 @@ if( 体温 > 37℃) { 桂枝汤解表} 这个决策中， 根据if来采取行�
             <entry>
             <title type="html"><![CDATA[伤寒源流论]]></title>
             <link href="//zysr.me//伤寒源流论_2023_05_26.html"/>
-            <updated>2023-05-26T08:00:00+08:00</updated>
+            <updated>2023-05-26T00:00:00+00:00</updated>
             <id>//zysr.me//伤寒源流论_2023_05_26.html</id>
             <content type="html"><![CDATA[<h1 id="%E4%BC%A4%E5%AF%92%E6%BA%90%E6%B5%81%E8%AE%BA">伤寒源流论</h1>
 
@@ -572,7 +572,7 @@ if( 体温 > 37℃) { 桂枝汤解表} 这个决策中， 根据if来采取行�
             <entry>
             <title type="html"><![CDATA[传习录的读书笔记]]></title>
             <link href="//zysr.me//传习录的读书笔记_2023_05_25.html"/>
-            <updated>2023-05-25T08:00:00+08:00</updated>
+            <updated>2023-05-25T00:00:00+00:00</updated>
             <id>//zysr.me//传习录的读书笔记_2023_05_25.html</id>
             <content type="html"><![CDATA[<h1 id="%E4%BC%A0%E4%B9%A0%E5%BD%95%E7%9A%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0">传习录的读书笔记</h1>
 
@@ -602,7 +602,7 @@ if( 体温 > 37℃) { 桂枝汤解表} 这个决策中， 根据if来采取行�
             <entry>
             <title type="html"><![CDATA[历法和易学]]></title>
             <link href="//zysr.me//历法和易学_2023_04_28.html"/>
-            <updated>2023-04-28T08:00:00+08:00</updated>
+            <updated>2023-04-28T00:00:00+00:00</updated>
             <id>//zysr.me//历法和易学_2023_04_28.html</id>
             <content type="html"><![CDATA[<p>现代人都习惯于以农耕文明这个基础来解读，解读是对时间周期（四季）的刻画，然而那个时代，是不具备那些观测条件的，甚至准确的天文记录，也要等到秦汉才初具雏形，这也是太初历是为什么，到了西汉，被认作传统历法的开端太初历，才被制定出来。</p>
 

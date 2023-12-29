@@ -3,7 +3,7 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//blog/categories/技术文档.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2023-11-04T12:00:02+08:00</updated>
+    <updated>2023-12-29T10:19:36+00:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
@@ -11,7 +11,7 @@
             <entry>
             <title type="html"><![CDATA[Windows中SSH上运行Rsync]]></title>
             <link href="//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html"/>
-            <updated>2021-10-24T22:42:00+08:00</updated>
+            <updated>2021-10-24T22:42:00+00:00</updated>
             <id>//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html</id>
             <content type="html"><![CDATA[<p><a href="https://linux.die.net/man/1/rsync">rsync</a> 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。可以直接使用rsync设置服务器来进行同步。也可以借助rsync的rsh/ssh特征直接在rsh/ssh层进行通讯和文件同步，避免新开rsync服务导致的风险。</p>
 
