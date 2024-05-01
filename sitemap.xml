@@ -2,9 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>//zysr.me/</loc>
-        <lastmod>2024-01-01</lastmod>
+        <lastmod>2024-05-01</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//谒委羽山大有宫_2024_04_06.html</loc>
+        <lastmod>2024-04-06T00:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//论咳_2024_04_06.html</loc>
+        <lastmod>2024-04-06T00:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//再论经方剂量_2024_02_21.html</loc>
+        <lastmod>2024-02-21T00:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//最好的营养源是饭碗而不是药盒_2024_01_01.html</loc>
+        <lastmod>2024-01-01T00:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
         <url>
         <loc>//zysr.me//复杂的世界与发展的趋势以及应对的随机性_2023_10_24.html</loc>
@@ -39,6 +63,12 @@
         <url>
         <loc>//zysr.me//关于中医AI_2023_07_21.html</loc>
         <lastmod>2023-07-21T00:00:00+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//伤寒之正治与偏治_2023_07_09.html</loc>
+        <lastmod>2023-07-09T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>

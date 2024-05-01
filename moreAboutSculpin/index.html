@@ -52,7 +52,16 @@
 <p>本系统使用<a href="https://sculpin.io/">Sculpin</a>构建，Sculpin以<a href="https://symfony.com/doc/4.4/templating/twig_extension.html">Symfony</a>为框架开发，markdown的处理部份使用<a href="https://michelf.ca/projects/php-markdown/configuration/">michelf/php-markdown</a>，进行解析，php-markdown支持<a href="https://daringfireball.net/projects/markdown/syntax">基本语法</a>和<a href="https://michelf.ca/projects/php-markdown/extra/">扩展语法</a>，</p>
 
 <ul>
-<li>请留意扩展语法不为基本语法支持，请谨慎使用，详细使用说明见 <a href="/MDExtSyn/">MDExtSyn</a></li>
+<li>请留意<a href="https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks">扩展语法</a>不为基本语法支持，请谨慎使用，详细的中文使用说明见：  <a href="/MDExtSyn/">MDExtSyn</a></li>
+<li>自定义css支持，这部分由用户自己提供，基于<a href="https://sass-lang.com/">sass</a>实现，目前自定义了这样几个css class：
+
+<ul>
+<li>.formula</li>
+<li>.herb</li>
+<li>.quote</li>
+<li>.emphasis</li>
+<li>.comment</li>
+</ul></li>
 </ul>
 
 <p>另外，还支持别的MD convert，比如说<a href="https://github.com/thephpleague/commonmark">commonmark</a>，使用： composer require league/commonmark  来安装。但是本系统使用<a href="https://michelf.ca/projects/php-markdown/configuration/">michelf/php-markdown</a>。</p>
