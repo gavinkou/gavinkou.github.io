@@ -3,7 +3,7 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//atom.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2024-06-01T22:40:24+08:00</updated>
+    <updated>2024-06-01T22:41:59+08:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
@@ -19,7 +19,7 @@
 
 <p>那个"show more options"实在是繁琐，国内很多方案都已经过时了，好在<a href="https://answers.microsoft.com/en-us/windows/forum/all/restore-old-right-click-context-menu-in-windows-11/a62e797c-eaf3-411b-aeec-e460e6e5a82a">微软官方有解决方案</a>：</p>
 
-<pre><code>reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+<pre><code class="powershell">reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
 </code></pre>
 
 <p>效果非常好。</p>
@@ -28,7 +28,7 @@
 
 <p>如果想恢复win11风格的，使用下面的来恢复既可。</p>
 
-<pre><code>reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
+<pre><code class="powershell">reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
 </code></pre>
 ]]></content>
         </entry>
