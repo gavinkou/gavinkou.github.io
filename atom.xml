@@ -3,15 +3,39 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//atom.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2024-05-01T14:28:31+00:00</updated>
+    <updated>2024-06-01T22:37:57+08:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
         <generator uri="http://sculpin.io/">Sculpin</generator>
             <entry>
+            <title type="html"><![CDATA[恢复win11的默认快捷菜单]]></title>
+            <link href="//zysr.me//win11恢复默认快捷菜单_2024_06_01.html"/>
+            <updated>2024-06-01T08:00:00+08:00</updated>
+            <id>//zysr.me//win11恢复默认快捷菜单_2024_06_01.html</id>
+            <content type="html"><![CDATA[<p>着实不喜欢win11默认的快捷菜单，</p>
+
+<p><img src="//s.zysr.me/img/2024-06-01/image-20240601222043301.png" alt="image-20240601222043301" /></p>
+
+<p>那个"show more options"实在是繁琐，国内很多方案都已经过时了，好在<a href="https://answers.microsoft.com/en-us/windows/forum/all/restore-old-right-click-context-menu-in-windows-11/a62e797c-eaf3-411b-aeec-e460e6e5a82a">微软官方有解决方案</a>：</p>
+
+<pre><code>reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+</code></pre>
+
+<p>效果非常好。</p>
+
+<p><img src="//s.zysr.me/img/2024-06-01/image-20240601221814716.png" alt="image-20240601221814716" /></p>
+
+<p>如果想恢复win11风格的，使用下面的来恢复既可。</p>
+
+<pre><code>reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
+</code></pre>
+]]></content>
+        </entry>
+            <entry>
             <title type="html"><![CDATA[谒委羽山大有宫]]></title>
             <link href="//zysr.me//谒委羽山大有宫_2024_04_06.html"/>
-            <updated>2024-04-06T00:00:00+00:00</updated>
+            <updated>2024-04-06T08:00:00+08:00</updated>
             <id>//zysr.me//谒委羽山大有宫_2024_04_06.html</id>
             <content type="html"><![CDATA[<p><img src="//s.zysr.me/img/2024-05-01/c89dd4bf1efcc55fa1d1079c0d1aa91.jpg" alt="c89dd4bf1efcc55fa1d1079c0d1aa91" /></p>
 
@@ -35,7 +59,7 @@
             <entry>
             <title type="html"><![CDATA[论咳]]></title>
             <link href="//zysr.me//论咳_2024_04_06.html"/>
-            <updated>2024-04-06T00:00:00+00:00</updated>
+            <updated>2024-04-06T08:00:00+08:00</updated>
             <id>//zysr.me//论咳_2024_04_06.html</id>
             <content type="html"><![CDATA[<p>《素问·咳论》虽言肺胃五脏六腑皆可令咳，然治则不出长沙之论。</p>
 
@@ -60,7 +84,7 @@
             <entry>
             <title type="html"><![CDATA[再论经方剂量]]></title>
             <link href="//zysr.me//再论经方剂量_2024_02_21.html"/>
-            <updated>2024-02-21T00:00:00+00:00</updated>
+            <updated>2024-02-21T08:00:00+08:00</updated>
             <id>//zysr.me//再论经方剂量_2024_02_21.html</id>
             <content type="html"><![CDATA[<p>昨天忙了一下午，大汗淋漓，有点受凉，睡前吃药，今早很早就醒来，看见有关于“伤寒论一斤是多少”的讨论，因为引用的观点来自大名鼎鼎的大师章太炎，
 伤寒论一两等于多少，
@@ -96,7 +120,7 @@
             <entry>
             <title type="html"><![CDATA[最好的营养源是饭碗而不是药盒]]></title>
             <link href="//zysr.me//最好的营养源是饭碗而不是药盒_2024_01_01.html"/>
-            <updated>2024-01-01T00:00:00+00:00</updated>
+            <updated>2024-01-01T08:00:00+08:00</updated>
             <id>//zysr.me//最好的营养源是饭碗而不是药盒_2024_01_01.html</id>
             <content type="html"><![CDATA[<p><img src="//s.zysr.me/img/2024-01-01/image-20240101175127793.png" alt="image-20240101175127793" /></p>
 
@@ -118,7 +142,7 @@
             <entry>
             <title type="html"><![CDATA[复杂的世界与发展的趋势以及应对的随机性]]></title>
             <link href="//zysr.me//复杂的世界与发展的趋势以及应对的随机性_2023_10_24.html"/>
-            <updated>2023-10-24T20:41:00+00:00</updated>
+            <updated>2023-10-24T20:41:00+08:00</updated>
             <id>//zysr.me//复杂的世界与发展的趋势以及应对的随机性_2023_10_24.html</id>
             <content type="html"><![CDATA[<p>看到一篇<a href="https://mp.weixin.qq.com/s/vMjqg61Jt4AOyxmHElaxGA">文章</a>，里面提到世界的复杂性，以及用随机性来处理的应对之法。</p>
 
@@ -169,14 +193,14 @@
             <entry>
             <title type="html"><![CDATA[清远内训之内丹秘承]]></title>
             <link href="//zysr.me//清远内训之内丹秘承_2023_10_01.html"/>
-            <updated>2023-10-01T00:00:00+00:00</updated>
+            <updated>2023-10-01T08:00:00+08:00</updated>
             <id>//zysr.me//清远内训之内丹秘承_2023_10_01.html</id>
             <content type="html"><![CDATA[]]></content>
         </entry>
             <entry>
             <title type="html"><![CDATA[frp内外穿透]]></title>
             <link href="//zysr.me//FRP内外穿透_2023_08_03.html"/>
-            <updated>2023-08-03T00:00:00+00:00</updated>
+            <updated>2023-08-03T08:00:00+08:00</updated>
             <id>//zysr.me//FRP内外穿透_2023_08_03.html</id>
             <content type="html"><![CDATA[<p>NAT环境下，内网的机器是无法被外部访问到的。比如下面的LaptopA和B，都不能被公网的7.7.7.7访问到的。</p>
 
@@ -292,7 +316,7 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
             <entry>
             <title type="html"><![CDATA[引汉济渭]]></title>
             <link href="//zysr.me//引汉济渭_2023_07_23.html"/>
-            <updated>2023-07-23T00:00:00+00:00</updated>
+            <updated>2023-07-23T08:00:00+08:00</updated>
             <id>//zysr.me//引汉济渭_2023_07_23.html</id>
             <content type="html"><![CDATA[<p>看了个新闻，引汉济渭通水了，通水了，通水了。</p>
 
@@ -340,7 +364,7 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
             <entry>
             <title type="html"><![CDATA[nginx的多证书应用]]></title>
             <link href="//zysr.me//Nginx的多证书应用_2023_07_23.html"/>
-            <updated>2023-07-23T00:00:00+00:00</updated>
+            <updated>2023-07-23T08:00:00+08:00</updated>
             <id>//zysr.me//Nginx的多证书应用_2023_07_23.html</id>
             <content type="html"><![CDATA[<p>运行多证书反向代理，充当NOSTR中继转发器快四个月了，今天准备下线这个服务。随便把配制思路分享一下。</p>
 
@@ -438,86 +462,6 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
 <li>远程基于WSS的NOSTR中继服务器</li>
 <li>Trojan流量</li>
 </ol>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[关于中医AI]]></title>
-            <link href="//zysr.me//关于中医AI_2023_07_21.html"/>
-            <updated>2023-07-21T00:00:00+00:00</updated>
-            <id>//zysr.me//关于中医AI_2023_07_21.html</id>
-            <content type="html"><![CDATA[<p>这篇文字，其实是师门群中，师兄师姐们，关于中医AI的探讨。转成文字，以记之。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/image-20230723065403736.png" alt="image-20230723065403736" /></p>
-
-<p>人工智能，虽然冠了这个名字，但并不等于真的是“智能”，很多时候出来的结果很荒谬，称之为“人工智障”一点不为过。</p>
-
-<p>这一代火热的工智能技术ChatGPT其实是大语言模型，要解释大语言模型需要点笔墨。</p>
-
-<p>它是机器学习技术对人类语言的模型模拟和重现，所以是“语言模型language model”，是机器利用“深度学习”技术试图模拟重现人类语言“表达”背后的模型。</p>
-
-<p>“表达”和“表达背后”有点类似现象和本质的关系，“树”这个东西，在中文的表达叫“树”，英文表达叫tree。</p>
-
-<p>表达本身的意义其实是在展示“表达背后”，比如说“一根木质圆棍儿上面撑着绿油油伞状覆盖冠”，当然也可以是别的，比如说“光合作用的乔木”等等。</p>
-
-<p>这个“圆棍和冠的组合”就是“表达背后”的东西。</p>
-
-<p>我们人类关注的是这个“表达背后”的东西，而不是“树”或者“tree”这样的表达，所有换个语种，“圆木棍加伞状冠”可能就变了，法文里可能是“阿猫阿狗”</p>
-
-<p>进一步的，单独的“树”或者“tree”没有实际意义，需要上下文支持才有意义，
-比如“河边有棵树”或者“there is a tree beside the river”，这个语境下“树”才有意义，语言模型就是试图从训练数据集中得出结果：什么情况下“树”应该跟在“河边有棵”后面。</p>
-
-<p>如果把这个由“河边有棵﹏”推导出“河边有棵树”的过程，看作推导概率函数的话，</p>
-
-<p>其实是计算一个概率的过程，</p>
-
-<p>不好的模型可能得出结果“河边有一颗猪”，
-好的模型可能得出“河边有棵花”，
-理想模型才会得出“河边有棵树”。</p>
-
-<p>这里“猪”、“花”、“树”这样的组合有无数个，比如说“人”、“狗”、“猫”，组合结果称之为海量的，大量的。
-就是“大语言模型”中的“大”的来源，当然也代表了他需要巨大的环境支持（CPU、内存等硬件和训练数据集）。
-大语言模型和之前的类似ifelse模式的专家系统有很大差别，比如说：
-if( 体温 > 37℃) { 桂枝汤解表} 这个决策中， 根据if来采取行动是专家系统的思想，
-有方科技之前碰到的难点也在于此，讨论中可知，胡老师推演决策树发现每增加一层，ifelse的决策树指数为18的复杂度疯狂递增，这不是乘法递增，是指数递增。</p>
-
-<p>而精准到37℃是基于阈值的建立的向量模型才是大语言模型的难点和精髓。
-这里，大语言模型只能知道概率函数的结果，永远不知道“圆棍加覆盖冠”的意义。</p>
-
-<p>师姐说的AI不具备灵性，从这个角度，可以更进一步的说，AI甚至连“树”是“圆棍儿加伞状冠”的组合都不知道。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/image-20230723065508854.png" alt="image-20230723065508854" /></p>
-
-<p>但它知道把“树”填进去，更符合由训练数据集得到的“语言模型”。</p>
-
-<p>这里，多次提到数据集，其实是喂数据的过程，喂给模型什么数据，就回答出什么样的结果。
-前段时间有人反馈AI开始污染《坛经》：在坛经中插入不存在的经文。
-这应该是数据集被污染的原因。</p>
-
-<p>当中医整体水平偏高的时候，喂的文献数据集质量偏高，自然养出来的模型就是接近完美理想的中医模型，否则就是不完美的中医模型。</p>
-
-<p>所有“AI能不能代替中医”这个问题，可以转化为“以目前的评价体系，目前的中医文献能不能支撑中医被评价为更好的医学体系”？</p>
-
-<p>对于这个问题，个人更倾向于古人的看法：</p>
-
-<blockquote>
-  <p>医书汗牛充栋，大抵下驷十之七、中驷十之二、上驷十之一</p>
-</blockquote>
-
-<p>如此估算，训练出来的模型，百分之七十的概率是“下驷”。</p>
-
-<p>只有训练集水平达到“上驷”，得到的中医AI，才会是“上驷AI”</p>
-
-<p>脉学方面，切脉和治疗，因为“舍脉从证”的情况还是很多的。
-千辛万苦切出来的脉证结果，反而会被舍掉。
-甚至有的金氏盲派脉证结果精准程度和CT完全一致，肝肿瘤位置和大小，精准到cm级别。但是他们在治疗上，也是常常求诸外援。这就真的很尬了。</p>
-
-<p>基于已有准确数据集诞生的AI，在”守成“上，能够超越大部分人群的能力。
-如果现有文献质量不高，那也中医AI也够呛。所以从这个角度来说，结论和师兄类似：目前远远不够成熟。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/image-20230723065721721.png" alt="image-20230723065721721" /></p>
-
-<p>师兄提到的形气神和算法的统一，这是很高的角度，高到气文化为代表的东方思想能够立足，能够旺盛的前提。否则，还是“形式”医学主导的“形式AI”。
-算不得“中医AI”，“西医AI”可能更加恰当。</p>
 ]]></content>
         </entry>
     </feed>
