@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+  <title>PAC和代理配制语法 &mdash; 竹叶山人 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/stackoverflow-dark.min.css">
+ 
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
+  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
+  <script data-isso="//c.zysr.me/"      
+        data-isso-lang="zh_CN"
+        src="//c.zysr.me/js/embed.min.js"></script>
+  <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
+  
+
+
+  <link rel="canonical" href="//zysr.me//_PAC和代理语法_2024_06_16.html" />
+
+
+
+
+</head>
+<body>
+
+  <aside class="sidebar">
+    <header>
+      <h1>
+        <a href="/">竹叶山人</a>
+      </h1>
+      <p>西行却过流沙日 枕上寥寥心独知</p>
+    </header>
+
+    <nav>
+      <ul class="menu inline-list">
+        <li><a class="button-link" href="/blog">目录</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        
+      </ul>
+    </nav>
+  </aside>
+  <main role="main">
+    <section class="content-main">
+        <article class="hentry post">
+    <header>
+      <h1 class="entry-title">PAC和代理配制语法</h1>
+
+      <p class="meta">
+        <time class="published" datetime="2024-06-16T00:00:00+08:00">
+          <a href="//zysr.me//_PAC和代理语法_2024_06_16.html" rel="bookmark">
+            <span class='year'>2024</span>-<span class='month'>06</span>-<span class='day'>16</span>
+          </a>
+        </time>
+        <time class="updated" datetime="2024-06-16T00:00:00+08:00"></time>
+        <span class="author vcard">
+          <a class="url fn n" href="//zysr.me/">
+            <span class="given-name">雲文</span>
+          </a>
+          <span class="nickname">雲文</span>
+        </span>
+      </p>
+
+              <p class="tags">
+                      <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/PAC" rel="tag">PAC</a>                       <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/AutoProxy" rel="tag">AutoProxy</a>                  </p>
+          </header>
+
+    <div class="entry-content content">
+      <p>说到代理服务器Proxy Server，必然会需要如何配制代理服务器(Proxy config)， 配制可以是手动的，自然，此处手动配置不是重点，我们更多的聚焦在配制的自动化（Proxy Auto-config/PAC)。</p>
+
+<h1 id="pac">PAC</h1>
+
+<p>PAC的核心是个FindProxyForURL的js函数，</p>
+
+<pre><code class="hl javascript">function FindProxyForURL(url, host) {
+  // …
+}
+
+</code></pre>
+
+<p>返回值为以下几种：</p>
+
+<pre><code class="hl language-plaintext">DIRECT
+直连，无需任何代理
+</code></pre>
+
+<pre><code class="hl language-plaintext">PROXY host:port
+使用指定代理，
+</code></pre>
+
+<pre><code class="hl language-plaintext">SOCKS host:port
+使用指定的SOCK5代理服务器
+</code></pre>
+
+<pre><code class="hl language-plaintext">HTTP host:port
+指定使用HTTP代理
+</code></pre>
+
+<pre><code class="hl language-plaintext">HTTPS host:port
+使用指定的HTTPS代理
+</code></pre>
+
+<pre><code class="hl language-plaintext">SOCKS4 host:port, SOCKS5 host:port
+</code></pre>
+
+<h1 id="autoproxy">AutoProxy</h1>
+
+<p>AutoProxy的语法与PAC是不一样的，AutoProxy是衍生于<a href="https://help.adblockplus.org/hc/en-us/articles/360062733293-How-to-write-filters">ADP</a>，它本身也其实可以看做是<a href="https://help.adblockplus.org/hc/en-us/articles/360062733293-How-to-write-filters">ADP</a>的一个子集，</p>
+
+<p><img src="//s.zysr.me/img/2024-06-16/cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651.png" alt="cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651" style="zoom: 50%;" /></p>
+
+<p>ADP定义了完整的网址规则，而用作代理设置的时候，大部份只需要关注其中的domain部份，具体的说，只需要使用到以下几条简单的</p>
+
+<ol>
+<li>"<strong>!</strong>"感叹号开头的是注释。</li>
+<li>关键词example.com，只用于http网址的匹配，不参与匹配https协议的匹配
+
+<ul>
+<li>匹配：http://www.<strong>example.com</strong>/foo  和  http://www.google.com/search?q=www.<strong>example.com</strong>。</li>
+<li>不匹配 http<strong>s</strong>://www.example.com/</li>
+</ul></li>
+<li>匹配域名"<strong>||</strong>"，比如：<strong>||</strong>example.com/banner.gif
+
+<ul>
+<li>匹配：
+
+<ul>
+<li>http://example.com</li>
+<li>https://example.com/banner.gif</li>
+<li>http://www.example.com/banner.gif</li>
+</ul></li>
+<li>不匹配：
+
+<ul>
+<li>http://badexample.com/banner.gif</li>
+<li>http://gooddomain.example/analyze?http://example.com/banner.gif+</li>
+</ul></li>
+</ul></li>
+<li>匹配URL前缀"|":
+
+<ul>
+<li>|http://www.google.com ， 这个规则匹配http://www.google.com，但是不匹配http<strong>s</strong>://www.google.com</li>
+</ul></li>
+<li>定义例外"@@"，事实上，autoproxy中定义例外意味着这不需要使用proxy，直接把例外去掉既可，探讨价值大过实战价值：
+
+<ul>
+<li>'adv'匹配http://example.com/advice.html，但是不希望匹配http://example.com/advice.html，那么可以定义一个例外"@@advice"。</li>
+</ul></li>
+</ol>
+
+<p>利用autoproxy，如果配合gfwlist，以及SwitchyOmega可以完美而自由的驰骋于网络。</p>
+
+<p>参考资料：</p>
+
+<ol>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/web/http/proxy_servers_and_tunneling/proxy_auto-configuration_pac_file">Mozilla开发者文档中关于PAC的参考</a></p></li>
+<li><p><a href="https://web.archive.org/web/20040810122331/http://developer.netscape.com/docs/manuals/proxy/adminux/autoconf.htm">Archive上，Netscape关于PAC的历史存档</a></p></li>
+<li><p><a href="https://web.archive.org/web/20150701185956/https://calomel.org/proxy_auto_config.html">Archive上，Calomel关于PAC的存档</a></p></li>
+</ol>
+
+    </div>
+
+<section id="isso-thread"><noscript>Javascript needs to be activated to view comments.</noscript></section>
+
+
+
+          <nav class="article">
+        <div class="previous-next">
+
+                      <div class="previous">
+              <a href="/win11恢复默认快捷菜单_2024_06_01.html" title="上一篇: 恢复win11的默认快捷菜单"><span class="arrow arrow-west"></span><span class="title">恢复win11的默认快捷菜单</span></a>
+            </div>
+          		  
+		            		  
+		  
+          </div>
+      </nav>
+    
+  </article>
+    </section>
+  </main>
+
+  <footer>
+  <div class="footer-links">
+      <ul class="inline-list">
+        <li><a class="button-link" href="//zysr.me//atom.xml">Feed</a></li>
+        <li><a class="button-link" href="/blog/tags">标签</a></li>
+        <li><a class="button-link" href="/blog/categories">分类</a></li>
+        <li><a class="button-link" href="/about" rel="me">关于</a></li>
+        <li><a class="button-link" href="/contactMe/">联系</a></li>
+      </ul>
+    <div class="powered-by">
+      <p>Powered by <a href="/BuiltByTyporaOnSculpin/">Typora Plus Sculpin</a></p>
+    </div>
+    <div class="google-plus">
+      
+    </div>
+  </div>
+  </footer>
+
+
+    
+
+  <script> 
+  //利用JQ的magnific插件，展示图片库
+  $(document).ready(function() {
+
+    var items = [] ;
+    $('p img').each( function(){
+      items.push( {src: $(this).attr('src') } ) ; 
+    }
+     ) ; 
+    var index=0 ;
+    $('p img').each( function() { 
+        $(this).magnificPopup( {
+        items: items,
+        type: 'image',
+        closeOnContentClick: true,
+
+        key: '46de12bb-623f-4b9a-88a0-8a05e1ea9dc4',  //rand unique ID
+        index: index++ ,
+        gallery: {
+          enabled: true,
+          tPrev: '上一张 (左箭头)', // title for left button
+          tNext: '下一张 (右箭头)', // title for right button
+        },
+      } ) ;
+    });
+
+
+});
+  </script>
+  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/highlight.min.js"></script>
+
+    
+  <script>
+    //根据 http://highlight.cndoc.wiki/doc/123 的说明
+    //利用MD的扩展语法， 设置 .hl class。 可以高亮 https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks
+    //
+  document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.hl').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+});
+  
+  </script>
+</body>
+</html>

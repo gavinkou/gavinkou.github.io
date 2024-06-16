@@ -7,7 +7,7 @@
 
   <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/stackoverflow-dark.min.css">
  
   <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
   <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
@@ -53,7 +53,7 @@
 
 <ul>
 <li>请留意<a href="https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks">扩展语法</a>不为基本语法支持，请谨慎使用，详细的中文使用说明见：  <a href="/MDExtSyn/">MDExtSyn</a></li>
-<li>自定义css支持，这部分由用户自己提供，基于<a href="https://sass-lang.com/">sass</a>实现，目前自定义了这样几个css class：
+<li>自定义css支持，这部分由用户自己提供，基于<a href="https://sass-lang.com/">sass</a>实现，目前自定义了这样几个css class，这些class的使用，只需要在Typora的代码块：
 
 <ul>
 <li>.formula</li>
@@ -62,6 +62,11 @@
 <li>.emphasis</li>
 <li>.comment</li>
 </ul></li>
+<li><p>高亮Highlight支持</p>
+
+<p>利用<a href="https://michelf.ca/projects/php-markdown/extra/#fenced-code-blocks">MDExtSyn</a>的代码块class或者#id支持功能，可以设置各种语言的高亮（由<a href="http://highlight.cndoc.wiki/doc/141#highlightElement">highlight.js</a> 提供支持）</p>
+
+<p><img src="//s.zysr.me/img/2024-06-16/image-20240616211925667.png" alt="image-20240616211925667" /></p></li>
 </ul>
 
 <p>另外，还支持别的MD convert，比如说<a href="https://github.com/thephpleague/commonmark">commonmark</a>，使用： composer require league/commonmark  来安装。但是本系统使用<a href="https://michelf.ca/projects/php-markdown/configuration/">michelf/php-markdown</a>。</p>

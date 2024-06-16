@@ -3,11 +3,109 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//atom.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2024-06-01T22:41:59+08:00</updated>
+    <updated>2024-06-16T23:56:41+08:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
         <generator uri="http://sculpin.io/">Sculpin</generator>
+            <entry>
+            <title type="html"><![CDATA[PAC和代理配制语法]]></title>
+            <link href="//zysr.me//_PAC和代理语法_2024_06_16.html"/>
+            <updated>2024-06-16T00:00:00+08:00</updated>
+            <id>//zysr.me//_PAC和代理语法_2024_06_16.html</id>
+            <content type="html"><![CDATA[<p>说到代理服务器Proxy Server，必然会需要如何配制代理服务器(Proxy config)， 配制可以是手动的，自然，此处手动配置不是重点，我们更多的聚焦在配制的自动化（Proxy Auto-config/PAC)。</p>
+
+<h1 id="pac">PAC</h1>
+
+<p>PAC的核心是个FindProxyForURL的js函数，</p>
+
+<pre><code class="hl javascript">function FindProxyForURL(url, host) {
+  // …
+}
+
+</code></pre>
+
+<p>返回值为以下几种：</p>
+
+<pre><code class="hl language-plaintext">DIRECT
+直连，无需任何代理
+</code></pre>
+
+<pre><code class="hl language-plaintext">PROXY host:port
+使用指定代理，
+</code></pre>
+
+<pre><code class="hl language-plaintext">SOCKS host:port
+使用指定的SOCK5代理服务器
+</code></pre>
+
+<pre><code class="hl language-plaintext">HTTP host:port
+指定使用HTTP代理
+</code></pre>
+
+<pre><code class="hl language-plaintext">HTTPS host:port
+使用指定的HTTPS代理
+</code></pre>
+
+<pre><code class="hl language-plaintext">SOCKS4 host:port, SOCKS5 host:port
+</code></pre>
+
+<h1 id="autoproxy">AutoProxy</h1>
+
+<p>AutoProxy的语法与PAC是不一样的，AutoProxy是衍生于<a href="https://help.adblockplus.org/hc/en-us/articles/360062733293-How-to-write-filters">ADP</a>，它本身也其实可以看做是<a href="https://help.adblockplus.org/hc/en-us/articles/360062733293-How-to-write-filters">ADP</a>的一个子集，</p>
+
+<p><img src="//s.zysr.me/img/2024-06-16/cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651.png" alt="cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651" style="zoom: 50%;" /></p>
+
+<p>ADP定义了完整的网址规则，而用作代理设置的时候，大部份只需要关注其中的domain部份，具体的说，只需要使用到以下几条简单的</p>
+
+<ol>
+<li>"<strong>!</strong>"感叹号开头的是注释。</li>
+<li>关键词example.com，只用于http网址的匹配，不参与匹配https协议的匹配
+
+<ul>
+<li>匹配：http://www.<strong>example.com</strong>/foo  和  http://www.google.com/search?q=www.<strong>example.com</strong>。</li>
+<li>不匹配 http<strong>s</strong>://www.example.com/</li>
+</ul></li>
+<li>匹配域名"<strong>||</strong>"，比如：<strong>||</strong>example.com/banner.gif
+
+<ul>
+<li>匹配：
+
+<ul>
+<li>http://example.com</li>
+<li>https://example.com/banner.gif</li>
+<li>http://www.example.com/banner.gif</li>
+</ul></li>
+<li>不匹配：
+
+<ul>
+<li>http://badexample.com/banner.gif</li>
+<li>http://gooddomain.example/analyze?http://example.com/banner.gif+</li>
+</ul></li>
+</ul></li>
+<li>匹配URL前缀"|":
+
+<ul>
+<li>|http://www.google.com ， 这个规则匹配http://www.google.com，但是不匹配http<strong>s</strong>://www.google.com</li>
+</ul></li>
+<li>定义例外"@@"，事实上，autoproxy中定义例外意味着这不需要使用proxy，直接把例外去掉既可，探讨价值大过实战价值：
+
+<ul>
+<li>'adv'匹配http://example.com/advice.html，但是不希望匹配http://example.com/advice.html，那么可以定义一个例外"@@advice"。</li>
+</ul></li>
+</ol>
+
+<p>利用autoproxy，如果配合gfwlist，以及SwitchyOmega可以完美而自由的驰骋于网络。</p>
+
+<p>参考资料：</p>
+
+<ol>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/web/http/proxy_servers_and_tunneling/proxy_auto-configuration_pac_file">Mozilla开发者文档中关于PAC的参考</a></p></li>
+<li><p><a href="https://web.archive.org/web/20040810122331/http://developer.netscape.com/docs/manuals/proxy/adminux/autoconf.htm">Archive上，Netscape关于PAC的历史存档</a></p></li>
+<li><p><a href="https://web.archive.org/web/20150701185956/https://calomel.org/proxy_auto_config.html">Archive上，Calomel关于PAC的存档</a></p></li>
+</ol>
+]]></content>
+        </entry>
             <entry>
             <title type="html"><![CDATA[恢复win11的默认快捷菜单]]></title>
             <link href="//zysr.me//win11恢复默认快捷菜单_2024_06_01.html"/>
@@ -19,7 +117,7 @@
 
 <p>那个"show more options"实在是繁琐，国内很多方案都已经过时了，好在<a href="https://answers.microsoft.com/en-us/windows/forum/all/restore-old-right-click-context-menu-in-windows-11/a62e797c-eaf3-411b-aeec-e460e6e5a82a">微软官方有解决方案</a>：</p>
 
-<pre><code class="powershell">reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+<pre><code class="hl powershell">reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
 </code></pre>
 
 <p>效果非常好。</p>
@@ -28,7 +126,7 @@
 
 <p>如果想恢复win11风格的，使用下面的来恢复既可。</p>
 
-<pre><code class="powershell">reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
+<pre><code class="hl powershell">reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
 </code></pre>
 ]]></content>
         </entry>
@@ -359,109 +457,6 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
 沿路往北望，汉水北侧的无限秦岭风光，甚是壮美，尽收眼底。</p>
 
 <p>如今又多了一个黄金峡水库，值得期待。</p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[nginx的多证书应用]]></title>
-            <link href="//zysr.me//Nginx的多证书应用_2023_07_23.html"/>
-            <updated>2023-07-23T08:00:00+08:00</updated>
-            <id>//zysr.me//Nginx的多证书应用_2023_07_23.html</id>
-            <content type="html"><![CDATA[<p>运行多证书反向代理，充当NOSTR中继转发器快四个月了，今天准备下线这个服务。随便把配制思路分享一下。</p>
-
-<p>NOSTR因为众所周知的原因，国内是无法访问的，而NOSTR需要中继才能存活，本来NOSTR的设计思路就是天然的</p>
-
-<p>去中心社交模式。但是现在因为没有使用分布式方式发布和订阅中继，反而让NOSTR的分布式社交变得有名无实 了。</p>
-
-<p>国内访问那些著名的中继器比如说wss://relay.damus.io, wss://offchain.pub等等。</p>
-
-<p>那么如果有VPS且有域名和证书的情况下，使用Nginx是很容易架设一个反向代理服务器，充当中继转发（Forwarder of Relay）。</p>
-
-<p>这样子，中继还是那些中继。但是因为转发器的存在，让中继器拥有了无数个“分身”。</p>
-
-<ol>
-<li>域名的申请，跳过，这个非常容易几美金就能完成的事情。</li>
-<li>证书的申请，本文跳过，最简单的是使用<a href="https://certbot.eff.org/">certbot</a>来完成，但是官方的certbot手册真的很一般，很容易出错。而且它的基于域名认证的扩展也不够及时，还需要用户自己经验足够丰富。还不如使用稍为麻烦但是可靠的http文件认证模式。但是范域名证书不支持http文件认证，必须用DNS认证。好在DNS认证可以通过手</li>
-</ol>
-
-<p>这里，需要证书，是因为wss协议的要求。其实建立连接之后，Nginx还需要offload原wss请求中的Host，然后重新封装新的wss请求，然后将新的wss请求转发到中继器去。</p>
-
-<p>同时，因为Nginx默认情况下，一般还会提供正常的https访问，所以这就要求在ssl的443端口，提供https以及中继转发的wss多个服务。为了区别这些服务，必须Nginx开启ngx_stream_ssl_preread_module模块，这个模块提供<a href="https://datatracker.ietf.org/doc/html/rfc6066#section-3">SNI</a>和<a href="https://datatracker.ietf.org/doc/html/rfc7301">ALPN</a>功能，在本文的应用场景中，只需要SNI支持，它允许客户端连接的时候，通知Ningx连接的是那个服务，是https的服务？还是wss的中继转发服务。这样Nginx就会根据客户端连接的通知，选择不同的处理逻辑：</p>
-
-<ol>
-<li>如果是wss中继转发服务，则进行wss的offload，重新组装wss请求转发到对应的中继器。这个offload主要是替换wss请求中的Host头。</li>
-<li>如果是普通的https服务，则按照正常的https流程，交给本地的https应用来处理。</li>
-<li>如果还有其它的服务，比如说Trojan服务那就一样的专交给Trojan服务。</li>
-</ol>
-
-<p>在这里，可以看到，其实Nginx的的处理层<strong>不是在http层来进行的，而是在strea层进行</strong>的。</p>
-
-<p>换句话说nginx需要<strong>先配制stream块</strong>，<strong>然后配制http块</strong>。</p>
-
-<pre><code class="hl"><br />    stream {
-        log_format stream_log '$remote_addr $ssl_preread_server_name [$time_local] '
-                            '$protocol $status $bytes_sent $bytes_received '
-                            '$session_time "$upstream" "$upstream_addr" '
-                            '"$upstream_bytes_sent" "$upstream_bytes_received" "$upstream_connect_time"';
-        access_log logs/stream.log stream_log;
-        #access_log off;
-        map $ssl_preread_server_name $upstream{
-            ~t\.            trojan; #begin with t.xxx.yyy.. means trojan traffic
-            ~\.relay\.center    relay;  #nostr relay
-            default         web;
-        }
-    upstream trojan{
-        server 127.0.0.1:8443;
-    }
-
-    upstream web{
-        server 127.0.0.1:1443;
-    }
-
-    upstream relay{
-        server 127.0.0.1:1443;
-    }
-    server {
-        listen 443 reuseport;
-        ssl_preread on;
-        proxy_pass  $upstream;
-        #proxy_ssl on;
-    }
-    }
-
-</code></pre>
-
-<p>在这里Nginx所使用到的变量<strong>$ssl_preread_server_name</strong>，就是<strong>ngx_stream_ssl_preread_module</strong>模块提供的。它通过在建立ssl连接的时候，提前读取Client Hello中的server_name来给<strong>$ssl_preread_server_name</strong>赋值，这个时候ssl的握手建立还没有完成，只是收到了客户端的hello数据包，服务器没有返回任何ssl数据包，需要根据配制逻辑，选择不同的服务器证书来完成ssl握手，然后才能进入到https层面的工作。</p>
-
-<p>在这里根据<strong>$ssl_preread_server_name</strong>定义了不同的正则表达式，然后使用proxy_pass选择不同的后端。</p>
-
-<pre><code class="hl">    map $ssl_preread_server_name $upstream{
-        ~t\.            trojan; #begin with t.xxx.yyy.. means trojan traffic
-        ~\.relay\.center    relay;  #nostr relay
-        default         web;
-    }
-</code></pre>
-
-<p>然后后端的配制，就使用普通的https既可，</p>
-
-<p>中继转发的时候，需要动态的把请求代理出去既可。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/image-20230723100309287.png" alt="image-20230723100309287" /></p>
-
-<p>需要注意的三个地方：</p>
-
-<ol>
-<li>客户端证书需要自己生成，很多地方都可以，openssl也应该可以</li>
-<li>proxy_ssl_protocals的协议版本，最好把最新的1.3版本加上支持，否则有的服务器可能会拒绝连接，比如说damus.io</li>
-<li>最后需要把普通的https升级为wss，这个用proxy_set_header指令既可完成。</li>
-</ol>
-
-<p>至于如何混用trojan流量，等有机会再说。这样子Nginx就一肩挑三担：</p>
-
-<ol>
-<li>本地的https服务</li>
-<li>远程基于WSS的NOSTR中继服务器</li>
-<li>Trojan流量</li>
-</ol>
 ]]></content>
         </entry>
     </feed>

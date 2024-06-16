@@ -7,7 +7,7 @@
 
   <link href="/css/style.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/a11y-dark.min.css">
+  <link rel="stylesheet" href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/highlight.js/11.4.0/styles/stackoverflow-dark.min.css">
  
   <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
   <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" type="application/javascript"></script>
@@ -75,7 +75,7 @@
 
 <p>那个"show more options"实在是繁琐，国内很多方案都已经过时了，好在<a href="https://answers.microsoft.com/en-us/windows/forum/all/restore-old-right-click-context-menu-in-windows-11/a62e797c-eaf3-411b-aeec-e460e6e5a82a">微软官方有解决方案</a>：</p>
 
-<pre><code class="powershell">reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+<pre><code class="hl powershell">reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
 </code></pre>
 
 <p>效果非常好。</p>
@@ -84,7 +84,7 @@
 
 <p>如果想恢复win11风格的，使用下面的来恢复既可。</p>
 
-<pre><code class="powershell">reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
+<pre><code class="hl powershell">reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
 </code></pre>
 
     </div>
@@ -100,7 +100,10 @@
               <a href="/谒委羽山大有宫_2024_04_06.html" title="上一篇: 谒委羽山大有宫"><span class="arrow arrow-west"></span><span class="title">谒委羽山大有宫</span></a>
             </div>
           		  
-		            		  
+		                        <div class="next">
+              <a href="/_PAC和代理语法_2024_06_16.html" title="下一篇: PAC和代理配制语法"><span class="title">PAC和代理配制语法</span><span class="arrow arrow-east"></span></a>
+            </div>
+          		  
 		  
           </div>
       </nav>
