@@ -2,9 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>//zysr.me/</loc>
-        <lastmod>2024-12-02</lastmod>
+        <lastmod>2025-06-12</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
+    </url>
+        <url>
+        <loc>//zysr.me//_咳嗽_2024_12_31.html</loc>
+        <lastmod>2024-12-31T00:00:00+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
         <url>
         <loc>//zysr.me//_PAC和代理语法_2024_06_16.html</loc>

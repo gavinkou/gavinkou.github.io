@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Windows中SSH上运行Rsync &mdash; 竹叶山人 </title>
+  <title>伤寒治咳嗽 &mdash; 竹叶山人 </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,7 +17,7 @@
   <link href="//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/magnific-popup.js/1.1.0/magnific-popup.min.css" type="text/css" rel="stylesheet" />
 
 
-  <link rel="canonical" href="//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html" />
+  <link rel="canonical" href="//zysr.me//_咳嗽_2024_12_31.html" />
 
 
 
@@ -46,15 +46,15 @@
     <section class="content-main">
         <article class="hentry post">
     <header>
-      <h1 class="entry-title">Windows中SSH上运行Rsync</h1>
+      <h1 class="entry-title">伤寒治咳嗽</h1>
 
       <p class="meta">
-        <time class="published" datetime="2021-10-24T22:42:00+08:00">
-          <a href="//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html" rel="bookmark">
-            <span class='year'>2021</span>-<span class='month'>10</span>-<span class='day'>24</span>
+        <time class="published" datetime="2024-12-31T00:00:00+08:00">
+          <a href="//zysr.me//_咳嗽_2024_12_31.html" rel="bookmark">
+            <span class='year'>2024</span>-<span class='month'>12</span>-<span class='day'>31</span>
           </a>
         </time>
-        <time class="updated" datetime="2021-10-24T22:42:00+08:00"></time>
+        <time class="updated" datetime="2024-12-31T00:00:00+08:00"></time>
         <span class="author vcard">
           <a class="url fn n" href="//zysr.me/">
             <span class="given-name">雲文</span>
@@ -64,37 +64,30 @@
       </p>
 
               <p class="tags">
-                      <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3" rel="tag">技术文档</a>                       <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/plink" rel="tag">plink</a>                       <a class="tag-color tag-color-3" href="//zysr.me//blog/tags/rsync" rel="tag">rsync</a>                  </p>
+                      <a class="tag-color tag-color-1" href="//zysr.me//blog/tags/%E5%92%B3%E5%97%BD" rel="tag">咳嗽</a>                       <a class="tag-color tag-color-2" href="//zysr.me//blog/tags/%E4%BC%A4%E5%AF%92%E8%AE%BA" rel="tag">伤寒论</a>                  </p>
           </header>
 
     <div class="entry-content content">
-      <p><a href="https://linux.die.net/man/1/rsync">rsync</a> 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。可以直接使用rsync设置服务器来进行同步。也可以借助rsync的rsh/ssh特征直接在rsh/ssh层进行通讯和文件同步，避免新开rsync服务导致的风险。</p>
+      <p>咳嗽</p>
 
-<p>但是如果rsync用于windows和Linux之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">plink</a>）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid handle” 错误。</p>
-
-<p>原因在于rsync和plin之间是用标准IO来进行进程间通讯，这是linux上常见的IPC方式，但是这个方式在windows上，支持的并不完善，导致标准IO sdtin和sdtout不可用的错误。出现文件句柄不可用的问题。</p>
-
-<p>不过这个时候<a href="https://github.com/davidecolombo/cygnative">cygnative</a> 出场了，他用原生win32API封装出来stdin和stdout的句柄调用，这样可以让两者之间协同工作。</p>
-
-<p>而rsync则利用其--rsh/-e参数先调用cygnative这个封装器，然后封装器再调用plink，这样就完美的解决了windwos上面的工具链不兼容问题。</p>
-
-<blockquote>
-  <p>软件工程中，经常发生这样的事情，为了解决一个兼容性问题，引入一个新的兼容层，同时引入了一个新的bug层。</p>
-</blockquote>
-
-<p>这个时候</p>
-
-<p><img src="//s.zysr.cc/img/2023-10-24/image-20231024225544333.png" alt="image-20231024225544333" /></p>
-
-<pre><code class="hl">rsync  -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+<pre><code class="formula">桂枝 10g  芍药15g  生姜15g 炙甘草10g 大枣15g
 </code></pre>
 
-<p>修改为：</p>
-
-<pre><code class="hl">rsync  -e "cygnative plink.exe " -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
+<pre><code class="comment">这是注释
 </code></pre>
 
-<p>就可以正常工作了。而且因为plink中可以支持密钥验证无密码输入等等putty特征。rsync的密码都不用设置了。</p>
+<pre><code class="herb">麻黄
+</code></pre>
+
+<pre><code class="quote">引用内容
+</code></pre>
+
+<pre><code class="emphasis">重点内容之前折腾主题的时候感觉Font Awesome太过庞大，好多图标字体基本都用不上，加载起来太慢了，于是自己折腾了一套简单的图标字体，但在完善主题过程中才发现字体太少不够用（有些图标当时没想到），重新折腾又要重新来一次太麻烦。于是想到可以用css的content，通过伪元素将一些符合的unicode字符集插入其中。
+
+特殊字符太多，怎么可能记得住，在BD搜索之后进行合并归纳备忘。之前折腾主题的时候感觉Font Awesome太过庞大，好多图标字体基本都用不上，加载起来太慢了，于是自己折腾了一套简单的图标字体，但在完善主题过程中才发现字体太少不够用（有些图标当时没想到），重新折腾又要重新来一次太麻烦。于是想到可以用css的content，通过伪元素将一些符合的unicode字符集插入其中。
+
+特殊字符太多，怎么可能记得住，在BD搜索之后进行合并归纳备忘。
+</code></pre>
 
     </div>
 
@@ -106,13 +99,10 @@
         <div class="previous-next">
 
                       <div class="previous">
-              <a href="/退烧药退烧的药理是什么_2021_08_05.html" title="上一篇: 退烧药的药理是什么"><span class="arrow arrow-west"></span><span class="title">退烧药的药理是什么</span></a>
+              <a href="/_PAC和代理语法_2024_06_16.html" title="上一篇: PAC和代理配制语法"><span class="arrow arrow-west"></span><span class="title">PAC和代理配制语法</span></a>
             </div>
           		  
-		                        <div class="next">
-              <a href="/中医推荐书目_2022_04_22.html" title="下一篇: 中医推荐书目"><span class="title">中医推荐书目</span><span class="arrow arrow-east"></span></a>
-            </div>
-          		  
+		            		  
 		  
           </div>
       </nav>

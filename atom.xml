@@ -3,11 +3,38 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//atom.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2024-12-02T23:23:58+08:00</updated>
+    <updated>2025-06-12T16:26:52+08:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
         <generator uri="http://sculpin.io/">Sculpin</generator>
+            <entry>
+            <title type="html"><![CDATA[伤寒治咳嗽]]></title>
+            <link href="//zysr.me//_咳嗽_2024_12_31.html"/>
+            <updated>2024-12-31T00:00:00+08:00</updated>
+            <id>//zysr.me//_咳嗽_2024_12_31.html</id>
+            <content type="html"><![CDATA[<p>咳嗽</p>
+
+<pre><code class="formula">桂枝 10g  芍药15g  生姜15g 炙甘草10g 大枣15g
+</code></pre>
+
+<pre><code class="comment">这是注释
+</code></pre>
+
+<pre><code class="herb">麻黄
+</code></pre>
+
+<pre><code class="quote">引用内容
+</code></pre>
+
+<pre><code class="emphasis">重点内容之前折腾主题的时候感觉Font Awesome太过庞大，好多图标字体基本都用不上，加载起来太慢了，于是自己折腾了一套简单的图标字体，但在完善主题过程中才发现字体太少不够用（有些图标当时没想到），重新折腾又要重新来一次太麻烦。于是想到可以用css的content，通过伪元素将一些符合的unicode字符集插入其中。
+
+特殊字符太多，怎么可能记得住，在BD搜索之后进行合并归纳备忘。之前折腾主题的时候感觉Font Awesome太过庞大，好多图标字体基本都用不上，加载起来太慢了，于是自己折腾了一套简单的图标字体，但在完善主题过程中才发现字体太少不够用（有些图标当时没想到），重新折腾又要重新来一次太麻烦。于是想到可以用css的content，通过伪元素将一些符合的unicode字符集插入其中。
+
+特殊字符太多，怎么可能记得住，在BD搜索之后进行合并归纳备忘。
+</code></pre>
+]]></content>
+        </entry>
             <entry>
             <title type="html"><![CDATA[PAC和代理配制语法]]></title>
             <link href="//zysr.me//_PAC和代理语法_2024_06_16.html"/>
@@ -54,7 +81,7 @@
 
 <p>AutoProxy的语法与PAC是不一样的，AutoProxy是衍生于<a href="https://help.adblockplus.org/hc/en-us/articles/360062733293-How-to-write-filters">ADP</a>，它本身也其实可以看做是<a href="https://help.adblockplus.org/hc/en-us/articles/360062733293-How-to-write-filters">ADP</a>的一个子集，</p>
 
-<p><img src="//s.zysr.me/img/2024-06-16/cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651.png" alt="cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651" style="zoom: 50%;" /></p>
+<p><img src="//s.zysr.cc/img/2024-06-16/cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651.png" alt="cf28f1beb0e84cf3d69fe9a7df8d2258_13582352421651" style="zoom: 50%;" /></p>
 
 <p>ADP定义了完整的网址规则，而用作代理设置的时候，大部份只需要关注其中的domain部份，具体的说，只需要使用到以下几条简单的</p>
 
@@ -113,7 +140,7 @@
             <id>//zysr.me//win11恢复默认快捷菜单_2024_06_01.html</id>
             <content type="html"><![CDATA[<p>着实不喜欢win11默认的快捷菜单，</p>
 
-<p><img src="//s.zysr.me/img/2024-06-01/image-20240601222043301.png" alt="image-20240601222043301" /></p>
+<p><img src="//s.zysr.cc/img/2024-06-01/image-20240601222043301.png" alt="image-20240601222043301" /></p>
 
 <p>那个"show more options"实在是繁琐，国内很多方案都已经过时了，好在<a href="https://answers.microsoft.com/en-us/windows/forum/all/restore-old-right-click-context-menu-in-windows-11/a62e797c-eaf3-411b-aeec-e460e6e5a82a">微软官方有解决方案</a>：</p>
 
@@ -122,7 +149,7 @@
 
 <p>效果非常好。</p>
 
-<p><img src="//s.zysr.me/img/2024-06-01/image-20240601221814716.png" alt="image-20240601221814716" /></p>
+<p><img src="//s.zysr.cc/img/2024-06-01/image-20240601221814716.png" alt="image-20240601221814716" /></p>
 
 <p>如果想恢复win11风格的，使用下面的来恢复既可。</p>
 
@@ -135,7 +162,7 @@
             <link href="//zysr.me//谒委羽山大有宫_2024_04_06.html"/>
             <updated>2024-04-06T08:00:00+08:00</updated>
             <id>//zysr.me//谒委羽山大有宫_2024_04_06.html</id>
-            <content type="html"><![CDATA[<p><img src="//s.zysr.me/img/2024-05-01/c89dd4bf1efcc55fa1d1079c0d1aa91.jpg" alt="c89dd4bf1efcc55fa1d1079c0d1aa91" /></p>
+            <content type="html"><![CDATA[<p><img src="//s.zysr.cc/img/2024-05-01/c89dd4bf1efcc55fa1d1079c0d1aa91.jpg" alt="c89dd4bf1efcc55fa1d1079c0d1aa91" /></p>
 
 <p>撑破了缸</p>
 
@@ -149,9 +176,9 @@
 
 <p>关不住</p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/2681c87ad5f50a133ff0ca27f259e16.jpg" alt="2681c87ad5f50a133ff0ca27f259e16" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/2681c87ad5f50a133ff0ca27f259e16.jpg" alt="2681c87ad5f50a133ff0ca27f259e16" /></p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/45f4460b8b41af457d50fd548810ee3.jpg" alt="45f4460b8b41af457d50fd548810ee3" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/45f4460b8b41af457d50fd548810ee3.jpg" alt="45f4460b8b41af457d50fd548810ee3" /></p>
 ]]></content>
         </entry>
             <entry>
@@ -165,11 +192,11 @@
 
 <p>若医者见咳止咳，减烧退烧，则医之大过。</p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/18eb45461c04b91da99964006c44de4.jpg" alt="18eb45461c04b91da99964006c44de4" style="zoom:50%;" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/18eb45461c04b91da99964006c44de4.jpg" alt="18eb45461c04b91da99964006c44de4" style="zoom:50%;" /></p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/0beae68318caa3fa8af879ed47dfa70.jpg" alt="0beae68318caa3fa8af879ed47dfa70" style="zoom: 33%;" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/0beae68318caa3fa8af879ed47dfa70.jpg" alt="0beae68318caa3fa8af879ed47dfa70" style="zoom: 33%;" /></p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/image-20240501141720810.png" alt="image-20240501141720810" style="zoom:50%;" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/image-20240501141720810.png" alt="image-20240501141720810" style="zoom:50%;" /></p>
 
 <p>医道不彰，病医双失。
 若国医废习，举国覆巢，无有完卵。</p>
@@ -194,21 +221,21 @@
 
 <p>考古出土的文物来看，以铜权实物来测算，汉制一斤约现在240g（约半斤，便于实操计算取250±10g），依汉制，一斤等于十六两，那么汉制一两≈250/16=15g， 邱光明、柯雪帆等人的研究也是基于此铜权，结论也是一样的，一两大约15±1g，当然也有很多人反对此东汉司农铜权的，认为这不合理，尤其是王莽新政引入诸多改革，这些改革影响东汉。</p>
 
-<p><img src="http://s.zysr.me/img/2024-05-01/image-20240501123596456.webp" alt="邹城出土新莽度量衡" style="zoom:50%;" /></p>
+<p><img src="http://s.zysr.cc/img/2024-05-01/image-20240501123596456.webp" alt="邹城出土新莽度量衡" style="zoom:50%;" /></p>
 
-<p><img src="//s.zysr.me/img/2024-02-21/88ef47e8254be9acccf3b403c3bcfab4.jpg" alt="88ef47e8254be9acccf3b403c3bcfab4" style="zoom: 67%;" /></p>
+<p><img src="//s.zysr.cc/img/2024-02-21/88ef47e8254be9acccf3b403c3bcfab4.jpg" alt="88ef47e8254be9acccf3b403c3bcfab4" style="zoom: 67%;" /></p>
 
 <p>随着出土的文物越来越多，尤其是最近的2018年，山东大学在邾国故城遗址，又发掘出来整整一套王莽新政时期的铜权（铜权四件，下图编号46-49），</p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/image-20240501190840684.png" alt="新莽铜权出土实物表" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/image-20240501190840684.png" alt="新莽铜权出土实物表" /></p>
 
 <p>根据中国社会科学院考古研究所研究员白云翔的研究报告《邾国故城新莽铜诏版和铜环权简论》可以知道：<strong>250±10g</strong>为标准的铜权实物，时间上横跨整个西东两汉直也囊括王莽新政时期，可以说伴随着出土文物的强力证据的面世，“汉制一斤等于多少克”这个问题，在考古界，已经得到完美解决了。</p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/image-20240501192645480.png" alt="image-20240501192645480" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/image-20240501192645480.png" alt="image-20240501192645480" /></p>
 
 <p>汉制一斤为十六两，合今250±10克的话，折合为汉制<strong>一两为今15~16.25克之间</strong>。方便计，<strong>汉制一两折为15克</strong>，极为妥当。</p>
 
-<p><img src="//s.zysr.me/img/2024-05-01/image-20240501193131171.png" alt="image-20240501193131171" /></p>
+<p><img src="//s.zysr.cc/img/2024-05-01/image-20240501193131171.png" alt="image-20240501193131171" /></p>
 
 <p>剩下的就是医界如何推翻明清以来的医家一两约莫一钱等等个人解读，重回仲圣的原本剂量了。</p>
 
@@ -220,13 +247,13 @@
             <link href="//zysr.me//最好的营养源是饭碗而不是药盒_2024_01_01.html"/>
             <updated>2024-01-01T08:00:00+08:00</updated>
             <id>//zysr.me//最好的营养源是饭碗而不是药盒_2024_01_01.html</id>
-            <content type="html"><![CDATA[<p><img src="//s.zysr.me/img/2024-01-01/image-20240101175127793.png" alt="image-20240101175127793" /></p>
+            <content type="html"><![CDATA[<p><img src="//s.zysr.cc/img/2024-01-01/image-20240101175127793.png" alt="image-20240101175127793" /></p>
 
 <p>一位小朋友，37℃不算特别高， 但也是比正常水准略高。  <span class='quote'> 脾为生痰之源，肺为贮痰之器。</span>痰液粘粘不止，一定需要考虑饮食，这是为什么对于很多疾病都有的忌口，忌食生冷油腻等等， 不忌口就痰涎不断。</p>
 
 <p>饮食不仅仅包括锅里来的，也包括药瓶来的。 现代生活远好过以前，丰富的日常饮食，足矣支撑人的活动。记得哈佛公共卫生学院对于日常摄入营养的介绍文章，有一个标题非常记忆深刻<span class='quote'>“Best source of vitamins? Your plate, not your medicine cabinet”</span>——<span class='emphasis'>“最好的营养源是饭碗而不是药盒”</span>，  不要再被那些广告、营养品商家营销洗脑。</p>
 
-<p><img src="//s.zysr.me/img/2024-01-01/image-20240101175310771.png" alt="image-20240101175310771" /></p>
+<p><img src="//s.zysr.cc/img/2024-01-01/image-20240101175310771.png" alt="image-20240101175310771" /></p>
 
 <p>说到饮食健康，强烈推荐<a href="https://www.health.harvard.edu/">哈佛大学公共卫生学院</a>的一系列文章，强烈推荐，这是在全球研究机构中，能够找到的研究深刻又适合大众阅读的资料。★★★★★  五星推荐。</p>
 
@@ -249,7 +276,7 @@
 <p>丁圣元（他把K线图引入中国）在谈股票的描述时，说股票市场的复杂度表述，这样的图来表达。
 但也只是说，这是现实社会的极度简化，而且还说不要以为这张图就能分析纷繁复杂的现实世界。</p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/4cf494ae61fa549cdbe2d4c581bdc48.jpg" alt="4cf494ae61fa549cdbe2d4c581bdc48" style="zoom:50%;" /></p>
+<p><img src="//s.zysr.cc/img/2023-10-24/4cf494ae61fa549cdbe2d4c581bdc48.jpg" alt="4cf494ae61fa549cdbe2d4c581bdc48" style="zoom:50%;" /></p>
 
 <p>文章说的随机性，“随机抽样”，严格说来，这是概率这个数学工具的运用。 而且计算机系统目前为止是无法产生真的随机数，无论是不是大数据，也不是使用随机来应对。</p>
 
@@ -279,13 +306,13 @@
   不是反对专业内容的存在。而是面对这样的客户画像，作出的大概率选择。</p>
 </blockquote>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024200451567.png" alt="image-20231024200451567" style="zoom: 67%;" /></p>
+<p><img src="//s.zysr.cc/img/2023-10-24/image-20231024200451567.png" alt="image-20231024200451567" style="zoom: 67%;" /></p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024200513595.png" alt="image-20231024200513595" style="zoom:67%;" /></p>
+<p><img src="//s.zysr.cc/img/2023-10-24/image-20231024200513595.png" alt="image-20231024200513595" style="zoom:67%;" /></p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024200531237.png" alt="image-20231024200531237" style="zoom:67%;" /></p>
+<p><img src="//s.zysr.cc/img/2023-10-24/image-20231024200531237.png" alt="image-20231024200531237" style="zoom:67%;" /></p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024201054057.png" alt="image-20231024201054057" style="zoom:67%;" /></p>
+<p><img src="//s.zysr.cc/img/2023-10-24/image-20231024201054057.png" alt="image-20231024201054057" style="zoom:67%;" /></p>
 ]]></content>
         </entry>
             <entry>
@@ -302,15 +329,15 @@
             <id>//zysr.me//FRP内外穿透_2023_08_03.html</id>
             <content type="html"><![CDATA[<p>NAT环境下，内网的机器是无法被外部访问到的。比如下面的LaptopA和B，都不能被公网的7.7.7.7访问到的。</p>
 
-<p><img src="//s.zysr.me/img/2023-08-03/8683f0676f35742ff1a20342afb78f5e_nat-overview-1.png" alt="8683f0676f35742ff1a20342afb78f5e_nat-overview-1" /></p>
+<p><img src="//s.zysr.cc/img/2023-08-03/8683f0676f35742ff1a20342afb78f5e_nat-overview-1.png" alt="8683f0676f35742ff1a20342afb78f5e_nat-overview-1" /></p>
 
 <p>在路由器的帮助下，才能实现双向通讯。但是大部份情况下，家用路由器不支持将Laptop暴露给外网。</p>
 
-<p><img src="//s.zysr.me/img/2023-08-03/6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2.png" alt="6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2" /></p>
+<p><img src="//s.zysr.cc/img/2023-08-03/6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2.png" alt="6b2c8bf57ab4e7ff93f6fb88dbc1dba7_nat-overview-2" /></p>
 
 <p>这个时候，如果有一个服务能够直接穿透家用路由器而直接用TCP链接，把Laptop:xxxx和7.7.7.7:xxxx等效起来，那么就相当于直接把laptop暴露在公网了。</p>
 
-<p><img src="http://s.zysr.me/img/2023-08-03/image-20230803203907612.png" alt="image-20230803203907612" /></p>
+<p><img src="http://s.zysr.cc/img/2023-08-03/image-20230803203907612.png" alt="image-20230803203907612" /></p>
 
 <p>而<a href="https://github.com/fatedier/frp">frp</a>则是这样的工具，能够完美的实现这个技能。在它的帮助下，能够让访问7.7.7.7:8080的时候，相当于在访问laptop:8080。</p>
 
@@ -399,7 +426,7 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
 
 <p>这个设置，会让frp只监听127.0.0.1:8080，而不是服务器的*:8080。这样frp只接受乃至服务器本身的连接，外部不可访问7.7.7.7:8080了，就更加的安全了。</p>
 
-<p><img src="//s.zysr.me/img/2023-08-03/image-20230803211441880.png" alt="image-20230803211441880" /></p>
+<p><img src="//s.zysr.cc/img/2023-08-03/image-20230803211441880.png" alt="image-20230803211441880" /></p>
 
 <p>如果是windows，希望把frp运行在后台服务中，而不是一个丑陋的cmd黑框框，可以使用<a href="/NSSM开心服务管理工具_2023_03_06.html">nssm</a>来帮助实现</p>
 
@@ -409,54 +436,6 @@ token = 47866af5-cc5f-4798-a658-8a39bb61f53e
 <li><a href="https://gofrp.org/docs/reference/server-configures/">https://gofrp.org/docs/reference/server-configures/</a></li>
 <li><a href="https://gofrp.org/docs/reference/client-configures/">https://gofrp.org/docs/reference/client-configures/</a></li>
 </ol>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[引汉济渭]]></title>
-            <link href="//zysr.me//引汉济渭_2023_07_23.html"/>
-            <updated>2023-07-23T08:00:00+08:00</updated>
-            <id>//zysr.me//引汉济渭_2023_07_23.html</id>
-            <content type="html"><![CDATA[<p>看了个新闻，引汉济渭通水了，通水了，通水了。</p>
-
-<p>忍不住想去黄金峡水库。黄金峡水库的地理位置在这儿</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/7035577d6aad6df46717001b535c1e5e.jpg" alt="7035577d6aad6df46717001b535c1e5e" /></p>
-
-<p>最终会进入陕西的供水管网，但不是自然水系。</p>
-
-<p>去‮安西‬旅游，并不‮觉感‬缺水，是因为渭南黑河‮利水‬枢纽的暂‮性时‬缓解。</p>
-
-<p>在‮以北岭秦‬七十二峪‮还口‬有诸‮的多‬瀑布、溪河，甚至在渭南的师门‮场道‬附近，还有山‮空色‬蒙雨亦奇‮江的‬南之色。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/6257084b283fa09c69ca5d0568d6fe15.jpg" alt="6257084b283fa09c69ca5d0568d6fe15" /></p>
-
-<p>实际上，渭河平原非‮缺常‬水，很严重，西安抽取‮下地‬水严重，导致‮面地‬沉降，看看大雁塔，就快‮成变‬东方比‮斜萨‬塔，就‮道知‬有多严重。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/a3719eb180fcb032efe1de70406193f2.jpg" alt="a3719eb180fcb032efe1de70406193f2" /></p>
-
-<p>陕西辖下，除了不够用的渭河，还有另外两个重要的长江支流，汉水和嘉陵江。</p>
-
-<p>汉水，长江的一条重要支流，也称汉江，起于汉中，而汉中的归属，历史上，汉中在四川和陕西多次反复，历史原因，元代起，控汉中握秦岭以制蜀，所以汉中归陕西。</p>
-
-<p>但是汉水却不这么认为，和嘉陵江等别的四川河流一样，不跟渭河去黄河，反而奔湖北往长江去了，没错，身在曹营心在汉，说的就是汉水。</p>
-
-<p>实际上是因为秦岭的阻隔，汉水它去不了北方。</p>
-
-<p>就像四川因为秦岭的阻隔很难去陕西一样，当年李白到了首都长安后，一把鼻涕一把泪的在《蜀道难》里哭闹：“尔来四万八千岁，不与秦塞通人烟”。</p>
-
-<p>秦岭脚下‮个打‬洞，跨秦岭，把汉江水，引到缺水严‮的重‬渭河平原，这样渭河平‮的原‬西安、渭南、咸阳不‮缺再‬水了。
-汉水于关中平原，功莫大焉。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/2be4f3ad13e469b2ac9c1471b8549135.jpg" alt="2be4f3ad13e469b2ac9c1471b8549135" /></p>
-
-<p>进出四川的三条铁路中，成昆、宝成之外，往华东方向最近的、最险要的襄渝铁路，进入汉中后全线沿着汉水南侧大巴山脚往东走，直到进入襄阳，入武汉三镇的汉口汇入长江。</p>
-
-<p><img src="//s.zysr.me/img/2023-07-23/c694722c6150ced5c6472cd2a7a2b61d.jpg" alt="c694722c6150ced5c6472cd2a7a2b61d" /></p>
-
-<p>火车襄渝线进出四川，最喜欢的就是这一段风景。
-沿路往北望，汉水北侧的无限秦岭风光，甚是壮美，尽收眼底。</p>
-
-<p>如今又多了一个黄金峡水库，值得期待。</p>
 ]]></content>
         </entry>
     </feed>

@@ -3,7 +3,7 @@
     <title><![CDATA[竹叶山人]]></title>
     <link href="//zysr.me//blog/categories/技术文档.xml" rel="self"/>
     <link href="//zysr.me//"/>
-    <updated>2024-12-02T23:23:58+08:00</updated>
+    <updated>2025-06-12T16:26:52+08:00</updated>
     <id>//zysr.me//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
@@ -29,7 +29,7 @@
 
 <p>这个时候</p>
 
-<p><img src="//s.zysr.me/img/2023-10-24/image-20231024225544333.png" alt="image-20231024225544333" /></p>
+<p><img src="//s.zysr.cc/img/2023-10-24/image-20231024225544333.png" alt="image-20231024225544333" /></p>
 
 <pre><code class="hl">rsync  -a -p -k -v --chmod=D775,F664 --delete  --exclude  ".git"  --exclude "img_old"  output_prod/  ssh_user@remote_host:/dest_path
 </code></pre>
