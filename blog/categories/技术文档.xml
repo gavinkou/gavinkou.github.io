@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title><![CDATA[竹叶山人]]></title>
-    <link href="//zysr.me//blog/categories/技术文档.xml" rel="self"/>
-    <link href="//zysr.me//"/>
-    <updated>2025-06-12T16:26:52+08:00</updated>
-    <id>//zysr.me//</id>
+    <link href="//zysr.cc//blog/categories/技术文档.xml" rel="self"/>
+    <link href="//zysr.cc//"/>
+    <updated>2025-06-12T16:29:40+08:00</updated>
+    <id>//zysr.cc//</id>
             <author>
             <name><![CDATA[雲文]]></name>                    </author>
         <generator uri="http://sculpin.io/">Sculpin</generator>
             <entry>
             <title type="html"><![CDATA[Windows中SSH上运行Rsync]]></title>
-            <link href="//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html"/>
+            <link href="//zysr.cc//Windows中SSH上运行Rsync_2021_10_24.html"/>
             <updated>2021-10-24T22:42:00+08:00</updated>
-            <id>//zysr.me//Windows中SSH上运行Rsync_2021_10_24.html</id>
+            <id>//zysr.cc//Windows中SSH上运行Rsync_2021_10_24.html</id>
             <content type="html"><![CDATA[<p><a href="https://linux.die.net/man/1/rsync">rsync</a> 是非常好用的同步工具，尤其是增量同步的功能，每次只同步被修改过的文件，其余保持不变的文件，不用同步剩下大量的时间和带宽。可以直接使用rsync设置服务器来进行同步。也可以借助rsync的rsh/ssh特征直接在rsh/ssh层进行通讯和文件同步，避免新开rsync服务导致的风险。</p>
 
 <p>但是如果rsync用于windows和Linux之间同步的话，因为rsync依赖rsh或者ssh（windows上常见的是<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">plink</a>）这样的工具链，而windows平台中直接使用他俩的话，会出现“invalid handle” 错误。</p>
